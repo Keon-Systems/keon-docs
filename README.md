@@ -3,6 +3,13 @@
 This repository is the canonical source of truth for Keon’s
 public-facing documentation and claims.
 
+## Contents
+- [What this repository is](#what-this-repository-is)
+- [What this repository is not](#what-this-repository-is-not)
+- [Governance principles](#governance-principles)
+- [Repository layout](#repository-layout)
+- [Verification](#verification)
+
 ## What this repository is
 - A registry of all public claims made about Keon
 - A proof map linking each claim to verifiable artifacts
@@ -30,3 +37,18 @@ automated checks that fail if:
 
 If it’s stated here, it can be proven.
 If it’s not here, it is not claimed.
+
+## Repository layout
+- `docs/canon/` — claims registry, proof map, phase inventory (source of truth)
+- `docs/content/` — reconciliation ledger (drift tracking)
+- `docs/whitepaper/` — versioned snapshots + addenda
+- `scripts/claims/` — claim lint + drift checks
+- `.github/` — CI workflow and PR template
+
+## License
+
+This repository is licensed under the
+Creative Commons Attribution–NoDerivatives 4.0 International License (CC BY-ND 4.0).
+
+You may share and reference the contents with attribution.
+You may not modify and redistribute altered versions.
