@@ -8,6 +8,6 @@
     "claims:drift": "node scripts/claims/claim-drift-check.mjs",
     "claims:lint": "node scripts/claims/claim-id-lint.mjs",
     "claims:lint:strict": "REQUIRE_CANONICAL=1 node scripts/claims/claim-id-lint.mjs",
-    "claims:check": "npm run claims:lint && npm run claims:drift"
+    "claims:check": "npm run claims:lint:strict && npm run claims:drift"
   }
 }

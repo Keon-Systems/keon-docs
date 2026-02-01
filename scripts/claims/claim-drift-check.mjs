@@ -8,10 +8,9 @@ import process from "node:process";
 const ROOT = process.cwd();
 
 const DEFAULTS = {
-  claimsRegistryPath: "docs/canon/CLAIMS_REGISTRY.yaml",
-  proofMapPath: "docs/canon/PROOF_MAP.yaml",
-  // Scan markdown in docs + site (adjust to your repo layout)
-  markdownGlobs: ["docs/**/*.md", "src/**/*.md", "src/**/*.mdx", "*.md", "**/*.md", "**/*.mdx"],
+  claimsRegistryPath: "canon/CLAIMS_REGISTRY.yaml",
+  proofMapPath: "canon/PROOF_MAP.yaml",
+  markdownGlobs: ["canon/**/*.md", "content/**/*.md", "whitepaper/**/*.md"],
   // Exclude common noise
   ignoreGlobs: ["**/node_modules/**", "**/.next/**", "**/dist/**", "**/build/**", "**/.git/**"],
 };

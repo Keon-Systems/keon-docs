@@ -9,6 +9,7 @@ public-facing documentation and claims.
 - [Governance principles](#governance-principles)
 - [Repository layout](#repository-layout)
 - [Verification](#verification)
+- [License](#license)
 
 ## What this repository is
 - A registry of all public claims made about Keon
@@ -39,10 +40,10 @@ If it’s stated here, it can be proven.
 If it’s not here, it is not claimed.
 
 ## Repository layout
-- `docs/canon/` — claims registry, proof map, phase inventory (source of truth)
-- `docs/content/` — reconciliation ledger (drift tracking)
-- `docs/whitepaper/` — versioned snapshots + addenda
-- `scripts/claims/` — claim lint + drift checks
+- `canon/` — claims registry, proof map, phase inventory (source of truth)
+- `content/` — reconciliation ledger (drift tracking)
+- `whitepaper/` — versioned snapshots + addenda
+- `scripts/claims/` — claim lint + drift checks (CI)
 - `.github/` — CI workflow and PR template
 
 ## License

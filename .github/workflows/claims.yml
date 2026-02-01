@@ -1,15 +1,16 @@
-name: Claims Governance
+name: Claims Governance (docs)
 
 on:
   pull_request:
     paths:
-      - "docs/**"
-      - "src/**"
-      - ".github/**"
-      - "scripts/claims/**"
+      - "canon/**"
+      - "content/**"
+      - "scripts/claims/claim-id-lint.mjs"
+      - "whitepaper/**"
+      - ".github/workflows/claims.yml"
 
 jobs:
-  claims-global-and-scoped:
+  claims-global:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,8 +22,8 @@ jobs:
       - name: Install deps
         run: npm ci
 
-      - name: Claim checks (global)
-        run: npm run claims:check
+      - name: Claim checks (strict)
+        run: npm run claims:lint:strict && npm run claims:drift
 
   claims-scoped:
     runs-on: ubuntu-latest
@@ -38,4 +39,4 @@ jobs:
 
       - name: Claim checks (scoped)
         run: |
-          MD_GLOBS="docs/**/*.md,src/**/*.mdx,src/**/*.md" npm run claims:check
+          MD_GLOBS="canon/**/*.md,content/**/*.md,whitepaper/**/*.md" npm run claims:lint
