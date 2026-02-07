@@ -40,6 +40,37 @@ This shifts explainability from model introspection to **governance accountabili
 
 ---
 
+## Key Surfaces
+
+### Keon Control (Governance Surface)
+
+**Definition**
+- A human governance surface
+- A cross-application view
+- A forensic & audit tool
+- A policy lifecycle manager
+- A receipt and evidence explorer
+
+**Target Audience**
+- Enterprise administrators
+- Compliance officers
+- Security teams
+- Legal / audit
+- Platform owners
+
+**Design Philosophy**
+- Out-of-band by design
+- Enterprise-facing
+- Similar to AWS Console / Okta Admin
+- Not embedded in SaaS apps
+
+**The Iron Rule**
+- Keon never executes. Keon decides.
+- Keon is a governance authority surface, not an application feature.
+- Applications observe governance, never exercise it.
+
+---
+
 ## Choose Your Path
 
 | Goal | Time | Start Here |
