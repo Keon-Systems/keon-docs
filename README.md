@@ -135,6 +135,34 @@ Evidence packs are built so that **trust in the system operator is not required*
 
 ---
 
+## Governance Interfaces
+
+Keon exposes human governance authority through a dedicated interface called the **Courtroom**.
+
+The Courtroom is the only place where:
+- human decisions are recorded
+- rationale is enforced
+- policy lineage is bound
+- evidence is rendered and exported
+
+Execution systems cannot make or alter decisions.
+
+- [Courtroom UI (Governance Authority)](docs/ui/courtroom-ui.md)
+- [Governed Execution Diagram](docs/ui/governed-execution-diagram.md)
+- [Auditor Walkthrough](docs/ui/auditor-walkthrough.md)
+- [Why Not Open Source (Yet)](docs/ui/why-not-open-source.md)
+- [Separation of Powers](docs/ui/separation-of-powers.md)
+
+---
+
+## Comparison
+
+How does governed architecture differ from conventional agent platforms? This framework evaluates systems on architecture, not claims.
+
+- [Governance Models: Governed vs. Conventional](docs/comparison/governance-models.md)
+
+---
+
 ## Digital Forensics and AI Investigations with Keon
 
 Keon’s evidence model is designed for **post-incident reconstruction**.
@@ -149,6 +177,36 @@ Using Keon artifacts, an investigator can determine:
 * whether execution would have failed under different conditions
 
 This makes Keon suitable for environments where **actions must be explainable long after execution**, not just observable in real time.
+
+---
+
+## Lifecycle Governance: Birth, Death, and Automation
+
+Keon doesn't just govern individual decisions — it governs the **entire lifecycle** of autonomous digital entities.
+
+Most governance frameworks address point-in-time authorization. Keon addresses the harder question:
+
+> **What happens when AI systems create, destroy, and automate actions on entities with real-world consequences — and you need to prove every step was legitimate?**
+
+### Governed Birth
+
+Entity creation requires explicit human or system authority. Every entity begins with a receipt-bound genesis event. No entity exists without a governed creation record. If authority is missing — **creation does not occur**.
+
+### Governed Death
+
+Revocation and termination produce immutable lineage. No death without birth (prevents phantom entities). No double-death (prevents state corruption). Receipt chains link creation through termination with no gaps.
+
+### Governed Automation
+
+Policies can trigger automatic governance actions — but always with accountability:
+
+* **Severity gradation** — RECOMMEND (log only) → AUTO_REVOKE (create gate) → AUTO_TERMINATE (immediate)
+* **Human supremacy** — Irreversible actions can require human gate approval before proceeding
+* **Cooldown enforcement** — Prevents policy flapping with configurable cooldown periods
+* **Fail-closed ambiguity** — Missing context defaults to NO_ACTION, never proceeds on assumption
+* **Full attribution** — Every automated action records policy ID, policy version, automation flag, and trigger events
+
+> *Keon allows machines to act automatically — but can always prove why, under whose authority, and with what limits.*
 
 ---
 
@@ -194,7 +252,7 @@ This repo is structured to support both **humans and verification tools**.
 
 Recommended reading order:
 
-1. **[START_HERE.md](./docs/START_HERE.md)** — conceptual foundation and mental model
+1. **[START_HERE.md](./START_HERE.md)** — conceptual foundation and mental model
 2. **Concepts** — governed execution, receipts, fail-closed systems
 3. **Runtime / API docs** — decision and execution boundaries
 4. **Proof campaigns** — what is proven and how to verify it
@@ -222,9 +280,29 @@ Keon documentation follows these rules:
 
 ---
 
+## What's Proven
+
+Every public claim in the Keon governance model is backed by sealed, tagged, independently verifiable proof campaigns. These are not demos — they are **immutable evidence bundles** with SHA256-hashed manifests.
+
+| Capability | What It Proves | Status |
+|-----------|---------------|--------|
+| Agent Registry & Capability Routing | Governed agent discovery and dispatch | ✅ Proven |
+| Workflow Orchestration | Execution spine with explicit policy evaluation | ✅ Proven |
+| Human-in-the-Loop Gates | First-class, ergonomic, auditable pause/resume | ✅ Proven |
+| Multi-Agent Collaboration | Safe coordination with action-level attribution | ✅ Proven |
+| Governed Birth | Entity creation under human-governed execution | ✅ Proven |
+| Governed Death | Revocation & termination with receipt-backed finality | ✅ Proven |
+| Policy Automation | Automated governance with fail-closed semantics | ✅ Proven |
+
+> **Birth, Death, and Automation are all governed, attributed, and provable.**
+
+Full proof artifacts, harness code, and evidence bundles: [Proof Campaign Status](https://github.com/m0r6aN/omega-docs/blob/main/REPORT/PROOFS/PROOF_CAMPAIGN_STATUS.md)
+
+---
+
 ## Status
 
-Keon is actively developed and used as a governance substrate for real execution systems.
+Keon is actively developed and used as a governance substrate for real execution systems, with **7 sealed proof campaigns** covering the full governance lifecycle.
 
 Public documentation focuses on:
 
@@ -232,6 +310,7 @@ Public documentation focuses on:
 * verification models
 * forensic evidence artifacts
 * reproducible proof
+* lifecycle governance (birth, death, automation)
 
 Product positioning, deployments, and integrations live outside this repository.
 
@@ -245,6 +324,6 @@ See the [repository license](LICENSE) for usage terms.
 
 ### One-Line Summary
 
-> **Keon makes execution provable — even under investigation.**
+> **Keon makes execution provable — from creation through termination, even under investigation.**
 
 ---
