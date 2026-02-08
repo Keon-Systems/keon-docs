@@ -1,6 +1,6 @@
 # START_HERE: Welcome to Keon Systems
 
-**30-second summary**: Keon is a governance substrate that proves AI decisions — before, during, and after execution. Policy is enforced at the infrastructure boundary. Every governed decision produces verifiable evidence.
+**30-second summary**: Keon is a governance substrate that proves AI decisions; before, during, and after execution. Policy is enforced at the infrastructure boundary. Every governed decision produces verifiable evidence.
 
 ---
 
