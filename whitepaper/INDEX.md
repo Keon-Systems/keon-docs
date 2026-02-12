@@ -1,12 +1,12 @@
 # Keon Systems Whitepaper — Canonical Index
 
 ## Current Version
-**Governed Execution for Operational AI — v1.0**
-Published: January 2026
-Status: Current
+**Cryptographically Governed AI Execution (CGAE) — v1.0.0**
+Published: February 12, 2026
+Status: Canonical
 Distribution: Public
 
-[Read v1.0 →](./WHITEPAPER.md)
+[Read CGAE v1.0.0 →](../docs/whitepapers/cgae/v1.0.0.md)
 
 ---
 
@@ -24,11 +24,24 @@ This document maintains a canonical record of all published whitepaper versions.
 
 ## Version History
 
+### v1.0.0 — Cryptographically Governed AI Execution
+**Published**: February 12, 2026
+**Status**: Canonical
+**Availability**: [docs/whitepapers/cgae/v1.0.0.md](../docs/whitepapers/cgae/v1.0.0.md)
+
+Defines the new CGAE category: every AI-initiated action is evaluated against enforceable policy before execution, bound cryptographically to its governing decision, scoped to an explicit tenant & authority context, and emitted as deterministic evidence. This is the canonical reference for Keon’s governance substrate.
+
+**Key Claims**:
+- Policy is enforced at the substrate, not in application code, with required receipts before execution.
+- Every action produces portable Evidence Packs with lineage, attribution, and cost.
+- Human and machine authorities remain attributable via cryptographic receipts, and execution is verifiable long after the fact.
+
 ### v1.0 — Governed Execution Foundation
 **Published**: January 2026
-**Status**: Current
-**Availability**: [WHITEPAPER.md](./WHITEPAPER.md)
+**Status**: Archived
+**Availability**: [docs/whitepapers/archive/governed-execution-v1.0.md](../docs/whitepapers/archive/governed-execution-v1.0.md)
 **PDF**: [governed_execution_whitepaper_v1.0.pdf](../whitepaper.pdf)
+**Superseded by**: [CGAE v1.0.0](../docs/whitepapers/cgae/v1.0.0.md)
 
 Defines the core thesis and architectural framework for governed execution:
 - Why authorization, not intelligence, is the hard problem
@@ -82,18 +95,19 @@ Extends the whitepaper with:
 
 **For direct links**:
 ```
-Canonical Whitepaper: https://github.com/m0r6aN/keon-docs/tree/main/whitepaper
-Current Version: https://github.com/m0r6aN/keon-docs/blob/main/whitepaper/WHITEPAPER.pdf
-Claims Registry: https://github.com/m0r6aN/keon-docs/blob/main/canon/CLAIMS_REGISTRY.yaml
-Proof Map: https://github.com/m0r6aN/keon-docs/blob/main/canon/PROOF_MAP.yaml
+Canonical Whitepaper: https://github.com/keon-systems/keon-docs/blob/main/docs/whitepapers/cgae/v1.0.0.md
+Current Version: https://github.com/keon-systems/keon-docs/blob/main/docs/whitepapers/cgae/v1.0.0.md
+Archived — Governed Execution for Operational AI v1.1: https://github.com/keon-systems/keon-docs/blob/main/docs/whitepapers/archive/governed-execution-v1.0.md
+Claims Registry: https://github.com/keon-systems/keon-docs/blob/main/canon/CLAIMS_REGISTRY.yaml
+Proof Map: https://github.com/keon-systems/keon-docs/blob/main/canon/PROOF_MAP.yaml
 ```
 
 **For citations**:
 ```
-Keon Systems Technical Whitepaper v1.1
-"Governed Execution for Operational AI"
+Keon Systems Technical Whitepaper v1.0.0
+"Cryptographically Governed AI Execution (CGAE)"
 February 2026
-https://github.com/m0r6aN/keon-docs/blob/main/whitepaper/WHITEPAPER.pdf
+https://github.com/keon-systems/keon-docs/blob/main/docs/whitepapers/cgae/v1.0.0.md
 ```
 
 ---
@@ -102,10 +116,10 @@ https://github.com/m0r6aN/keon-docs/blob/main/whitepaper/WHITEPAPER.pdf
 
 All claims in the whitepaper are subject to the governance rules defined in [canon/](../canon/).
 
-If it's stated in the whitepaper, it must be provable. Run `npm run claims:drift` to verify claim integrity.
+If it's stated in the whitepaper, it must be provable. [KS-EVIDENCE-004] Run `npm run claims:drift` to verify claim integrity.
 
 Full proof campaign evidence: [OMEGA Proof Campaign Status](https://github.com/m0r6aN/omega-docs/blob/main/REPORT/PROOFS/PROOF_CAMPAIGN_STATUS.md)
 
 ---
 
-*Last Updated: 2026-02-08*
+*Last Updated: 2026-02-12*

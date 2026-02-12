@@ -163,6 +163,13 @@ How does governed architecture differ from conventional agent platforms? This fr
 
 ---
 
+## Whitepapers
+
+- [Cryptographically Governed AI Execution (CGAE) — v1.0.0 · Canonical](docs/whitepapers/cgae/v1.0.0.md)
+- [Whitepapers index (canonical + archive links)](docs/whitepapers/index.md)
+- [Archived: Governed Execution for Operational AI — v1.1](docs/whitepapers/archive/governed-execution-v1.0.md)
+
+
 ## Digital Forensics and AI Investigations with Keon
 
 Keon’s evidence model is designed for **post-incident reconstruction**.
@@ -258,7 +265,7 @@ Recommended reading order:
 4. **Proof campaigns** — what is proven and how to verify it
 5. **Evidence artifacts** — audit- and court-grade outputs
 
-If a claim cannot be traced to code, a tag, or a proof artifact, it should be treated as incomplete.
+If a claim cannot be traced to code, a tag, or a proof artifact, it should be treated as incomplete. [KS-EVIDENCE-004]
 
 ### Next Steps
 - Explore the [docs folder](./docs/) for in-depth guides.
@@ -282,7 +289,7 @@ Keon documentation follows these rules:
 
 ## What's Proven
 
-Every public claim in the Keon governance model is backed by sealed, tagged, independently verifiable proof campaigns. These are not demos — they are **immutable evidence bundles** with SHA256-hashed manifests.
+Every public claim in the Keon governance model is backed by sealed, tagged, independently verifiable proof campaigns. These are not demos — they are **immutable evidence bundles** with SHA256-hashed manifests. [KS-EVIDENCE-004]
 
 | Capability | What It Proves | Status |
 |-----------|---------------|--------|

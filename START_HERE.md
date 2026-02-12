@@ -201,8 +201,9 @@ Governed runtimes integrate Keon to:
 | Goal                              | Time       | Start here                                                   |
 |-----------------------------------|------------|--------------------------------------------------------------|
 | Understand Keon quickly           | 5–10 min   | This page                                                    |
-| Grasp the full architecture       | 15–30 min  | [Whitepaper](./whitepaper/WHITEPAPER.md)                     |
-| Verify every public claim         | 30–60 min  | [Claims Registry](./canon/CLAIMS_REGISTRY.yaml)              |
+| Grasp the full architecture       | 15–30 min  | [CGAE v1.0.0 (canonical whitepaper)](./docs/whitepapers/cgae/v1.0.0.md) |
+| Explore the full whitepaper library | 30 min     | [Whitepapers index (canonical + archive)](./docs/whitepapers/index.md) |
+| Verify every public claim         | 30–60 min  | [Claims Registry](./canon/CLAIMS_REGISTRY.yaml) [KS-EVIDENCE-004] |
 | See real production usage         | 30+ min    | [OMEGA](https://github.com/m0r6aN/omega-docs)                |
 | Audit / forensic deep-dive        | 1–2 hrs    | [Proof maps + sealed Evidence Packs](./EVIDENCE/README.md)   |
 | Verify proven capabilities        | 15–30 min  | [Proof Campaign Status](https://github.com/m0r6aN/omega-docs/blob/main/REPORT/PROOFS/PROOF_CAMPAIGN_STATUS.md) |
