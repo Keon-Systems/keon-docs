@@ -1,5 +1,10 @@
 # **START HERE — What Keon Is and Why It Exists**  
 
+## OMEGA Whitepaper
+
+- **OMEGA Governed Execution Whitepaper (Markdown):** [omega-docs/whitepapers/omega-governed-execution.md](https://github.com/omega-brands/omega-docs/blob/main/whitepapers/omega-governed-execution.md)
+- **OMEGA Governed Execution Whitepaper (PDF):** [omega-docs/assets/whitepapers/omega-governed-execution.pdf](https://github.com/omega-brands/omega-docs/blob/main/assets/whitepapers/omega-governed-execution.pdf)
+
 **Keon turns AI-triggered actions into court-defensible, independently verifiable proof — before a single line of code ever runs in production.**
 
 **30-second summary**  
