@@ -1,231 +1,235 @@
-# **START HERE — What Keon Is and Why It Exists**  
+# START HERE
 
-## OMEGA Whitepaper
+## Keon: Governance Substrate for Verifiable AI Execution
 
-- **OMEGA Governed Execution Whitepaper (Markdown):** [omega-docs/whitepapers/omega-governed-execution.md](https://github.com/omega-brands/omega-docs/blob/main/whitepapers/omega-governed-execution.md)
-- **OMEGA Governed Execution Whitepaper (PDF):** [omega-docs/assets/whitepapers/omega-governed-execution.pdf](https://github.com/omega-brands/omega-docs/blob/main/assets/whitepapers/omega-governed-execution.pdf)
+Keon is not an AI system.
 
-**Keon turns AI-triggered actions into court-defensible, independently verifiable proof — before a single line of code ever runs in production.**
+It does not generate plans.
+It does not execute workflows.
+It does not reason with LLMs.
 
-**30-second summary**  
-Keon is the **governance and forensic substrate** for AI-assisted systems where decisions cause real execution.
+Keon governs execution.
 
-It enforces policy **before execution**, records **explicit authority**, and produces **verifiable evidence packs** that survive audit, investigation, e-discovery, and courtroom scrutiny.
+Specifically, it governs:
 
-> **Execution proposes. Governance decides. Receipts prove.**
+* Whether actions are authorized
+* Under which policy and version
+* Within which tenant and authority boundary
+* With what verifiable evidence
+* And, when applicable, how human-facing expression complies with declared behavioral policy
 
----
-
-## The problem Keon solves
-
-AI has crossed from advisory → **operational**.
-
-Today AI systems:
-
-- deploy infrastructure
-- modify accounts & permissions
-- trigger workflows
-- make decisions with legal / financial / safety consequences
-
-Most “AI governance” tools stop at:
-
-- prompt safety
-- alignment
-- real-time monitoring
-- post-hoc logs
-
-They collapse when the real questions arrive months or years later:
-
-> *Who authorized this change?*  
-> *Under which ratified policy version?*  
-> *What exact evidence was evaluated?*  
-> *Can this decision be independently reproduced and verified?*
-
-That’s **not observability**.  
-That’s a **forensics & accountability gap**.
+If governance is missing, ambiguous, or unverifiable — execution does not occur.
 
 ---
 
-## What Keon actually is
+# The Problem Keon Solves
 
-Keon is the **decision governance layer** between intent and execution.
+AI systems increasingly trigger actions with material consequence:
 
-It enforces one mechanical boundary:
+* Infrastructure deployment
+* Account modification
+* Automated enforcement
+* Policy execution
+* Customer-facing decisions
 
-**Decision → Authorization → Receipt → Execution → Evidence**
+Most governance approaches focus on:
 
-Every governed action must produce:
+* Logging
+* Monitoring
+* Prompt controls
+* After-the-fact review
 
-- explicit authorization decision
-- cryptographic receipt
-- tamper-evident audit trail
-- verifiable **evidence pack** suitable for forensic review
+Keon addresses a different class of problem:
 
-No valid receipt? → **No execution**.
+> How do you prove that an AI-assisted action was authorized, policy-compliant, and executed under accountable authority — long after it occurred?
 
-```mermaid
-flowchart LR
-    A[AI / System Proposal] --> B[Keon Authorization]
-    B -->|Valid Receipt| C[Execution Allowed]
-    B -->|No / Invalid Receipt| D[Execution Blocked]
-    C --> E[Evidence Pack Sealed]
-    style B fill:#d32f2f,stroke:#fff,stroke-width:2px
-```
+This is a forensics problem.
 
-
----
-
-## What Keon is **not**
-
-Keon stays narrow by design. It does **not**:
-
-- reason with LLMs
-- generate plans / workflows
-- initiate actions
-- execute anything
-- replace your compliance program
-- pretend to be a lawyer
-
-Keon exists to make **execution provable** — full stop.
+Not observability.
+Not alignment.
+Forensics.
 
 ---
 
-## Governed execution — the core mental model
+# The Governance Boundary
 
-- AI outputs = **requests**, never commands
-- Execution = **fail-closed** by default
-- Authority = **explicit & attributable**, never implied
-- Evidence = **first-class deliverable**
+Keon sits between intent and execution.
 
-This model lets organizations answer the questions regulators, auditors, lawyers, and incident responders actually ask:
+**Intent → Authorization → Receipt → Execution → Evidence**
 
-- Who approved this?
-- Under what policy version?
-- What was the evidence at decision time?
-- What would have happened if auth failed?
-- Can a third party verify the entire chain?
+Every governed action produces:
 
----
+* An explicit authorization decision
+* A cryptographic receipt
+* A deterministic record
+* A verifiable evidence artifact
 
-## Evidence Packs — digital forensics by design
-
-The atomic unit of truth in Keon is the **Evidence Pack**.
-
-Each pack is a tamper-evident bundle containing:
-
-- **Decision** — what was requested
-- **Policy** — what governed evaluation
-- **Authority** — who/what approved it
-- **Execution** — what actually ran
-- **Proof** — cryptographic receipts chaining everything
-
-Properties:
-
-- human-readable JSON + binary receipts
-- machine-verifiable signatures
-- immutable once sealed
-- long-term retention ready
-- exportable for legal / audit use
-
-Sealed packs live in the **Keon Evidence Vault** (append-only).
+Execution systems cannot bypass this boundary.
 
 ---
 
-## Digital forensics & post-incident reconstruction
+# Operational Governance
 
-Keon artifacts let investigators reconstruct:
+Operational governance ensures:
 
-- Proposed decision
-- Governing policy snapshot
-- Authorization chain (human or system)
-- Execution timeline
-- Evidence evaluated at decision time
-- Alternate outcomes under different auth conditions
+* Intent is explicit and canonicalized
+* Policy is enforced before execution
+* Authority is cryptographically bound
+* Artifacts are deterministic and immutable
+* Evidence is independently verifiable
 
-Designed for environments where **explainability must last years**, not just real-time dashboards.
+Logs describe what happened.
 
----
-
-## Lifecycle governance — birth, death, and automation
-
-Keon doesn't only govern point-in-time decisions. It governs the **full lifecycle** of autonomous digital entities.
-
-**Governed Birth** — Entity creation requires explicit authority. Every entity begins with a receipt-bound genesis event. No entity exists without a governed creation record.
-
-**Governed Death** — Revocation and termination produce immutable lineage. No death without birth (prevents phantom entities). No double-death (prevents state corruption). Receipt chains link creation → termination with no gaps.
-
-**Governed Automation** — Policies can trigger automatic governance actions, but always with accountability:
-
-- Severity gradation: RECOMMEND → AUTO_REVOKE → AUTO_TERMINATE
-- Human gate enforcement for irreversible actions
-- Cooldown periods to prevent policy flapping
-- Fail-closed: ambiguous or incomplete context defaults to NO_ACTION
-- Full attribution: policy ID, version, automation flag, and trigger events
-
-> *Machines may act automatically — but Keon can always prove why, under whose authority, and with what limits.*
+Keon proves whether it was allowed.
 
 ---
 
-## Governance surfaces
+# Behavioral Governance
 
-### Keon Control (human governance surface)
+As AI systems increasingly communicate directly with humans, governance must extend beyond action into expression.
 
-Cross-system view for:
+Keon supports governance of human-facing expression under declared Behavioral Policy.
 
-- policy lifecycle
-- receipt & evidence exploration
-- audit console
-- forensic review
-- compliance oversight
+Behavioral governance may include:
 
-Iron rule:  
-**Keon never executes. Keon decides. Applications observe — they never govern.**
+* Declared archetype constraints
+* Lexical and structural framing rules
+* Emotional calibration bounds
+* Agency preservation requirements
+* Fail-closed enforcement modes
 
----
+Human-facing output may pass through a Behavioral Evaluation Gate before exposure.
 
-## Relationship to governed systems (e.g. OMEGA)
+Behavioral evaluation may produce receipts that bind expression to policy version and execution context.
 
-Keon does **not** run code.
+Governance therefore applies to both:
 
-Governed runtimes integrate Keon to:
-
-- request authorization
-- receive decisions + obligations
-- emit receipts
-- preserve evidence packs
-- prove compliance later
-
-> **Keon decides.  
-> Governed systems execute.  
-> Receipts prove.**
+* What systems do
+* How they present themselves while doing it
 
 ---
 
-## Choose your path
+# Separation of Powers
 
-| Goal                              | Time       | Start here                                                   |
-|-----------------------------------|------------|--------------------------------------------------------------|
-| Understand Keon quickly           | 5–10 min   | This page                                                    |
-| Grasp the full architecture       | 15–30 min  | [CGAE v1.0.0 (canonical whitepaper)](./docs/whitepapers/cgae/v1.0.0.md) |
-| Explore the full whitepaper library | 30 min     | [Whitepapers index (canonical + archive)](./docs/whitepapers/index.md) |
-| Verify every public claim         | 30–60 min  | [Claims Registry](./canon/CLAIMS_REGISTRY.yaml) [KS-EVIDENCE-004] |
-| See real production usage         | 30+ min    | [OMEGA](https://github.com/m0r6aN/omega-docs)                |
-| Audit / forensic deep-dive        | 1–2 hrs    | [Proof maps + sealed Evidence Packs](./EVIDENCE/README.md)   |
-| Verify proven capabilities        | 15–30 min  | [Proof Campaign Status](https://github.com/m0r6aN/omega-docs/blob/main/REPORT/PROOFS/PROOF_CAMPAIGN_STATUS.md) |
+Keon is a governance substrate.
 
+Execution systems:
+
+* Propose actions
+* Request authorization
+* Execute only when receipted
+
+Keon:
+
+* Evaluates policy
+* Issues receipts
+* Records deterministic evidence
+* Enables independent verification
+
+Keon does not execute.
+
+Execution systems do not self-authorize.
+
+This separation prevents silent privilege escalation and unverifiable action.
 
 ---
 
-## Design principles (non-negotiable)
+# Lifecycle Governance
 
-- Proof over promises
-- Explicit authority over implicit trust
-- Fail-closed by default
-- Determinism over heuristics
-- Forensic defensibility over narrative comfort
+Keon governs more than individual decisions.
+
+It governs lifecycle events:
+
+* Governed Birth (entity creation under explicit authority)
+* Governed Death (receipt-bound termination with lineage)
+* Governed Automation (policy-triggered actions with fail-closed semantics)
+
+Lifecycle governance ensures no entity exists, changes state, or terminates without attributable authority.
 
 ---
 
-**One-line truth**
+# Evidence Model
 
-> **Keon makes execution provable — from creation through termination, even when lawyers and regulators are watching.**
+Keon produces:
+
+* Cryptographically bound receipts
+* Deterministic manifests
+* Verifiable evidence packs
+* Tamper-evident artifact chains
+
+Evidence is portable.
+
+Verification does not require trust in the operator.
+
+---
+
+# Who Should Read This Repository
+
+This repository is designed for:
+
+* Platform engineers
+* AI infrastructure teams
+* Security and compliance professionals
+* Digital forensic investigators
+* Audit and risk teams
+* Legal and investigative functions
+
+If your system may be examined under audit, regulatory review, or litigation, this model is relevant.
+
+---
+
+# How to Navigate This Repository
+
+Recommended order:
+
+1. **Conceptual Foundation**
+
+   * Governance model
+   * Separation of powers
+   * Receipt architecture
+
+2. **Whitepapers**
+
+   * Cryptographically Governed AI Execution (CGAE)
+   * Canonical documentation
+
+3. **Lifecycle Governance**
+
+   * Birth
+   * Death
+   * Automation
+
+4. **Proof Campaigns**
+
+   * Sealed artifacts
+   * Verification harnesses
+   * Independent reproducibility
+
+5. **UI and Governance Interfaces**
+
+   * Courtroom
+   * Evidence export
+   * Auditor walkthrough
+
+If a claim cannot be traced to code, a tag, or a proof artifact, treat it as incomplete.
+
+---
+
+# What This Repository Is Not
+
+This is not:
+
+* A marketing site
+* A feature list
+* A philosophical alignment manifesto
+
+It is documentation for a governance substrate designed to make execution and expression provable.
+
+---
+
+# One-Line Summary
+
+Keon makes execution and human-facing AI behavior provable — before, during, and after action.
+
+---
+
