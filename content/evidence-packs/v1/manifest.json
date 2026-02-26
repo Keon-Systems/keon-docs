@@ -1,0 +1,45 @@
+{
+  "manifestVersion": "1",
+  "keonVersion": "1.0.0.0",
+  "generatedAtUtc": "2026-01-01T00:00:00+00:00",
+  "tenantId": "tenant_test",
+  "correlationId": "corr_test",
+  "timeWindow": {
+    "fromUtc": "2025-12-31T23:59:00+00:00",
+    "toUtc": "2026-01-01T00:00:00+00:00"
+  },
+  "counts": {
+    "decisionCount": 0,
+    "executionCount": 0,
+    "memoryCount": 0,
+    "traceCount": 0
+  },
+  "healthFlags": {
+    "hasIncompleteSpine": true,
+    "hasErrors": false,
+    "hasSoftDeletes": false
+  },
+  "metadata": {
+    "legalHold": false
+  },
+  "artifacts": [
+    {
+      "path": "correlation_summary.json",
+      "sha256": "60fb09ff4732b9dc9fde5970d84b68bb399b7a62df41d49bd937959323dad4b6",
+      "bytes": 173,
+      "contentType": "application/json"
+    },
+    {
+      "path": "receipts.json",
+      "sha256": "4607c338941257e676d45bef5ff01d4f029fc4d090a392b51bd83666cdabfd09",
+      "bytes": 61,
+      "contentType": "application/json"
+    },
+    {
+      "path": "spine.json",
+      "sha256": "22a38a333cd20faaea8dc2e0d5bbecc214390f17ffb6d08cdf999719a9c52e8d",
+      "bytes": 356,
+      "contentType": "application/json"
+    }
+  ]
+}
