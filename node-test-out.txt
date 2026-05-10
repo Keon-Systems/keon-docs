@@ -1,0 +1,5 @@
+STARTED
+stdout: undefined
+stderr: undefined
+status: null
+error: Error: spawnSync D:\nvm\v24.7.0\npm.cmd EINVAL

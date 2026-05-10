@@ -1,0 +1,86 @@
+[
+  {
+    "feature": "Official Governed MCP Gateway",
+    "product": "MCP Gateway",
+    "claim_type": "feature",
+    "one_line_description": "Universal enforcement layer that intercepts and governs all MCP tool execution, injecting identity, policy, receipts, and causal lineage into every interaction",
+    "source_file": "keon-mcp-gateway/README.md",
+    "source_section": "What This Is",
+    "confidence": "explicit",
+    "canonical_owner": "MCP Gateway",
+    "ui_surface": ["control", "governance", "proof"],
+    "impact_level": "core"
+  }, 
+  {
+  "feature": "No-Bypass Governance Enforcement",
+  "product": "MCP Gateway",
+  "claim_type": "invariant",
+  "one_line_description": "All MCP tool execution must pass through the governed gateway; there are no direct execution paths or side channels",
+  "source_file": "keon-mcp-gateway/README.md",
+  "source_section": "Design Philosophy",
+  "confidence": "inferred",
+  "canonical_owner": "MCP Gateway",
+  "ui_surface": ["governance"],
+  "impact_level": "core"
+},
+{
+  "feature": "Zero-Friction MCP Adoption",
+  "product": "MCP Gateway",
+  "claim_type": "differentiator",
+  "one_line_description": "Existing MCP clients connect without modification and immediately receive governed, receipt-rich execution with no integration overhead",
+  "source_file": "keon-mcp-gateway/README.md",
+  "source_section": "What This Is",
+  "confidence": "inferred",
+  "canonical_owner": "MCP Gateway",
+  "ui_surface": ["governance"],
+  "impact_level": "differentiator"
+},
+  {
+    "feature": "Keon Governed Envelope in StructuredContent",
+    "product": "MCP Gateway",
+    "claim_type": "mechanism",
+    "one_line_description": "Every tool result is wrapped in a canonical governance envelope containing decision, policy state, receipts, correlation, and verifiable proof artifacts",
+    "source_file": "keon-mcp-gateway/README.md",
+    "source_section": "Example MCP Tool Result",
+    "confidence": "explicit",
+    "canonical_owner": "MCP Gateway",
+    "ui_surface": ["proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Durable Ingress Spine Receipts",
+    "product": "MCP Gateway",
+    "claim_type": "mechanism",
+    "one_line_description": "Automatically emits append-only causal receipts (directive → intent → decision → execution → outcome)",
+    "source_file": "keon-mcp-gateway/README.md",
+    "source_section": "Governance And Memory Lifecycle",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "memory"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Fail-Closed Identity Binding",
+    "product": "MCP Gateway",
+    "claim_type": "mechanism",
+    "one_line_description": "Automatic tenant_id + actor_id binding from JWT or API keys with scope enforcement",
+    "source_file": "keon-mcp-gateway/README.md",
+    "source_section": "Auth Modes",
+    "confidence": "explicit",
+    "canonical_owner": "MCP Gateway",
+    "ui_surface": ["governance"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Ingress Spine Persistence Modes",
+    "product": "MCP Gateway",
+    "claim_type": "mechanism",
+    "one_line_description": "Configurable durability (Off / BestEffort / Required) with fail-closed behavior on Required mode",
+    "source_file": "keon-mcp-gateway/README.md",
+    "source_section": "Important Settings",
+    "confidence": "explicit",
+    "canonical_owner": "MCP Gateway",
+    "ui_surface": ["governance"],
+    "impact_level": "supporting"
+  }
+]

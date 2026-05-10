@@ -1,0 +1,33 @@
+ M src/Keon.Control.Website/.env.example
+ M src/Keon.Control.Website/package-lock.json
+ M src/Keon.Control.Website/package.json
+ M src/Keon.Control.Website/src/app/alerts/page.tsx
+ M src/Keon.Control.Website/src/app/evidence/golden-path/page.tsx
+ M src/Keon.Control.Website/src/app/evidence/source/[slug]/page.tsx
+ M src/Keon.Control.Website/src/app/governance/receipts/page.tsx
+ M src/Keon.Control.Website/src/app/layout.tsx
+ M src/Keon.Control.Website/src/app/observability/traces/page.tsx
+ M src/Keon.Control.Website/src/app/page.tsx
+ M src/Keon.Control.Website/src/app/policies/page.tsx
+ M src/Keon.Control.Website/src/app/runtime/executions/page.tsx
+ M src/Keon.Control.Website/src/app/tenants/page.tsx
+ M src/Keon.Control.Website/src/app/ui-demo/page.tsx
+ M src/Keon.Control.Website/src/components/charts/index.ts
+ M src/Keon.Control.Website/src/components/hud/mini-chart.tsx
+ M src/Keon.Control.Website/src/components/layout/page-container.tsx
+ M src/Keon.Control.Website/src/components/ui/badge.tsx
+ M src/Keon.Control.Website/src/components/ui/status-indicator.tsx
+ M src/Keon.Control.Website/src/lib/evidence-docs.ts
+ M src/Keon.Control.Website/src/lib/state/hooks.ts
+?? .artifacts/
+?? src/Keon.Control.Website/src/__tests__/
+?? src/Keon.Control.Website/src/app/api/
+?? src/Keon.Control.Website/src/app/global-error.tsx
+?? src/Keon.Control.Website/src/app/login/
+?? src/Keon.Control.Website/src/components/fixture-label.tsx
+?? src/Keon.Control.Website/src/components/fixture-mode-banner.tsx
+?? src/Keon.Control.Website/src/lib/session.ts
+?? src/Keon.Control.Website/src/proxy.ts
+?? src/Keon.Control.Website/tsconfig.tsbuildinfo
+?? src/Keon.Control.Website/vitest.config.ts
+dc94c95 hardening: add armor analyzers and integrity gate

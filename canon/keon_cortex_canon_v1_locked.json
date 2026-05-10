@@ -1,0 +1,122 @@
+[
+  {
+    "feature": "Deterministic Shard Identity",
+    "product": "Keon Cortex",
+    "claim_type": "invariant",
+    "one_line_description": "Canonical SHA256-based identity ensures identical inputs produce identical shards, enabling deterministic replay, deduplication, and audit-grade traceability",
+    "source_file": "README.md",
+    "source_section": "Core Capabilities (Open Core)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory"],
+    "impact_level": "core"
+  },
+  {
+  "feature": "Deterministic Replay",
+  "product": "Keon Cortex",
+  "claim_type": "invariant",
+  "one_line_description": "System state can be deterministically reconstructed at any point in time from the append-only memory substrate",
+  "source_file": "README.md",
+  "source_section": "Design Principles",
+  "confidence": "inferred",
+  "canonical_owner": "Keon Cortex",
+  "ui_surface": ["memory", "proof"],
+  "impact_level": "differentiator"
+},
+  {
+  "feature": "Causal Memory Lineage",
+  "product": "Keon Cortex",
+  "claim_type": "mechanism",
+  "one_line_description": "Each memory entry is linked to its causal predecessors, enabling full reconstruction of how system state evolved over time",
+  "source_file": "README.md",
+  "source_section": "Architecture",
+  "confidence": "inferred",
+  "canonical_owner": "Keon Cortex",
+  "ui_surface": ["memory", "proof", "control"],
+  "impact_level": "core"
+},
+  {
+  "feature": "Append-Only Memory Model",
+  "product": "Keon Cortex",
+  "claim_type": "invariant",
+  "one_line_description": "Memory is never mutated or overwritten; all changes are recorded as new entries, preserving complete historical lineage",
+  "source_file": "README.md",
+  "source_section": "Design Principles",
+  "confidence": "inferred",
+  "canonical_owner": "Keon Cortex",
+  "ui_surface": ["memory", "proof"],
+  "impact_level": "core"
+},
+  {
+    "feature": "Idempotent Ingestion",
+    "product": "Keon Cortex",
+    "claim_type": "invariant",
+    "one_line_description": "Duplicate events are silently no-opped; no duplicate shards ever created",
+    "source_file": "README.md",
+    "source_section": "Design Principles",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory"],
+    "impact_level": "supporting"
+  },
+  {
+    "feature": "Transactional Outbox + Leasing",
+    "product": "Keon Cortex",
+    "claim_type": "mechanism",
+    "one_line_description": "Exactly-once indexing pipeline that guarantees consistent vector state even across failures, restarts, and retries",
+    "source_file": "README.md",
+    "source_section": "Core Capabilities (Open Core)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Fail-Closed Tenant Isolation",
+    "product": "Keon Cortex",
+    "claim_type": "invariant",
+    "one_line_description": "Hard multi-gate tenant enforcement with no silent cross-tenant leakage at any layer",
+    "source_file": "README.md",
+    "source_section": "Design Principles",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory", "governance"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Authoritative Document Store + Derivative Vector Index",
+    "product": "Keon Cortex",
+    "claim_type": "mechanism",
+    "one_line_description": "Authoritative document store defines canonical truth while vector index remains a disposable, replayable derivative, ensuring retrieval never corrupts memory integrity",
+    "source_file": "README.md",
+    "source_section": "Architecture",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Decay & Reinforcement Engine",
+    "product": "Keon Cortex",
+    "claim_type": "feature",
+    "one_line_description": "Exponential decay with configurable per-tenant half-life and reinforcement scoring on retrievals",
+    "source_file": "README.md",
+    "source_section": "Core Capabilities (Open Core)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["memory"],
+    "impact_level": "supporting"
+  },
+  {
+    "feature": "Cortex Governed Mode",
+    "product": "Keon Cortex",
+    "claim_type": "feature",
+    "one_line_description": "Commercial extension with Ed25519 signature enforcement, tamper-detectable Evidence Pack export, and policy guardrails",
+    "source_file": "README.md",
+    "source_section": "Governed Mode (Commercial Extension)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Cortex",
+    "ui_surface": ["proof", "governance"],
+    "impact_level": "differentiator"
+  }
+]

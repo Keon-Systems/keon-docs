@@ -1,0 +1,86 @@
+[
+  {
+    "feature": "Dream Offerings",
+    "product": "Keon Collective",
+    "claim_type": "feature",
+    "one_line_description": "Continuously generates and refines non-effecting proposals during idle periods, allowing the system to evolve strategies, surface opportunities, and pre-compute future decisions without external prompting",
+    "source_file": "docs/doctrine/quiescence.md",
+    "source_section": "Quiescence Doctrine",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["how-it-works"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Temporal Echo Planning",
+    "product": "Keon Collective",
+    "claim_type": "mechanism",
+    "one_line_description": "Simulates and evaluates multiple future system states before committing to any execution path",
+    "source_file": "docs/architecture/planning_engine.md",
+    "source_section": "Planning Engine",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["how-it-works"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Adversarial Challenge",
+    "product": "Keon Collective",
+    "claim_type": "mechanism",
+    "one_line_description": "Internal adversarial system that actively attempts to break, exploit, or invalidate proposed actions before they reach the execution boundary",
+    "source_file": "docs/core/consensus_mechanisms.md",
+    "source_section": "Consensus Mechanisms",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["how-it-works"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Cognitive Heat",
+    "product": "Keon Collective",
+    "claim_type": "mechanism",
+    "one_line_description": "System-wide risk and strain signal that surfaces instability, coordination overhead, and governance tension to guide planning, throttling, and operator awareness",
+    "source_file": "docs/system/telemetry.md",
+    "source_section": "Telemetry",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["control", "how-it-works"],
+    "impact_level": "core"
+  },
+  {
+  "feature": "Cognition–Execution Separation",
+  "product": "Keon Collective",
+  "claim_type": "invariant",
+  "one_line_description": "Collective cognition may explore, simulate, and propose freely but cannot directly cause real-world effects without passing through the governed execution boundary",
+  "source_file": "KEON COLLECTIVE DOCTRINE v1.0.md",
+  "source_section": "Law of Separation",
+  "confidence": "explicit",
+  "canonical_owner": "Keon Collective",
+  "ui_surface": ["how-it-works"],
+  "impact_level": "core"
+},
+  {
+    "feature": "Witness Narratives",
+    "product": "Keon Collective",
+    "claim_type": "mechanism",
+    "one_line_description": "Translates complex decisions into chronological, human-readable semantic logs for auditing",
+    "source_file": "docs/observability/audit_trails.md",
+    "source_section": "Audit Trails",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["proof"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Gradient Authority",
+    "product": "Keon Collective",
+    "claim_type": "mechanism",
+    "one_line_description": "Dynamically scales agent execution permissions based on real-time trust, context, and risk",
+    "source_file": "docs/doctrine/access_control.md",
+    "source_section": "Access Control Doctrine",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Collective",
+    "ui_surface": ["governance"],
+    "impact_level": "core"
+  }
+]

@@ -1,0 +1,188 @@
+# Keon Runtime Product Feature Canon – Capability Index v1.2
+
+**Version:** 1.2 (April 2026)  
+**Status:** Production-grade canonical input for agents  
+**Purpose:** Single source of truth for website pages, marketing copy, public posts, pitch decks, sales collateral, and agent workflows.  
+**Schema:**  
+- `canonical_owner`: Primary product that owns the concept (prevents duplication)  
+- `ui_surface`: Array of marketing/UI surfaces where this belongs (`control`, `proof`, `how-it-works`, `memory`, `governance`, `dashboard`, etc.)  
+- `impact_level`: `core` | `differentiator` | `supporting`  
+- `confidence`: `explicit` (directly stated) | `inferred` (derived from doctrine)  
+
+**File ID:** `/product/capability-index.v1.json` (copy-paste this entire JSON per section or the full merged array)
+
+---
+
+## Keon Systems Runtime (AI Governance)
+
+```json
+[
+  {
+    "feature": "Pre-Execution Cryptographic Proof",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "differentiator",
+    "one_line_description": "Enforces that no action can occur without cryptographic proof of prior authorization, making unauthorized execution structurally impossible",
+    "source_file": "keon_public_canon_v1.1.md",
+    "source_section": "Core Statement",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "how-it-works", "control"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Decision Receipts",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "Cryptographically signed pre-execution authorization artifacts proving policy approval occurred before any effect-boundary action",
+    "source_file": "caes-standard.md",
+    "source_section": "Core Primitives",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "governance"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "PolicyHash Verification",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "Cryptographic hash of the exact policy state used during evaluation, enabling deterministic verification of authorization conditions",
+    "source_file": "caes-standard.md",
+    "source_section": "Core Primitives",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "governance"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Governed Spine",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "Append-only, irreversible causal ledger of all governed events, ensuring complete lineage and preventing retroactive alteration of system history",
+    "source_file": "caes-standard.md",
+    "source_section": "Core Primitives",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "memory"],
+    "impact_level": "core"
+  },
+  {
+  "feature": "No Execution Without Receipt",
+  "product": "Keon Systems Runtime",
+  "claim_type": "invariant",
+  "one_line_description": "No effect-bound action can execute unless a valid Decision Receipt exists and is verified prior to execution",
+  "source_file": "caes-standard.md",
+  "source_section": "Core Enforcement",
+  "confidence": "inferred",
+  "canonical_owner": "Keon Systems Runtime",
+  "ui_surface": ["governance", "proof"],
+  "impact_level": "core"
+},
+{
+  "feature": "Fail-Closed Execution Model",
+  "product": "Keon Systems Runtime",
+  "claim_type": "invariant",
+  "one_line_description": "Any failure in policy evaluation, identity binding, receipt validation, or execution flow results in immediate denial rather than degraded or partial execution",
+  "source_file": "caes-standard.md",
+  "source_section": "Enforcement Principles",
+  "confidence": "inferred",
+  "canonical_owner": "Keon Systems Runtime",
+  "ui_surface": ["governance", "how-it-works"],
+  "impact_level": "core"
+},
+  {
+    "feature": "Governed Execution Boundary",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "The constitutional boundary that defines how AI systems can interact with reality, enforcing that all effect-bound actions pass through governed authorization and receipt generation",
+    "source_file": "caes-standard.md",
+    "source_section": "Scope",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["governance", "how-it-works"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Artifact Hierarchy",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "Strict ordering: Decision Receipt → Evidence Pack → Execution Package → Attestation (receipts always supreme)",
+    "source_file": "keon_public_canon_v1.1.md",
+    "source_section": "Artifact Hierarchy (NEW)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Receipt Supremacy",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "invariant",
+    "one_line_description": "Receipts outrank all interpretations; narratives are derived only and cannot override receipts",
+    "source_file": "execution_package_canon_v1.1.md",
+    "source_section": "Law Reinforcement",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Canonical Policy Protocol",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "mechanism",
+    "one_line_description": "Template hash equals authority; requires signed manifests, machine-evaluable constraints, and local ratification",
+    "source_file": "keon_public_canon_v1.1.md",
+    "source_section": "Policy Protocol (NEW)",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["governance"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "CAES Level 1 - Receipt-Bounded Execution",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "feature",
+    "one_line_description": "All effect-boundary actions require verified Decision Receipts with strict fail-closed enforcement",
+    "source_file": "caes-standard.md",
+    "source_section": "Compliance Levels",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["governance", "proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "CAES Level 2 - Verifiable Evidence Chain",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "feature",
+    "one_line_description": "Cryptographic signing, PolicyHash, append-only spine, and offline verification",
+    "source_file": "caes-standard.md",
+    "source_section": "Compliance Levels",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["proof", "how-it-works"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "CAES Level 3 - Full Constitutional Conformance",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "feature",
+    "one_line_description": "Human authority delegation, complete causal invariants, and full spine specification",
+    "source_file": "caes-standard.md",
+    "source_section": "Compliance Levels",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["governance"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Advisory-Only Federation",
+    "product": "Keon Systems Runtime (AI Governance)",
+    "claim_type": "differentiator",
+    "one_line_description": "Cross-system coordination layer where only proofs are shared, while authority, execution rights, and policy enforcement remain strictly local",
+    "source_file": "public_governance_narrative_v1.2.md",
+    "source_section": "Key Additions",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Systems Runtime",
+    "ui_surface": ["governance"],
+    "impact_level": "differentiator"
+  }
+]

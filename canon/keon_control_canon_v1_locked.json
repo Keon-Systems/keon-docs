@@ -1,0 +1,153 @@
+# Keon Control – Cleaned Capability Index v1.3
+
+**Version:** 1.3 (April 2026)  
+**Owner:** Keon Control (UI/Observability Surface only)  
+**Rule enforced:** This file contains **only** what the operator sees, interacts with, and uses. No governance mechanics (Decide-Then-Execute, spine receipts, identity binding, etc.) — those live in Runtime + Gateway.
+
+```jsoni
+[
+  {
+    "feature": "Mission Control-Style Governance Dashboard",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Primary operational interface for governed execution systems, presenting real-time decisions, executions, and causal state in a mission-control paradigm",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Design Philosophy",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control", "dashboard"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Glass Rule Visibility",
+    "product": "Keon Control",
+    "claim_type": "mechanism",
+    "one_line_description": "Critical governance metrics (trust, safety, cost) remain visible without scrolling on standard high-resolution displays",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Key Features",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control", "dashboard"],
+    "impact_level": "supporting"
+  },
+  {
+    "feature": "Explain This Mode",
+    "product": "Keon Control",
+    "claim_type": "mechanism",
+    "one_line_description": "Instantly exposes full causal provenance, cryptographic anchors, policy origin, receipt lineage, and signer verification for any focused element with a single hotkey (? )",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Key Features",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["proof", "control"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Numerical Law Enforcement",
+    "product": "Keon Control",
+    "claim_type": "invariant",
+    "one_line_description": "All auditable, signed, or disputable values are rendered exclusively in monospace (JetBrains Mono) for maximum precision and auditability",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Orbital Ballistics Design System",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control", "proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Orbital Ballistics Design System",
+    "product": "Keon Control",
+    "claim_type": "differentiator",
+    "one_line_description": "Proprietary industrial UI language with deep-space void palette, gun-metal panels, 5-state severity ladder, and distinctive LED glow effects for instant state recognition",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Orbital Ballistics Design System",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control", "dashboard"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Command Palette & Keyboard-First Control",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Cmd+K command palette plus vim-style J/K navigation and full keyboard control optimized for high-stakes mission operation",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Key Features",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Observational Control Surface",
+    "product": "Keon Control",
+    "claim_type": "invariant",
+    "one_line_description": "Control surfaces system state, lineage, and governance artifacts without bypassing the governed execution boundary — purely observational and non-authoritative",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Design Philosophy",
+    "confidence": "inferred",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Causal Chain Drilldown",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Click any element to expand the full causal lineage, provenance, and receipt chain in real time",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Explain This Mode + ExplainOverlay component",
+    "confidence": "inferred",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["proof", "control"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Receipt Inspection Surface",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Direct, in-place inspection of Decision Receipts, Evidence Packs, and Execution Packages with cryptographic verification",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "ExplainOverlay component",
+    "confidence": "inferred",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["proof"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Live Governance State HUD",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Always-visible real-time view of decisions, executions, failures, blocked actions, trust, safety, and cost metrics",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "HUD Components + Glass Rule",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control", "dashboard"],
+    "impact_level": "core"
+  },
+  {
+    "feature": "Ledger Tape / Real-Time Timeline",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Continuous streaming ledger of governed events with ActivityFeed and SystemStatus components",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Charts & Visualization",
+    "confidence": "explicit",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control"],
+    "impact_level": "differentiator"
+  },
+  {
+    "feature": "Operator Intervention Surface",
+    "product": "Keon Control",
+    "claim_type": "feature",
+    "one_line_description": "Safe operator-initiated entry points that route actions through the governed execution boundary without bypassing authorization or receipt generation",
+    "source_file": "keon-command-center/README.md",
+    "source_section": "Command Palette + Shell",
+    "confidence": "inferred",
+    "canonical_owner": "Keon Control",
+    "ui_surface": ["control"],
+    "impact_level": "differentiator"
+  }
+]

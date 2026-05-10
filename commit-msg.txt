@@ -1,0 +1,13 @@
+feat(control): auth gate, fixture honesty, evidence sandbox - LB-1 through LB-4 cleared
+
+CC-01: iron-session dependency + KeonControlSession type
+CC-02: proxy.ts auth gate with public route allowlist, operator role check, ui-demo production block
+CC-03: login page + api/auth/preview token endpoint
+CC-04: api/health session secret check
+CC-05: evidence-docs.ts allowlist + isPathInSandbox path traversal guard
+CC-06: ENABLE_GOLDEN_PATH env flag on golden-path and source routes
+CC-07: global FixtureModeBanner in layout
+CC-08: FixtureLabel on all 7 fixture-backed routes
+CC-09: notFound() gate on ui-demo in production
+CC-12: 63/63 passing tests across middleware, preview-route, evidence-docs, fixture
+build: fix TypeScript errors (showGrid prop, aria-label null, hooks.ts null assertion, Suspense wrapper on login page, global-error boundary)
