@@ -219,5 +219,29 @@
     "impact_level": "core",
     "display_order": 80,
     "hierarchy": "supporting"
-  }
+  },
+  {
+  "feature": "Collective Scoped Memory Planes",
+  "product": "Keon Collective",
+  "claim_type": "architecture",
+  "one_line_description": "The Collective operates as a governed cognition fabric with separate system, tenant, session, and promoted-learning memory planes rather than treating the Collective itself as a normal tenant.",
+  "canonical_owner": "Keon Collective",
+  "depends_on": ["Keon Cortex", "Keon Control"],
+  "ui_surface": ["collective", "control", "memory", "governance"],
+  "impact_level": "core",
+  "memory_planes": [
+    "system: collective roles, protocols, rubrics, heuristics, generalized lessons",
+    "tenant: tenant-specific cognitive work, dreams, offerings, decisions, outcomes",
+    "session: ephemeral run/deliberation context",
+    "promoted_learning: sanitized, generalized, receipt-backed cross-tenant lessons"
+  ],
+  "hard_rules": [
+    "The Collective is not modeled as a normal customer tenant.",
+    "Collective agents act inside tenant scopes using explicit actor identity and allowed memory scopes.",
+    "Tenant memory is never shared across tenants.",
+    "System memory must not contain raw tenant-confidential content.",
+    "Cross-tenant learning requires sanitization, generalization, policy approval, and promotion receipts.",
+    "Retrieval influence receipts must show which scopes were requested, authorized, selected, and excluded."
+  ]
+ }
 ]

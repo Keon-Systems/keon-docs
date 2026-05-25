@@ -1,0 +1,54 @@
+version: 1
+last_updated: '2026-05-16'
+purpose: Maps CAES Collective certificate assertions to claim registry entries and proof map entries.
+certificate_id: caes.collective.l3.v1
+certificate_status: draft_internal_self_issued
+caes_version: v0.3.0-draft
+subject: Keon Collective
+claim: CAES Level 3 internally certified candidate
+limitations:
+- Internal/self-issued certification, not third-party certification.
+- Applies only to evidence enumerated in this map.
+- Must be renewed when execution boundary, handoff semantics, receipt schema, policy derivation, proof pack format, or authority
+  semantics change.
+assertions:
+- caes_requirement: Authorization-execution separation
+  claims:
+  - KC-COLLECTIVE-COGEXEC-001
+  - KC-COLLECTIVE-HANDOFF-002
+  proofs:
+  - KC-COLLECTIVE-COGEXEC-001
+  - KC-COLLECTIVE-HANDOFF-002
+  status: proven
+- caes_requirement: Fail-closed enforcement and denial evidence
+  claims:
+  - KC-NEGATIVE-005
+  - KC-ROUTE-004
+  proofs:
+  - KC-NEGATIVE-005
+  - KC-ROUTE-004
+  status: proven
+- caes_requirement: Replay-verifiable evidence chain
+  claims:
+  - KC-DENSITY-003
+  - KC-PROOF-006
+  proofs:
+  - KC-DENSITY-003
+  - KC-PROOF-006
+  status: proven
+- caes_requirement: Claim-to-proof traceability
+  claims:
+  - KC-PROOF-006
+  - KC-CAES-L3-011
+  proofs:
+  - KC-PROOF-006
+  - KC-CAES-L3-011
+  status: draft
+renewal_triggers:
+- Runtime execution boundary changes
+- MCP Gateway governed-execute contract changes
+- Collective handoff semantics change
+- receipt schema changes
+- policy derivation rule changes
+- proof fixture format changes
+- canon claim changes affecting authority, memory, routing, or execution

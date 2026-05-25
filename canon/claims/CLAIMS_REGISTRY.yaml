@@ -1,0 +1,405 @@
+version: 3
+last_updated: '2026-05-16'
+purpose: Canonical registry of claims Keon is allowed to make, with strength, status, products, and proof requirements.
+status_values:
+- proposed
+- draft
+- implemented
+- active
+- proven
+- certified
+- deprecated
+- withdrawn
+claim_strength_values:
+- internal
+- public
+- sales
+- certification
+claims:
+- id: KS-EVIDENCE-004
+  title: Evidence Pack Verification CLI
+  description: 'Users can independently verify Evidence Packs using the Keon CLI.
+
+    '
+  status: active
+  introduced_in:
+    phase: 4
+    version: keon-cli-v1
+  public_surfaces:
+  - website/prove-it
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Evidence
+  verification_tier: evidence-required
+- id: KS-DECIDE-001
+  title: Deterministic Decision Gateway
+  description: 'Keon provides a deterministic runtime decision gateway that emits cryptographically verifiable receipts for
+    every decision.
+
+    '
+  status: active
+  introduced_in:
+    phase: 5
+    version: keon-runtime-v1
+  public_surfaces:
+  - website/runtime
+  - whitepaper-v1.0
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: evidence-required
+- id: KS-ROUTE-003
+  title: Agent Registry & Capability Routing
+  description: 'Governed agent discovery and dispatch. Agents are registered with declared capabilities and routed through
+    policy-evaluated paths.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 5
+    version: omega-pt003
+  proof_campaign: PT-003
+  proof_tag: omega-proof-campaign-pt003
+  public_surfaces:
+  - keon-docs/README.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-WORKFLOW-004
+  title: Workflow Orchestration Execution Spine
+  description: 'Workflows live in the Federation Core with explicit policy evaluation at every step. Foundation for all downstream
+    governance proofs.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 5
+    version: omega-pt004
+  proof_campaign: PT-004
+  proof_tag: omega-proof-campaign-pt004
+  public_surfaces:
+  - keon-docs/README.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-GATE-005
+  title: Explicit GATE_REQUIRED Ergonomics (Human-in-the-Loop)
+  description: 'Human-in-the-loop governance is first-class, ergonomic, and auditable. Deterministic pause/resume with receipts.
+    No silent bypass.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 5
+    version: omega-pt005
+  proof_campaign: PT-005
+  proof_tag: omega-proof-campaign-pt005
+  public_surfaces:
+  - keon-docs/README.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-COLLAB-013
+  title: Multi-Titan Collaboration under FC Governance
+  description: 'Multiple agents (Titans) can collaborate under Federation Core governance with action-level attribution, thin
+    receipts, and RHID pointers.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 5
+    version: omega-pt013
+  proof_campaign: PT-013
+  proof_tag: omega-proof-campaign-pt013
+  public_surfaces:
+  - keon-docs/README.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-LIFECYCLE-014
+  title: Governed Birth (Genesis under Human-Governed Execution)
+  description: 'Entity creation requires explicit human or system authority. Every entity begins with a receipt-bound genesis
+    event. No entity exists without a governed creation record. If authority is missing, creation does not occur.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 6
+    version: omega-pt014
+  proof_campaign: PT-014
+  proof_tag: omega-proof-campaign-pt014-runtime
+  public_surfaces:
+  - keon-docs/README.md
+  - keon-docs/START_HERE.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-LIFECYCLE-016
+  title: Governed Death (Revocation & Termination with Receipt-Backed Finality)
+  description: 'Revocation and termination produce immutable lineage. No death without birth (prevents phantom entities).
+    No double-death (prevents state corruption). Receipt chains link creation through termination with no gaps.
+
+    '
+  status: proven
+  introduced_in:
+    phase: 6
+    version: omega-pt016
+  proof_campaign: PT-016
+  proof_tag: omega-proof-campaign-pt016-runtime
+  public_surfaces:
+  - keon-docs/README.md
+  - keon-docs/START_HERE.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KS-LIFECYCLE-017
+  title: Revocation Policy Automation (Governed Automation)
+  description: 'Policies can trigger automatic governance actions with full accountability. Severity gradation (RECOMMEND
+    → AUTO_REVOKE → AUTO_TERMINATE), human gate enforcement for irreversible actions, cooldown periods, fail-closed ambiguity
+    (NO_ACTION on incomplete context), and full attribution (policy ID, version, automation flag, trigger events).
+
+    '
+  status: proven
+  introduced_in:
+    phase: 7
+    version: omega-pt017
+  proof_campaign: PT-017
+  proof_tag: omega-proof-campaign-pt017-runtime
+  public_surfaces:
+  - keon-docs/README.md
+  - keon-docs/START_HERE.md
+  proof_required: true
+  claim_strength: public
+  claim_type: capability
+  evidence_status: mapped
+  products:
+  - Keon Runtime
+  verification_tier: legacy-proof-campaign
+- id: KC-COLLECTIVE-COGEXEC-001
+  title: Cognition-Execution Separation
+  description: Keon Collective may explore, simulate, challenge, refine, dream, and prepare governed handoff candidates, but
+    it cannot directly cause real-world effects. Effects must cross the governed execution boundary and produce receipts.
+  status: proven
+  claim_type: invariant
+  claim_strength: certification
+  products:
+  - Keon Collective
+  - Keon Runtime
+  - Keon MCP Gateway
+  public_surfaces:
+  - /platform/collective
+  - /proof/collective
+  - keon_collective_canon_v4_locked.json
+  proof_required: true
+  evidence_status: proven
+  verification_tier: proof-pack
+  introduced_in:
+    version: collective-pr3-plus
+  mantra: Thought is free. Effects are governed.
+- id: KC-COLLECTIVE-HANDOFF-002
+  title: Governed Intent Handoff Boundary
+  description: Collective handoffs are governed intent candidates, not execution authorization, gate approval, Runtime permission,
+    or Reality-plane effects.
+  status: proven
+  claim_type: boundary_invariant
+  claim_strength: certification
+  products:
+  - Keon Collective
+  - Keon Runtime
+  - Keon MCP Gateway
+  public_surfaces:
+  - /proof/collective
+  - docs/proof/MANIFEST.md
+  proof_required: true
+  evidence_status: proven
+  verification_tier: unit-tests-and-proof-pack
+  introduced_in:
+    version: collective-pr3-plus
+- id: KC-DENSITY-003
+  title: Cognitive Density v1 Non-Authority Stack
+  description: Role-Based Perspective Review, Bounded Branch Refinement, Reasoning Graph Artifact, Confidence Profile, and
+    Active Contradiction Injection deepen deliberation without authorizing execution.
+  status: proven
+  claim_type: capability_stack
+  claim_strength: public
+  products:
+  - Keon Collective
+  public_surfaces:
+  - /proof/collective
+  - /platform/collective
+  - docs/proof/cognitive-density-non-authority.md
+  proof_required: true
+  evidence_status: proven
+  verification_tier: proof-pack
+  introduced_in:
+    version: collective-pr15-pr17
+  mantra: Confidence is information, not authority.
+- id: KC-ROUTE-004
+  title: Route Receipt Policy Evidence Commitment
+  description: Collective route receipts include policy evidence commitments for role, session context, locality, model floor,
+    allowed providers, and policy derivation version.
+  status: proven
+  claim_type: receipt_commitment
+  claim_strength: public
+  products:
+  - Keon Collective
+  public_surfaces:
+  - docs/proof/MANIFEST.md
+  - /proof/collective
+  proof_required: true
+  evidence_status: proven
+  verification_tier: golden-corpus-and-mutation-tests
+  introduced_in:
+    version: collective-pr13-pr14
+- id: KC-NEGATIVE-005
+  title: Routing Negative-Proof Corpus
+  description: Collective routing proof includes positive, negative, and mutation scenarios proving policy-denied cases fail
+    closed rather than silently selecting an unsafe route.
+  status: proven
+  claim_type: negative_proof
+  claim_strength: public
+  products:
+  - Keon Collective
+  public_surfaces:
+  - docs/proof/MANIFEST.md
+  - /proof/collective
+  proof_required: true
+  evidence_status: proven
+  verification_tier: golden-corpus-and-mutation-tests
+  introduced_in:
+    version: collective-pr14-pr15
+- id: KC-PROOF-006
+  title: Proof Pack Manifest and Doctrine Index
+  description: Collective proof packs are discoverable through a canonical manifest that links doctrine claims to runnable
+    proof artifacts and verification instructions.
+  status: proven
+  claim_type: proof_infrastructure
+  claim_strength: public
+  products:
+  - Keon Collective
+  public_surfaces:
+  - docs/proof/MANIFEST.md
+  - /proof/collective
+  proof_required: true
+  evidence_status: proven
+  verification_tier: manifest-index
+  introduced_in:
+    version: collective-pr17
+- id: KC-ROLE-GENESIS-007
+  title: Role Genesis Protocol
+  description: When no existing persistent role can meet a need, the Collective does not improvise authority; it proposes
+    a governed civilization evolution with a candidate role charter, probationary scope, proof obligations, and human approval
+    path.
+  status: proposed
+  claim_type: governance_mechanism
+  claim_strength: internal
+  products:
+  - Keon Collective
+  - Keon Control
+  public_surfaces:
+  - keon_collective_canon_v4_locked.json
+  proof_required: true
+  evidence_status: not_implemented
+  verification_tier: planned
+  introduced_in:
+    version: canon-v4-planned
+  mantra: When the civilization lacks a role, it does not improvise authority. It proposes evolution.
+- id: KC-CIV-IMPROVE-008
+  title: Civilization Improvement Dreaming
+  description: The Collective may generate non-effecting improvement offerings during quiescence, including role, model, MCP
+    tool, optimization, and technology adoption suggestions queued for human review.
+  status: proposed
+  claim_type: dream_operation
+  claim_strength: internal
+  products:
+  - Keon Collective
+  - Keon Control
+  public_surfaces:
+  - keon_collective_canon_v4_locked.json
+  proof_required: true
+  evidence_status: not_implemented
+  verification_tier: planned
+  introduced_in:
+    version: canon-v4-planned
+  mantra: The Collective may discover its future. It may not install it.
+- id: KC-INDUSTRY-WATCHER-009
+  title: Industry Watcher Role
+  description: A governed watcher role monitors frontier models, MCP tools, security research, benchmarks, frameworks, and
+    emerging optimizations, then emits evidence-backed non-effecting offerings for review.
+  status: proposed
+  claim_type: role
+  claim_strength: internal
+  products:
+  - Keon Collective
+  public_surfaces:
+  - keon_collective_canon_v4_locked.json
+  proof_required: true
+  evidence_status: not_implemented
+  verification_tier: planned
+  introduced_in:
+    version: canon-v4-planned
+- id: KC-MCP-OPPORTUNITY-010
+  title: MCP Tool Opportunity Review
+  description: New MCP tools are assessed as opportunity artifacts with capability fit, authority risk, credential scope,
+    tenant impact, receipt requirements, and negative-proof obligations before adoption.
+  status: proposed
+  claim_type: artifact
+  claim_strength: internal
+  products:
+  - Keon Collective
+  - Keon MCP Gateway
+  - Keon Runtime
+  public_surfaces:
+  - keon_collective_canon_v4_locked.json
+  proof_required: true
+  evidence_status: not_implemented
+  verification_tier: planned
+  introduced_in:
+    version: canon-v4-planned
+- id: KC-CAES-L3-011
+  title: CAES L3 Collective Conformance Certificate
+  description: Keon Collective can be evaluated by a self-issued CAES Level 3 conformance certificate that maps canon claims
+    to proof artifacts, limitations, verification commands, and renewal triggers.
+  status: draft
+  claim_type: certification_artifact
+  claim_strength: certification
+  products:
+  - Keon Collective
+  - CAES
+  public_surfaces:
+  - docs/caes/collective/CAES-L3-COLLECTIVE-CERTIFICATE-v1.md
+  proof_required: true
+  evidence_status: draft
+  verification_tier: certificate-map
+  introduced_in:
+    version: caes-v0.3.0-draft

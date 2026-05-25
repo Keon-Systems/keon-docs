@@ -1,0 +1,192 @@
+version: 3
+last_updated: '2026-05-16'
+renamed_from: FEATURES_BY_PHASE.yaml
+purpose: Canonical implementation/capability registry. Tracks what exists, where it lives, what it supports, and what still
+  needs implementation.
+capabilities:
+- id: EVIDENCE_PACK_V1
+  name: Evidence Pack v1
+  status: proven
+  source_phase: phase_4
+  source_phase_label: Evidence Generation
+  repo: keon-core
+  path: src/Keon.Evidence
+  tags:
+  - keon-phase4-evidence-pack-v1
+- id: DECISION_GATEWAY
+  name: Decision Gateway
+  status: proven
+  source_phase: phase_5
+  source_phase_label: Runtime Governance
+  repo: keon-runtime
+  path: src/Keon.Runtime.Decide
+  tags:
+  - keon-phase5-runtime-gateway-v1
+- id: KS-ROUTE-003
+  name: Agent Registry & Capability Routing
+  status: proven
+  source_phase: phase_5
+  source_phase_label: Runtime Governance
+  repo: omega-core
+  claims_supported:
+  - KS-ROUTE-003
+  proof_campaign: PT-003
+  tags:
+  - omega-proof-campaign-pt003
+- id: KS-WORKFLOW-004
+  name: Workflow Orchestration Execution Spine
+  status: proven
+  source_phase: phase_5
+  source_phase_label: Runtime Governance
+  repo: omega-core
+  claims_supported:
+  - KS-WORKFLOW-004
+  proof_campaign: PT-004
+  tags:
+  - omega-proof-campaign-pt004
+- id: KS-GATE-005
+  name: Explicit GATE_REQUIRED Ergonomics (Human-in-the-Loop)
+  status: proven
+  source_phase: phase_5
+  source_phase_label: Runtime Governance
+  repo: omega-core
+  claims_supported:
+  - KS-GATE-005
+  proof_campaign: PT-005
+  tags:
+  - omega-proof-campaign-pt005
+- id: KS-COLLAB-013
+  name: Multi-Titan Collaboration under FC Governance
+  status: proven
+  source_phase: phase_5
+  source_phase_label: Runtime Governance
+  repo: omega-core
+  claims_supported:
+  - KS-COLLAB-013
+  proof_campaign: PT-013
+  tags:
+  - omega-proof-campaign-pt013
+- id: KS-LIFECYCLE-014
+  name: Governed Birth (Genesis under Human-Governed Execution)
+  status: proven
+  source_phase: phase_6
+  source_phase_label: Lifecycle Governance
+  repo: omega-core
+  path: src/omega_core/lifecycle/genesis_manager.py
+  claims_supported:
+  - KS-LIFECYCLE-014
+  proof_campaign: PT-014
+  tags:
+  - omega-proof-campaign-pt014-runtime
+- id: KS-LIFECYCLE-016
+  name: Governed Death (Revocation & Termination)
+  status: proven
+  source_phase: phase_6
+  source_phase_label: Lifecycle Governance
+  repo: omega-core
+  path: src/omega_core/lifecycle/revocation_manager.py
+  claims_supported:
+  - KS-LIFECYCLE-016
+  proof_campaign: PT-016
+  tags:
+  - omega-proof-campaign-pt016-runtime
+- id: KS-LIFECYCLE-017
+  name: Revocation Policy Automation
+  status: proven
+  source_phase: phase_7
+  source_phase_label: Policy Automation
+  repo: omega-core
+  path: src/omega_core/lifecycle/policy_automation.py
+  claims_supported:
+  - KS-LIFECYCLE-017
+  proof_campaign: PT-017
+  tags:
+  - omega-proof-campaign-pt017-runtime
+  capabilities:
+  - severity_gradation
+  - human_gate_enforcement
+  - cooldown_periods
+  - fail_closed_ambiguity
+  - full_attribution
+- id: KC-COLLECTIVE-COGEXEC-001
+  name: Collective cognition-execution separation
+  product: Keon Collective
+  status: proven
+  repo: Keon.Collective
+  paths:
+  - src/Keon.Collective.Core
+  - tests/Keon.Collective.Core.Tests
+  - tests/Keon.Collective.Gate.Tests
+  claims_supported:
+  - KC-COLLECTIVE-COGEXEC-001
+  - KC-COLLECTIVE-HANDOFF-002
+  proof_refs:
+  - KC-COLLECTIVE-COGEXEC-001
+  - KC-COLLECTIVE-HANDOFF-002
+- id: KC-DENSITY-003
+  name: Cognitive Density v1
+  product: Keon Collective
+  status: proven
+  repo: Keon.Collective
+  paths:
+  - src/Keon.Collective.Abstractions
+  - src/Keon.Collective.Core
+  - examples/CognitiveDensity.Smoke
+  - docs/proof/cognitive-density-non-authority.md
+  claims_supported:
+  - KC-DENSITY-003
+  proof_refs:
+  - KC-DENSITY-003
+- id: KC-ROUTE-004
+  name: Route receipt policy evidence commitment
+  product: Keon Collective
+  status: proven
+  repo: Keon.Collective
+  paths:
+  - src/Keon.Collective.Core/Runtime/Cognition
+  - tests/Keon.Collective.Core.Tests/Runtime/Cognition
+  claims_supported:
+  - KC-ROUTE-004
+  proof_refs:
+  - KC-ROUTE-004
+  - KC-NEGATIVE-005
+- id: KC-PROOF-006
+  name: Collective proof pack manifest
+  product: Keon Collective
+  status: proven
+  repo: Keon.Collective
+  paths:
+  - docs/proof/MANIFEST.md
+  - docs/proof/cognitive-density-non-authority.md
+  claims_supported:
+  - KC-PROOF-006
+  proof_refs:
+  - KC-PROOF-006
+- id: KC-ROLE-GENESIS-007
+  name: Role Genesis Protocol
+  product: Keon Collective
+  status: planned
+  repo: Keon.Collective
+  paths:
+  - planned:src/Keon.Collective.Core/Roles
+  - planned:tests/Keon.Collective.Core.Tests/Roles
+  claims_supported:
+  - KC-ROLE-GENESIS-007
+  proof_refs:
+  - KC-ROLE-GENESIS-007
+- id: KC-CIV-IMPROVE-008
+  name: Civilization Improvement Dreaming
+  product: Keon Collective
+  status: planned
+  repo: Keon.Collective
+  paths:
+  - planned:src/Keon.Collective.Core/Dreams
+  - planned:src/Keon.Collective.Core/Improvement
+  claims_supported:
+  - KC-CIV-IMPROVE-008
+  - KC-INDUSTRY-WATCHER-009
+  - KC-MCP-OPPORTUNITY-010
+  proof_refs:
+  - KC-CIV-IMPROVE-008
+  - KC-INDUSTRY-WATCHER-009
+  - KC-MCP-OPPORTUNITY-010

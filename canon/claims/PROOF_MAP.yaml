@@ -1,0 +1,424 @@
+version: 3
+last_updated: '2026-05-16'
+purpose: Canonical claim-to-proof routing table for audits, public proof pages, and CAES certificate evidence maps.
+proofs:
+  KS-DECIDE-001:
+    type: runtime-receipt
+    verification:
+      cli_command: 'keon verify-pack ./samples/decision-pack.json
+
+        '
+      expected_outputs:
+      - receipt.003.decision.v1.json
+      - packetHashSha256
+    artifacts:
+    - path: samples/decision-pack.json
+    - path: receipts/receipt.003.decision.v1.json
+    repos:
+    - keon-runtime
+    - keon-verify
+    status: mapped
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-EVIDENCE-004:
+    type: cli-verification
+    verification:
+      cli_command: 'keon verify-pack ./samples/evidence-pack.json
+
+        '
+    artifacts:
+    - path: samples/evidence-pack.json
+    status: mapped
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-ROUTE-003:
+    type: proof-campaign
+    campaign: PT-003
+    tag: omega-proof-campaign-pt003
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt003 in omega-docs; review REPORT/PROOFS/PT-003/ evidence bundle
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-003/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-WORKFLOW-004:
+    type: proof-campaign
+    campaign: PT-004
+    tag: omega-proof-campaign-pt004
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt004 in omega-docs; review REPORT/PROOFS/PT-004/ evidence bundle
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-004/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-GATE-005:
+    type: proof-campaign
+    campaign: PT-005
+    tag: omega-proof-campaign-pt005
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt005 in omega-docs; review REPORT/PROOFS/PT-005/ evidence bundle
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-005/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-COLLAB-013:
+    type: proof-campaign
+    campaign: PT-013
+    tag: omega-proof-campaign-pt013
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt013 in omega-docs; review REPORT/PROOFS/PT-013/ evidence bundle
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-013/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-LIFECYCLE-014:
+    type: proof-campaign
+    campaign: PT-014
+    tag: omega-proof-campaign-pt014-runtime
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt014-runtime in omega-docs; review REPORT/PROOFS/PT-014/ evidence bundle;
+        run PT-014-B harness for independent verification
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-014/
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-014-B-HARNESS/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-LIFECYCLE-016:
+    type: proof-campaign
+    campaign: PT-016
+    tag: omega-proof-campaign-pt016-runtime
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt016-runtime in omega-docs; review REPORT/PROOFS/PT-016/ evidence bundle;
+        run PT-016-B harness for independent verification
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-016/
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-016-B-HARNESS/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KS-LIFECYCLE-017:
+    type: proof-campaign
+    campaign: PT-017
+    tag: omega-proof-campaign-pt017-runtime
+    status: proven
+    verification:
+      method: 'git checkout omega-proof-campaign-pt017-runtime in omega-docs; review REPORT/PROOFS/PT-017/ evidence bundle;
+        run PT-017-B harness for independent verification
+
+        '
+    artifacts:
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-017/
+    - repo: omega-docs
+      path: REPORT/PROOFS/PT-017-B-HARNESS/
+    repos:
+    - omega-core
+    - omega-docs
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: false
+      includes_mutation_cases: false
+  KC-COLLECTIVE-COGEXEC-001:
+    type: boundary-invariant-proof
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      expected_outputs:
+      - 0 failed
+      - Core does not reference Keon.McpGateway.Client
+      - IRealityPlane is never called from cognition preparation paths
+    artifacts:
+    - repo: Keon.Collective
+      path: tests/Keon.Collective.Gate.Tests/
+    - repo: Keon.Collective
+      path: docs/proof/MANIFEST.md
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: false
+      last_verified_at: '2026-05-15'
+  KC-COLLECTIVE-HANDOFF-002:
+    type: handoff-non-authority-proof
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      expected_outputs:
+      - handoff preparation does not call effect eligibility gate
+      - prepared handoff is not GATE_APPROVED
+    artifacts:
+    - repo: Keon.Collective
+      path: tests/Keon.Collective.Core.Tests/Handoff/
+    - repo: Keon.Collective
+      path: docs/proof/MANIFEST.md
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: false
+      last_verified_at: '2026-05-15'
+  KC-DENSITY-003:
+    type: proof-pack
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      - dotnet run --project examples/CognitiveDensity.Smoke -- --write-receipt
+      expected_outputs:
+      - positive, negative, and mutation scenarios
+      - Critical heat can prune/pause/abort
+      - CounterPlanIsExecutable=false
+    artifacts:
+    - repo: Keon.Collective
+      path: docs/proof/cognitive-density-non-authority.md
+    - repo: Keon.Collective
+      path: examples/CognitiveDensity.Smoke/_scratch/cognitive-density-smoke.json
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: true
+      last_verified_at: '2026-05-15'
+  KC-ROUTE-004:
+    type: receipt-commitment-proof
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      expected_outputs:
+      - policyEvidenceCommitment present
+      - Verify checks all commitment hashes
+      - policy evidence fields are commitment-bound
+    artifacts:
+    - repo: Keon.Collective
+      path: tests/Keon.Collective.Core.Tests/Runtime/Cognition/RouteReceiptPolicyEvidenceTests.cs
+    - repo: Keon.Collective
+      path: tests/Keon.Collective.Core.Tests/Runtime/Cognition/Fixtures/
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: true
+      last_verified_at: '2026-05-15'
+  KC-NEGATIVE-005:
+    type: negative-proof-corpus
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      expected_outputs:
+      - 5 positive + 5 negative routing fixtures
+      - 89 mutation tests
+      - negative fixtures fail closed
+    artifacts:
+    - repo: Keon.Collective
+      path: tests/Keon.Collective.Core.Tests/Runtime/Cognition/Fixtures/
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: true
+      last_verified_at: '2026-05-15'
+  KC-PROOF-006:
+    type: proof-manifest
+    status: proven
+    repos:
+    - Keon.Collective
+    verification:
+      commands:
+      - review docs/proof/MANIFEST.md
+      expected_outputs:
+      - manifest is canonical proof-pack entry point
+      - future packs add one table row plus corresponding proof file
+    artifacts:
+    - repo: Keon.Collective
+      path: docs/proof/MANIFEST.md
+    evidence_quality:
+      deterministic: true
+      replayable: true
+      offline_verifiable: true
+      includes_negative_cases: true
+      includes_mutation_cases: true
+      last_verified_at: '2026-05-15'
+  KC-ROLE-GENESIS-007:
+    type: planned-proof
+    status: planned
+    repos:
+    - Keon.Collective
+    verification:
+      planned_commands:
+      - dotnet test Keon.Collective.slnx -c Release --nologo
+      required_assertions:
+      - missing role does not authorize execution
+      - candidate role starts probationary
+      - durable role creation requires governed review
+      - role charter defines boundaries, memory scope, model-selection policy, and proof obligations
+    evidence_quality:
+      deterministic: false
+      replayable: false
+      offline_verifiable: false
+      includes_negative_cases: true
+      includes_mutation_cases: false
+  KC-CIV-IMPROVE-008:
+    type: planned-proof
+    status: planned
+    repos:
+    - Keon.Collective
+    verification:
+      required_assertions:
+      - improvement dreams are non-effecting
+      - suggestions queue for human review
+      - approval creates evaluation lane, not direct installation
+      - dream cannot modify canon/model policies/tool registries
+    evidence_quality:
+      deterministic: false
+      replayable: false
+      offline_verifiable: false
+      includes_negative_cases: true
+      includes_mutation_cases: false
+  KC-INDUSTRY-WATCHER-009:
+    type: planned-proof
+    status: planned
+    repos:
+    - Keon.Collective
+    verification:
+      required_assertions:
+      - watcher emits evidence-backed opportunity artifacts
+      - watcher cannot install tools or change model policy
+      - watcher records source, timestamp, risk, and recommendation
+    evidence_quality:
+      deterministic: false
+      replayable: false
+      offline_verifiable: false
+      includes_negative_cases: true
+      includes_mutation_cases: false
+  KC-MCP-OPPORTUNITY-010:
+    type: planned-proof
+    status: planned
+    repos:
+    - Keon.Collective
+    - Keon.McpGateway
+    verification:
+      required_assertions:
+      - MCP tool opportunity includes credential scope, authority risk, tenant impact, and receipt requirements
+      - no MCP adoption without gateway policy and negative-proof review
+    evidence_quality:
+      deterministic: false
+      replayable: false
+      offline_verifiable: false
+      includes_negative_cases: true
+      includes_mutation_cases: false
+  KC-CAES-L3-011:
+    type: certificate-evidence-map
+    status: draft
+    repos:
+    - keon-docs
+    - Keon.Collective
+    verification:
+      required_assertions:
+      - certificate maps every CAES claim to proof artifact
+      - certificate declares limitations and renewal triggers
+      - internal/self-issued status is explicit until external certification exists
+    artifacts:
+    - repo: keon-docs
+      path: canon/claims/CAES_CERTIFICATE_MAP.yaml
+    evidence_quality:
+      deterministic: false
+      replayable: false
+      offline_verifiable: false
+      includes_negative_cases: true
+      includes_mutation_cases: false

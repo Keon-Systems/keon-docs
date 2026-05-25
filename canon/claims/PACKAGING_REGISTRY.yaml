@@ -1,0 +1,72 @@
+version: 1
+last_updated: '2026-05-16'
+renamed_from: service_packages.md
+purpose: Canonical product packaging and adoption ladder. Defines what can be sold alone, bundled, or treated as dependent
+  capability.
+positioning: Keon exposes governance, memory, and cognition as MCP-native services. Every service uses the same tenant, actor,
+  policy, scope, and receipt model. Runtime governs effects. Cortex preserves truth. Collective produces auditable cognition.
+adoption_ladder:
+- step: 1
+  package: Keon Runtime
+  customer_need: Govern my existing AI actions.
+- step: 2
+  package: Keon Runtime + Cortex
+  customer_need: Give my AI governed memory.
+- step: 3
+  package: Keon Runtime + Cortex + Collective
+  customer_need: Give my AI governed cognition.
+packages:
+- id: PKG-RUNTIME
+  name: Keon Runtime
+  positioning: For customers who already have AI workflows and need governance.
+  commercial_role: lowest-friction entry point
+  can_stand_alone: true
+  requires: []
+  includes:
+  - MCP Gateway
+  - governed execute
+  - policy decisions
+  - receipts
+  - audit trail
+  - quotas / tenant controls
+- id: PKG-RUNTIME-CORTEX
+  name: Keon Runtime + Cortex
+  positioning: For customers who need durable AI memory.
+  commercial_role: serious enterprise tier
+  can_stand_alone: false
+  requires:
+  - Keon Runtime or equivalent internal Runtime governance
+  includes:
+  - all Runtime capabilities
+  - governed memory write/read
+  - receipt lookup
+  - lineage
+  - replay foundations
+- id: PKG-RUNTIME-CORTEX-COLLECTIVE
+  name: Keon Runtime + Cortex + Collective
+  positioning: For customers who want governed cognition.
+  commercial_role: flagship product
+  can_stand_alone: false
+  requires:
+  - Keon Runtime
+  - Keon Cortex
+  includes:
+  - all Runtime capabilities
+  - all Cortex capabilities
+  - Collective deliberation
+  - adversarial review
+  - collapse
+  - governed handoff
+  - cognition inspection
+hard_rules:
+- Runtime can stand alone.
+- Cortex requires Runtime or includes Runtime governance internally.
+- Collective requires Runtime and Cortex.
+- Do not sell Collective alone.
+- One access model across all products.
+- One governed MCP edge.
+- Plane-specific tools.
+- Runtime remains the only execution authority.
+- Cortex memory writes are governed and receipted.
+- Collective produces handoffs, not effects.
+- All client-visible outcomes carry receipts or fail closed.
