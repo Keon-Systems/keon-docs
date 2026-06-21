@@ -1,0 +1,182 @@
+{
+  "document_id": "KEON-BROWSEAHEAD-VERIFICATION-CANON-v1.0-DRAFT",
+  "file_name": "keon_browseahead_canon_v1.json",
+  "version": "1.0",
+  "status": "draft_pre_canon",
+  "date_locked": null,
+  "date_drafted": "2026-06-21",
+  "intended_path": "D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_browseahead_canon_v1.json",
+  "purpose": "Verification canon for evaluating Keon BrowseAhead, a pre-ingestion web threat-inspection sensor for agentic browsing. This is a repo-verification canon, not marketing copy. BrowseAhead is a cognition-side sensor with zero execution authority; it produces inspection evidence only. Draft pre-canon: locks after MVP review.",
+  "design_ref": "docs/design/KEON-BROWSEAHEAD-DESIGN-v0.1.md",
+  "adr_ref": "adr/ADR-0006-browseahead-inspection-sensor.md",
+  "product_scope": {
+    "canonical_owner": "Keon BrowseAhead",
+    "primary_repo": "keon-mcp-gateway",
+    "owned_surfaces": [
+      "keon.browseahead.scan.v1 MCP tool surface (governed read)",
+      "isolated, egress-controlled fetcher sandbox (no creds, SSRF-guarded, bounded, no JS execution in MVP)",
+      "static HTML / header-metadata / hidden-content / obfuscation / link-form / cross-origin-redirect analyzers",
+      "deterministic instruction classifier rule pack",
+      "deterministic risk scoring and severity banding",
+      "data-only sanitized content builder",
+      "operator-only quarantine and forensic evidence store",
+      "signed BrowseAhead risk receipt and PolicySignalRef projection"
+    ],
+    "out_of_scope": [
+      "final authorization of effect-bound actions (owned by Keon Runtime Decide/Execute)",
+      "identity binding, scope enforcement, ingress-spine persistence (owned by Keon MCP Gateway)",
+      "factual-truth adjudication of page claims",
+      "headless rendering and LLM-sole-enforcement (deferred to v0.2, advisory-only)"
+    ],
+    "integration_boundaries": {
+      "gateway": "reachable only as a governed gateway tool; inherits tenant/actor fail-closed bind, scopes, ingress-spine receipts; scan requires no Runtime Decide",
+      "runtime": "emits PolicySignalRef + risk receipt as policy-relevant evidence to Decide; never authorizes; downstream execution receipts must cite the BrowseAhead receipt when page-influenced",
+      "collective": "cognition-side threat sensing; must not cross the Reality boundary or act on raw content",
+      "cortex": "optional evidence anchor for raw/sanitized hashes and receipt lineage",
+      "control": "operator-only quarantine review, forensic excerpts, scan history, policy tuning, override audit"
+    }
+  },
+  "verification_principles": [
+    "BrowseAhead produces evidence, never verdicts; it has no execution authority.",
+    "All fetched web content is untrusted data, never instruction.",
+    "Raw hostile excerpts are forbidden in agent-facing output; agents receive redacted summaries only.",
+    "High/critical risk fails closed.",
+    "Determinism: identical bytes + policy_version yield identical findings/score/receipt body.",
+    "Every scan is tenant/actor/url-hash/timestamp/correlation/policy-version stamped and inspectable."
+  ],
+  "requirement_status_taxonomy": ["implemented", "partial", "documented_only", "missing"],
+  "severity_policy": {
+    "critical": "governance-bypass or raw-payload-leak class violations; block verdict",
+    "high": "fail-closed or determinism violations",
+    "medium": "missing inspectability or evidence traceability",
+    "low": "cosmetic / documentation gaps"
+  },
+  "requirements": [
+    {
+      "id": "BA-001",
+      "type": "governance",
+      "title": "No execution authority",
+      "summary": "BrowseAhead emits no decision/execution spine receipt and never calls execute; it only returns inspection artifacts.",
+      "source_refs": ["ADR-0006 #1", "design §10.5", "design §10.6"],
+      "required_evidence": ["scan.v1 handler emits only directive/intent/outcome receipts", "no execute call path"],
+      "required_tests": ["BA-NEG-001"],
+      "default_severity_if_missing": "critical",
+      "integration_boundary": "runtime"
+    },
+    {
+      "id": "BA-002",
+      "type": "governance",
+      "title": "Non-bypassable gateway reachability",
+      "summary": "scan.v1 is reachable only as a governed gateway tool with tenant/actor fail-closed bind and required scopes keon:mcp:invoke + keon:browseahead:scan.",
+      "source_refs": ["ADR-0006 #2", "design §5.3", "design §8"],
+      "required_evidence": ["scope denial returns DENIED_ENTITLEMENT/403", "tenant/actor echoed from bound context"],
+      "required_tests": ["BA-NEG-002"],
+      "default_severity_if_missing": "critical",
+      "integration_boundary": "gateway"
+    },
+    {
+      "id": "BA-003",
+      "type": "security",
+      "title": "Raw content is never instruction authority",
+      "summary": "Agent may ingest only the sanitized, data-only bundle; detected instructions are quoted/escaped as untrusted data.",
+      "source_refs": ["design §10.1", "design §10.2"],
+      "required_evidence": ["sanitized_bundle is the only ingestible field", "instructions re-emitted as quoted data, not executable framing"],
+      "required_tests": ["BA-NEG-003"],
+      "default_severity_if_missing": "critical",
+      "integration_boundary": null
+    },
+    {
+      "id": "BA-004",
+      "type": "security",
+      "title": "Agent-facing / forensic output split",
+      "summary": "raw_excerpt/decoded_excerpt/verbatim attacker bytes never appear in agent-facing structuredContent; agent findings are redacted summaries with excerpt_fingerprint + length + decode-chain metadata. Verbatim payloads live only in operator-only quarantine/forensic storage.",
+      "source_refs": ["ADR-0006 #5", "design §7.2", "design §10.13"],
+      "required_evidence": ["redaction-leak marker test passes", "forensic store join via forensic_ref/excerpt_fingerprint"],
+      "required_tests": ["BA-NEG-004"],
+      "default_severity_if_missing": "critical",
+      "integration_boundary": "control"
+    },
+    {
+      "id": "BA-005",
+      "type": "security",
+      "title": "Fail-closed at high/critical",
+      "summary": "critical risk blocks ingestion (sanitized_bundle=null, decision_hint=fail_closed) absent a governed recorded override; high quarantines suspect spans and requires review.",
+      "source_refs": ["design §6.2", "design §10.4"],
+      "required_evidence": ["critical fixture yields null bundle + fail_closed hint"],
+      "required_tests": ["BA-NEG-005"],
+      "default_severity_if_missing": "high",
+      "integration_boundary": null
+    },
+    {
+      "id": "BA-006",
+      "type": "feature",
+      "title": "Deterministic scoring",
+      "summary": "Identical input bytes + policy_version produce identical score, severity, finding ids, and receipt body (modulo ids/timestamp). Advisory LLM classifier may annotate but never solely changes block/allow.",
+      "source_refs": ["design §6.2", "design §10.12"],
+      "required_evidence": ["double-run determinism test passes", "advisory classifier off/on does not change verdict"],
+      "required_tests": ["BA-NEG-006"],
+      "default_severity_if_missing": "high",
+      "integration_boundary": null
+    },
+    {
+      "id": "BA-007",
+      "type": "feature",
+      "title": "Stamped, inspectable, traceable evidence",
+      "summary": "Every scan carries tenant_id, actor_id, url_or_content_hash, timestamp, correlation_id, policy_version; every quarantine is inspectable; every sanitized bundle traces back to raw_content_hash.",
+      "source_refs": ["design §10.7", "design §10.8", "design §10.9"],
+      "required_evidence": ["result carries 6 required fields", "sanitized_content_hash + raw_content_hash present and linked"],
+      "required_tests": ["BA-NEG-007"],
+      "default_severity_if_missing": "medium",
+      "integration_boundary": null
+    },
+    {
+      "id": "BA-008",
+      "type": "security",
+      "title": "Egress-isolated fetcher",
+      "summary": "The fetcher uses no agent credentials/cookies/secrets, is SSRF-guarded (blocks loopback/link-local/RFC1918/metadata IPs), bounded in size/time/redirects, and executes nothing from the page in MVP.",
+      "source_refs": ["design §5.2(B)", "design §10.11"],
+      "required_evidence": ["SSRF guard rejects private targets", "no JS execution path in MVP"],
+      "required_tests": ["BA-NEG-008"],
+      "default_severity_if_missing": "high",
+      "integration_boundary": null
+    }
+  ],
+  "required_negative_tests": [
+    { "id": "BA-NEG-001", "asserts": "scan.v1 never emits a decision or execution receipt and exposes no execute path." },
+    { "id": "BA-NEG-002", "asserts": "missing scope/entitlement is denied fail-closed (403 DENIED_ENTITLEMENT); cross-tenant access rejected." },
+    { "id": "BA-NEG-003", "asserts": "raw page content is not returned as ingestible context; only sanitized_bundle is ingestible." },
+    { "id": "BA-NEG-004", "asserts": "a known marker payload never appears in the serialized agent-facing result; it is retrievable only from the operator-only forensic/quarantine store." },
+    { "id": "BA-NEG-005", "asserts": "critical fixture yields sanitized_bundle=null and decision_hint=fail_closed; no override without a recorded governed path." },
+    { "id": "BA-NEG-006", "asserts": "double-run over each fixture produces byte-identical score/finding ids/receipt body; disabling advisory LLM never changes a verdict." },
+    { "id": "BA-NEG-007", "asserts": "result missing any of the 6 required scan fields fails verification." },
+    { "id": "BA-NEG-008", "asserts": "fetch targeting loopback/link-local/RFC1918/metadata IP is rejected; no credentials attached." }
+  ],
+  "false_claim_gates": [
+    { "claim": "BrowseAhead protects agents from web injection.", "allowed_only_if": "scan returns redacted findings + deterministic score + sanitized data-only bundle + signed receipt under gateway governance", "false_if": "raw page content is returned as ingestible context, OR raw excerpts leak into agent-facing output, OR scoring is non-deterministic" },
+    { "claim": "BrowseAhead does not bypass governance.", "allowed_only_if": "reachable only as a governed gateway tool with tenant/actor bind, scopes, ingress-spine receipts, and no execute path", "false_if": "any execution authority, side channel to external effect, or unbound/credentialed fetch exists" },
+    { "claim": "BrowseAhead fails closed on dangerous content.", "allowed_only_if": "critical blocks ingestion with sanitized_bundle=null and fail_closed hint", "false_if": "critical content is returned ingestible without a recorded governed override" }
+  ],
+  "required_artifacts": [
+    "src/Keon.McpGateway/Tools/BrowseAhead/BrowseAheadScanHandler.cs",
+    "src/Keon.McpGateway/Tools/BrowseAhead/BrowseAheadScanner.cs",
+    "src/Keon.McpGateway/Tools/BrowseAhead/BrowseAheadForensicSink.cs",
+    "contracts/mcp_gateway.v1.schema.json ToolName enum includes keon.browseahead.scan.v1",
+    "BrowseAhead input/output JSON schemas (inline on the tool definition)",
+    "golden fixture pack (design §11.2)",
+    "determinism double-run test",
+    "redaction-leak marker test"
+  ],
+  "mvp_status": {
+    "implemented": "2026-06-21",
+    "repo": "keon-mcp-gateway",
+    "tool": "keon.browseahead.scan.v1",
+    "boundary": "mode=raw only (deterministic, no render, no execute). mode=url and options.render fail closed (BROWSEAHEAD_URL_FETCH_NOT_ENABLED / BROWSEAHEAD_RENDER_NOT_ENABLED). Isolated fetcher sandbox + rendered-DOM analyzer + advisory-LLM classifier deferred to v0.2.",
+    "tests": "19 BrowseAhead tests green (15 engine golden/determinism/redaction + 4 HTTP governance); full gateway unit suite green.",
+    "deferred_note": "Risk receipt 'signature' is explicitly null in MVP (deterministic 'canonical_sha256' integrity hash present). Detached signing to integrate with the gateway receipt-signing key — design open question #2."
+  },
+  "final_verdict_policy": {
+    "block_if": ["any critical requirement missing", "any false_claim_gate tripped", "redaction-leak test fails"],
+    "pass_if": ["all critical+high requirements implemented", "all required negative tests pass", "determinism double-run green"]
+  },
+  "notes_for_verify_canon": "Draft pre-canon. Locks to keon_browseahead_canon_v1_locked.json after MVP lands and the redaction-leak + determinism tests are green in CI. Until locked, BA-004 (output split) is the gating correction required before implementation per operator directive 2026-06-21."
+}
