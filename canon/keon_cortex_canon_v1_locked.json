@@ -1,0 +1,2088 @@
+{
+  "document_id": "KEON-CORTEX-VERIFICATION-CANON-v2",
+  "file_name": "keon_cortex_canon_v2_locked.json",
+  "version": "2.0.0",
+  "status": "locked",
+  "created_utc": "2026-06-11T09:42:03Z",
+  "intended_path": "D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_cortex_canon_v2_locked.json",
+  "purpose": "Repository-verification canon for Keon Cortex v2. Converts Cortex product/capability claims, including Evidentiary Memory, two-plane storage, Epoch Roots, Gravitational Recall, replayable/counterfactual recall, and Collective bridge artifacts, into evidence-backed implementation, test, CLI, CI, and proof-artifact requirements for verify-canon.",
+  "scope": {
+    "primary_product": "Keon Cortex",
+    "repo_under_test": "Keon Cortex repository only",
+    "included": [
+      "Cortex memory substrate",
+      "deterministic shard identity",
+      "append-only memory and causal lineage",
+      "deterministic replay and outbox durability",
+      "tenant isolation",
+      "authoritative document store and derivative vector index separation",
+      "decay and reinforcement semantics",
+      "governed signing and evidence pack verification",
+      "Cortex proof spine I1-I7",
+      "proof bundle and proof CLI commands",
+      "benchmark CLI and deterministic benchmark artifacts",
+      "CI gates for deterministic proof and benchmark artifacts",
+      "developer tooling hygiene needed to keep proof lanes reliable",
+      "Evidentiary Memory category claims and Verifiable Memory alias consistency",
+      "two-plane storage architecture with immutable spine records and mutable gravity index",
+      "IMemory recall lens with content-hash verification metadata",
+      "Epoch Root attestation tree with offline inclusion proofs",
+      "tamper-evident hash tree construction and test vectors",
+      "Gravitational Recall v1 fixed-force scoring model",
+      "hash-pinned gravity parameters and explicit asOf scoring inputs",
+      "recall events as spine records",
+      "historical recall replay and counterfactual recall purity",
+      "Collective deliberation records as cognitive spine artifacts",
+      "heat-as-trust-anchor policy input bridge without receipt verification dependency",
+      "doctrine vocabulary lint for transparency log, attestation, and tamper-evident hash tree terminology"
+    ],
+    "excluded": [
+      "Keon Systems Runtime policy evaluation or execution governance internals",
+      "Keon MCP Gateway transport/auth implementation internals",
+      "Keon Collective cognition/orchestration behavior",
+      "public website page rendering except Cortex claim consistency",
+      "commercial packaging or licensing enforcement unless it changes governed Cortex behavior"
+    ],
+    "integration_boundaries": [
+      {
+        "system": "Keon Systems Runtime",
+        "relationship": "Cortex may preserve or export receipt-linked memory/evidence artifacts; Runtime owns policy decision/execution authority.",
+        "verification_rule": "Do not require Cortex to perform Runtime governance decisions. Reject any Cortex claim or code path that presents Cortex memory, summaries, vector hits, or proof artifacts as authorization authority."
+      },
+      {
+        "system": "Keon MCP Gateway",
+        "relationship": "Gateway may emit receipts and structured governed envelopes that Cortex stores or references.",
+        "verification_rule": "Cortex must preserve receipt lineage when provided, but gateway auth, MCP protocol handling, and Decide/Execute enforcement are out of Cortex scope."
+      },
+      {
+        "system": "Keon Collective",
+        "relationship": "Collective may use Cortex as canonical causal memory substrate and may store deliberation records as cognitive spine artifacts.",
+        "verification_rule": "Collective planning, branches, heat, and deliberation remain cognitive and non-authoritative. Cortex may preserve them, expose heat as policy-evaluable input, and link deliberation refs, but receipt verification and Runtime authorization must never require or consult deliberation records."
+      }
+    ]
+  },
+  "source_product_canon": {
+    "uploaded_file": "keon_cortex_canon_v2_locked.json",
+    "source_sha256": "0c53acd9f2f67b144dd2979de0dba887cf079f67d571db44ae4304d9886e54d0",
+    "capability_entries": 36,
+    "note": "Product canon is claim input. This verification canon is the stricter repo-evidence contract."
+  },
+  "verification_principles": [
+    "Claims require receipts or inspectable evidence.",
+    "Documentation and README claims are not implementation proof.",
+    "Test names are not proof unless assertions verify the claimed invariant.",
+    "Proof artifacts must be deterministic, portable, and byte-identical where claimed.",
+    "Vector index state is derivative and must never outrank authoritative document records.",
+    "Tenant isolation failures must fail closed.",
+    "Memory lineage and replay claims require negative and restart/retry evidence.",
+    "Governed signing claims require tamper, revoked-key, retired-key, and manifest integrity tests.",
+    "Cortex must not claim Runtime execution governance ownership.",
+    "Ambiguous evidence is failing evidence in strict mode.",
+    "Evidentiary Memory claims require memory records that can testify through inspectable spine records, content hashes, epoch roots, and replay evidence.",
+    "Gravity may order recall but must never gate access to immutable spine records.",
+    "Every scoring, heat, and selection function must be versioned and hash-pinned.",
+    "Hidden randomness and hidden wall-clock time are forbidden in proof-critical recall scoring paths.",
+    "Epoch roots must preserve closed historical roots; late arrivals are attested forward, never backfilled by root mutation.",
+    "Cognitive records, deliberation narratives, witness material, and heat signals are never execution receipts and never satisfy receipt verification paths.",
+    "Use doctrine vocabulary: tamper-evident hash tree, transparency log, attestation. Do not use blockchain, ledger, or chain in code identifiers, comments, or docs."
+  ],
+  "canonical_invariants": [
+    {
+      "id": "I1",
+      "name": "Deterministic memory and replayable core proof summary",
+      "summary": "Core memory state and proof summaries are deterministic and reconstructable from canonical substrate."
+    },
+    {
+      "id": "I2",
+      "name": "Fail-closed tenant isolation",
+      "summary": "Tenant context is mandatory, non-aliased, and enforced across write/query/provider-result boundaries."
+    },
+    {
+      "id": "I3",
+      "name": "Replay and outbox durability",
+      "summary": "Outbox leasing, retry, restart, replay, and idempotent processing preserve writes and deterministic state."
+    },
+    {
+      "id": "I4",
+      "name": "Authoritative store over derivative index",
+      "summary": "Document store is canonical truth; vector index is disposable, replayable, and unable to corrupt authority."
+    },
+    {
+      "id": "I5",
+      "name": "Deterministic shard identity and idempotent ingestion",
+      "summary": "Equivalent canonical payloads produce same shard identity, distinct payloads produce distinct identities, and duplicate ingestion no-ops."
+    },
+    {
+      "id": "I6",
+      "name": "Decay and reinforcement correctness",
+      "summary": "Decay/reinforcement is deterministic, versioned, bounded by trust floors/ceilings, and cannot promote poisoned memory by mass alone."
+    },
+    {
+      "id": "I7",
+      "name": "Governed signing and Evidence Pack integrity",
+      "summary": "Governed mode signs/verifies receipts, rejects tampering and revoked keys, accepts retired historical keys per semantics, and verifies deterministic Evidence Packs."
+    },
+    {
+      "id": "I8",
+      "name": "Evidentiary Memory two-plane separation",
+      "summary": "Immutable spine records remain canonical while mutable gravity weights only order recall and never remove, authorize, or rewrite truth."
+    },
+    {
+      "id": "I9",
+      "name": "Epoch Root attestation and offline inclusion proof",
+      "summary": "Event content hashes roll into deterministic spine, day, week, and quarter roots with offline-verifiable inclusion proofs and no recomputation of closed epochs."
+    },
+    {
+      "id": "I10",
+      "name": "Gravitational Recall deterministic scoring",
+      "summary": "Occurrence, recall, recency, and association forces produce deterministic, versioned, hash-pinned recall scores from explicit inputs."
+    },
+    {
+      "id": "I11",
+      "name": "Replayable and counterfactual recall",
+      "summary": "Historical recall decisions can be reconstructed exactly from spine records and evaluated under read-only counterfactual scenarios."
+    },
+    {
+      "id": "I12",
+      "name": "Collective bridge preserves cognition without authority",
+      "summary": "Deliberation records and heat signals may be preserved and evaluated, but they never become receipts or execution authorization authority."
+    }
+  ],
+  "expected_repo_surfaces": {
+    "source_roots": [
+      "src/keon/cortex"
+    ],
+    "proof_modules": [
+      "src/keon/cortex/proof/shard_identity.py",
+      "src/keon/cortex/proof/replay_outbox.py",
+      "src/keon/cortex/proof/tenant_isolation.py",
+      "src/keon/cortex/proof/authority_derivative_index.py",
+      "src/keon/cortex/proof/decay_reinforcement.py",
+      "src/keon/cortex/proof/governed_signing.py",
+      "src/keon/cortex/proof/proof_bundle.py"
+    ],
+    "cli_surface": "src/keon/cortex/cli/main.py",
+    "expected_cli_commands": [
+      "cortex proof",
+      "cortex replay-proof",
+      "cortex tenant-isolation-proof",
+      "cortex authority-proof",
+      "cortex shard-identity-proof",
+      "cortex decay-reinforcement-proof",
+      "cortex governed-signing-proof",
+      "cortex invariant-manifest",
+      "cortex proof-bundle",
+      "cortex benchmark",
+      "cortex evidentiary-memory-proof",
+      "cortex epoch-roots-proof",
+      "cortex gravity-proof",
+      "cortex recall-replay-proof",
+      "cortex collective-bridge-proof"
+    ],
+    "expected_artifacts": [
+      "cortex-proof.json",
+      "cortex-replay-proof.json",
+      "cortex-tenant-isolation-proof.json",
+      "cortex-authority-proof.json",
+      "cortex-shard-identity-proof.json",
+      "cortex-decay-reinforcement-proof.json",
+      "cortex-governed-signing-proof.json",
+      "cortex-proof-bundle.json",
+      "benchmark-report.json",
+      "cortex-evidentiary-memory-proof.json",
+      "cortex-epoch-roots-proof.json",
+      "cortex-gravity-proof.json",
+      "cortex-recall-replay-proof.json",
+      "cortex-collective-bridge-proof.json"
+    ],
+    "ci_surfaces": [
+      ".github/workflows",
+      "pyproject.toml",
+      "requirements*.txt",
+      "tox.ini",
+      "noxfile.py"
+    ],
+    "docs_surfaces": [
+      "README.md",
+      "docs",
+      "examples"
+    ],
+    "v2_expected_modules": [
+      "src/keon/cortex/memory/record_store.py",
+      "src/keon/cortex/memory/gravity_index.py",
+      "src/keon/cortex/memory/recall_service.py",
+      "src/keon/cortex/memory/memory_lens.py",
+      "src/keon/cortex/epoch/epoch_tree.py",
+      "src/keon/cortex/epoch/inclusion_proof.py",
+      "src/keon/cortex/gravity/function_v1.py",
+      "src/keon/cortex/replay/recall_replay.py",
+      "src/keon/cortex/collective/deliberation_record.py",
+      "src/keon/cortex/collective/trust_anchor_provider.py"
+    ]
+  },
+  "requirements": [
+    {
+      "id": "CORTEX-001",
+      "title": "Deterministic shard identity",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Shard identity must be canonical SHA-256 based: equivalent canonical payloads map to the same identity and semantically distinct payloads map to distinct identities.",
+      "verification_evidence_required": [
+        "Implementation of canonical serialization/hashing",
+        "Tests for field-order and JSON-order variation",
+        "Tests for distinct semantic payloads",
+        "Proof module evidence"
+      ],
+      "minimum_tests_required": [
+        "Equivalent payloads produce identical shard IDs",
+        "Distinct payloads produce distinct shard IDs",
+        "Double-run proof artifact is byte-identical"
+      ],
+      "required_cli": [
+        "cortex shard-identity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-shard-identity-proof.json"
+      ],
+      "source_product_features": [
+        "Deterministic Shard Identity",
+        "Idempotent Ingestion"
+      ]
+    },
+    {
+      "id": "CORTEX-002",
+      "title": "Idempotent ingestion no-duplicates",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Duplicate/retried ingestion must no-op without creating duplicate authoritative shards or duplicate output records.",
+      "verification_evidence_required": [
+        "Unique identity constraint or equivalent idempotency guard",
+        "Replay/retry code path evidence",
+        "Proof artifact summary"
+      ],
+      "minimum_tests_required": [
+        "Duplicate ingest creates one authoritative shard",
+        "Retry/replay preserves single output record",
+        "Concurrent/repeated ingestion does not produce duplicates where supported"
+      ],
+      "required_cli": [
+        "cortex shard-identity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-shard-identity-proof.json"
+      ],
+      "source_product_features": [
+        "Idempotent Ingestion",
+        "Deterministic Shard Identity"
+      ]
+    },
+    {
+      "id": "CORTEX-003",
+      "title": "Append-only authoritative memory model",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Authoritative memory state must preserve historical lineage through append/replay behavior and must not silently mutate or overwrite canonical history.",
+      "verification_evidence_required": [
+        "Authoritative write path evidence",
+        "Absence of destructive update paths for canonical records or explicit tombstone/event pattern",
+        "Replay proof evidence"
+      ],
+      "minimum_tests_required": [
+        "Updates append new state or event records",
+        "Historical records remain queryable/reconstructable",
+        "Mutation attempts are rejected or represented as new lineage events"
+      ],
+      "required_cli": [
+        "cortex replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-replay-proof.json"
+      ],
+      "source_product_features": [
+        "Append-Only Memory Model",
+        "Causal Memory Lineage",
+        "Deterministic Replay"
+      ]
+    },
+    {
+      "id": "CORTEX-004",
+      "title": "Causal memory lineage",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Memory entries must retain causal predecessor/correlation/lineage links sufficient to reconstruct how state evolved.",
+      "verification_evidence_required": [
+        "Data model fields for lineage/correlation/predecessor references",
+        "Persistence evidence",
+        "Replay/evidence artifact evidence"
+      ],
+      "minimum_tests_required": [
+        "Lineage references are preserved on write",
+        "Replay reconstructs lineage-sensitive state",
+        "Missing lineage where mandatory fails or is explicitly marked non-causal"
+      ],
+      "required_cli": [
+        "cortex replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-replay-proof.json"
+      ],
+      "source_product_features": [
+        "Causal Memory Lineage",
+        "Stronger Temporal Memory Receipts"
+      ]
+    },
+    {
+      "id": "CORTEX-005",
+      "title": "Deterministic replay",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Cortex must reconstruct state deterministically from the append-only substrate/outbox behavior.",
+      "verification_evidence_required": [
+        "Replay implementation",
+        "Stable ordering/canonicalization",
+        "Proof artifact double-run evidence"
+      ],
+      "minimum_tests_required": [
+        "Same input history yields same replay state",
+        "Double-run proof output is byte-identical",
+        "Replay handles restart/retry scenarios"
+      ],
+      "required_cli": [
+        "cortex replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-replay-proof.json"
+      ],
+      "source_product_features": [
+        "Deterministic Replay",
+        "Replay Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-006",
+      "title": "Transactional outbox state machine",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "summary": "Outbox processing must preserve writes and deterministic indexing across pending, leased, processed, retry, restart, and lease-expiry paths.",
+      "verification_evidence_required": [
+        "Outbox model and leasing implementation",
+        "Lease expiry/retry behavior",
+        "Idempotent processing guard"
+      ],
+      "minimum_tests_required": [
+        "pending -> leased -> processed transition",
+        "lease expiry allows safe reprocessing",
+        "restart/retry does not lose writes",
+        "duplicate processing is idempotent"
+      ],
+      "required_cli": [
+        "cortex replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-replay-proof.json"
+      ],
+      "source_product_features": [
+        "Transactional Outbox + Leasing",
+        "More Durable Outbox and Replay Behavior"
+      ]
+    },
+    {
+      "id": "CORTEX-007",
+      "title": "Fail-closed tenant context validation",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Tenant context must be required and fail closed for missing, empty, whitespace, non-string, aliased, or fallback tenant values.",
+      "verification_evidence_required": [
+        "Tenant validation code",
+        "No default/fallback tenant path",
+        "Negative-proof module evidence"
+      ],
+      "minimum_tests_required": [
+        "missing tenant rejected",
+        "empty/whitespace tenant rejected",
+        "non-string tenant rejected",
+        "alias/fallback tenant rejected"
+      ],
+      "required_cli": [
+        "cortex tenant-isolation-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-tenant-isolation-proof.json"
+      ],
+      "source_product_features": [
+        "Fail-Closed Tenant Isolation",
+        "Tenant Isolation Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-008",
+      "title": "Tenant isolation across query/provider boundaries",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Foreign provider/vector/query results must be filtered before crossing tenant boundaries.",
+      "verification_evidence_required": [
+        "Query filters include tenant constraints",
+        "Provider result validation",
+        "Negative tests for malicious foreign results"
+      ],
+      "minimum_tests_required": [
+        "Foreign tenant records cannot be returned",
+        "Provider returns mixed tenants and foreign rows are dropped",
+        "No silent widening of tenant scope"
+      ],
+      "required_cli": [
+        "cortex tenant-isolation-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-tenant-isolation-proof.json"
+      ],
+      "source_product_features": [
+        "Fail-Closed Tenant Isolation"
+      ]
+    },
+    {
+      "id": "CORTEX-009",
+      "title": "Authoritative document store precedes derivative index",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "summary": "Authoritative document writes must precede derivative vector indexing; index outage must not corrupt authoritative memory.",
+      "verification_evidence_required": [
+        "Write-before-index code path",
+        "Failure handling when vector provider unavailable",
+        "Authority proof module evidence"
+      ],
+      "minimum_tests_required": [
+        "document write precedes indexing",
+        "vector outage keeps authoritative record valid",
+        "index failure does not mutate document store"
+      ],
+      "required_cli": [
+        "cortex authority-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-authority-proof.json"
+      ],
+      "source_product_features": [
+        "Authoritative Document Store + Derivative Vector Index",
+        "Authority/Derivative-Index Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-010",
+      "title": "Vector index is disposable derivative",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Vector index hits/misses/divergence must never become canonical truth or imply authoritative memory existence/nonexistence.",
+      "verification_evidence_required": [
+        "Separation of authoritative store and vector payloads",
+        "Reconstruction from authoritative records",
+        "Divergence handling"
+      ],
+      "minimum_tests_required": [
+        "missing vector hit does not imply missing memory",
+        "payload divergence does not become canonical truth",
+        "derivative index can be reconstructed from authoritative records"
+      ],
+      "required_cli": [
+        "cortex authority-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-authority-proof.json"
+      ],
+      "source_product_features": [
+        "Authoritative Document Store + Derivative Vector Index",
+        "Verifier-First Cortex Positioning"
+      ]
+    },
+    {
+      "id": "CORTEX-011",
+      "title": "Duplicate derivative upsert idempotency",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Duplicate derivative index upserts must be idempotent and must not create multiple canonical meanings.",
+      "verification_evidence_required": [
+        "Index upsert identity/key evidence",
+        "Authority proof coverage"
+      ],
+      "minimum_tests_required": [
+        "duplicate derivative upsert is idempotent",
+        "duplicate vector upsert cannot duplicate authoritative memory"
+      ],
+      "required_cli": [
+        "cortex authority-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-authority-proof.json"
+      ],
+      "source_product_features": [
+        "Authority/Derivative-Index Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-012",
+      "title": "Decay calculation deterministic and versioned",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Memory influence decay must be deterministic, explicit about calculation version, and affected predictably by configurable half-life.",
+      "verification_evidence_required": [
+        "Decay implementation",
+        "Calculation version field",
+        "Configurable half-life path"
+      ],
+      "minimum_tests_required": [
+        "unused memory influence decays deterministically",
+        "half-life changes behavior predictably",
+        "same inputs produce same decay output"
+      ],
+      "required_cli": [
+        "cortex decay-reinforcement-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-decay-reinforcement-proof.json"
+      ],
+      "source_product_features": [
+        "Decay & Reinforcement Engine",
+        "Trust Decay and Reinforcement Hardening"
+      ]
+    },
+    {
+      "id": "CORTEX-013",
+      "title": "Reinforcement deterministic and bounded",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Retrieval reinforcement may increase influence but cannot make poisoned or low-trust memory authoritative by mass alone.",
+      "verification_evidence_required": [
+        "Reinforcement implementation",
+        "Trust floor/ceiling checks",
+        "Poisoned/low-trust negative tests"
+      ],
+      "minimum_tests_required": [
+        "successful retrieval increases influence deterministically",
+        "trust floors/ceilings prevent reinforcement-only promotion",
+        "decay/reinforcement composition deterministic"
+      ],
+      "required_cli": [
+        "cortex decay-reinforcement-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-decay-reinforcement-proof.json"
+      ],
+      "source_product_features": [
+        "Trust Decay and Reinforcement Hardening",
+        "Decay & Reinforcement Engine"
+      ]
+    },
+    {
+      "id": "CORTEX-014",
+      "title": "Retrieval influence receipts",
+      "claim_type": "receipt_hardening",
+      "severity_if_missing": "high",
+      "summary": "Retrieval influence receipts must preserve selected, excluded, ranking, candidate-set, and degradation evidence where applicable.",
+      "verification_evidence_required": [
+        "MemoryInfluenceReceipt or equivalent model",
+        "Fields for selected/excluded/ranking/degradation",
+        "Tests inspecting receipt contents"
+      ],
+      "minimum_tests_required": [
+        "selected candidates recorded",
+        "excluded candidates/reasons recorded where applicable",
+        "ranking evidence recorded",
+        "semantic degradation is explicit and not hidden"
+      ],
+      "source_product_features": [
+        "Stronger Retrieval Influence Receipts"
+      ]
+    },
+    {
+      "id": "CORTEX-015",
+      "title": "Temporal memory receipts stronger commitments",
+      "claim_type": "receipt_hardening",
+      "severity_if_missing": "high",
+      "summary": "Temporal receipts must carry commitment/versioning semantics sufficient to reconstruct and verify memory state over time.",
+      "verification_evidence_required": [
+        "Temporal receipt model",
+        "Commitment version fields",
+        "Selected/excluded/ranking/candidate-set commitment coverage where applicable"
+      ],
+      "minimum_tests_required": [
+        "temporal receipt includes commitment version",
+        "receipt supports replay or temporal verification",
+        "receipt fields are deterministic"
+      ],
+      "source_product_features": [
+        "Stronger Temporal Memory Receipts"
+      ]
+    },
+    {
+      "id": "CORTEX-016",
+      "title": "Fact identity semantics",
+      "claim_type": "memory_semantics",
+      "severity_if_missing": "high",
+      "summary": "Fact identity must distinguish duplicate claims, reinforcement, and evolving fact slots without collapsing distinct lineage.",
+      "verification_evidence_required": [
+        "fact_slot_id or equivalent identity field",
+        "Duplicate vs reinforcement logic",
+        "Lineage preservation"
+      ],
+      "minimum_tests_required": [
+        "duplicate fact does not create false new fact identity",
+        "reinforcement strengthens existing fact influence without losing lineage",
+        "evolving fact slot is distinguishable from duplicate"
+      ],
+      "source_product_features": [
+        "Fact Identity and Reinforcement Semantics"
+      ]
+    },
+    {
+      "id": "CORTEX-017",
+      "title": "Governed mode Ed25519 signing",
+      "claim_type": "feature",
+      "severity_if_missing": "critical",
+      "summary": "Governed mode must sign receipts with Ed25519 and verify valid signed receipts.",
+      "verification_evidence_required": [
+        "Ed25519 signing implementation",
+        "Verifier implementation",
+        "Governed signing proof module"
+      ],
+      "minimum_tests_required": [
+        "valid signed receipt verifies",
+        "unsigned open-core path remains allowed only where governed signing is not enforced"
+      ],
+      "required_cli": [
+        "cortex governed-signing-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-governed-signing-proof.json"
+      ],
+      "source_product_features": [
+        "Cortex Governed Mode",
+        "Governed Ed25519 Signing Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-018",
+      "title": "Governed signing tamper/key lifecycle rejection",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Verifier must reject tampered payloads and revoked keys while accepting retired historical keys according to registry semantics.",
+      "verification_evidence_required": [
+        "Key registry/state model",
+        "Tamper verification logic",
+        "Revoked/retired key tests"
+      ],
+      "minimum_tests_required": [
+        "tampered payload rejected",
+        "revoked key rejected",
+        "retired historical key accepted according to semantics",
+        "unknown key rejected"
+      ],
+      "required_cli": [
+        "cortex governed-signing-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-governed-signing-proof.json"
+      ],
+      "source_product_features": [
+        "Key Lifecycle Support",
+        "Governed Ed25519 Signing Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-019",
+      "title": "Evidence Pack deterministic manifest and hash tree",
+      "claim_type": "evidence_pack",
+      "severity_if_missing": "critical",
+      "summary": "Evidence Pack manifests/hash trees must be deterministic and tamper-detecting.",
+      "verification_evidence_required": [
+        "Manifest generation",
+        "SHA-256 hash tree",
+        "Verification implementation"
+      ],
+      "minimum_tests_required": [
+        "manifest/hash tree deterministic",
+        "modified included artifact fails verification",
+        "double-run evidence is byte-identical"
+      ],
+      "required_cli": [
+        "cortex governed-signing-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-governed-signing-proof.json"
+      ],
+      "source_product_features": [
+        "Evidence Pack Verification Hardening",
+        "Cortex Governed Mode"
+      ]
+    },
+    {
+      "id": "CORTEX-020",
+      "title": "Invariant manifest I1-I12",
+      "claim_type": "proof_system",
+      "severity_if_missing": "critical",
+      "summary": "Invariant manifest must cover I1-I12 and report all checks pass only when each proof family is present and passing.",
+      "verification_evidence_required": [
+        "Invariant manifest implementation",
+        "Mapping to I1-I7",
+        "CLI command"
+      ],
+      "minimum_tests_required": [
+        "manifest lists I1-I12",
+        "missing proof fails manifest",
+        "all_checks_passed only true when all included checks pass"
+      ],
+      "required_cli": [
+        "cortex invariant-manifest"
+      ],
+      "source_product_features": [
+        "Expanded Invariant Manifest Through I7"
+      ]
+    },
+    {
+      "id": "CORTEX-021",
+      "title": "Unified proof bundle composition",
+      "claim_type": "aggregate",
+      "severity_if_missing": "critical",
+      "summary": "Proof bundle must compose the existing I1-I12 proof artifacts without redefining proof semantics.",
+      "verification_evidence_required": [
+        "proof_bundle.py implementation",
+        "Manifest-aligned artifact composition",
+        "Tests for included proof families"
+      ],
+      "minimum_tests_required": [
+        "bundle includes I1-I12 artifacts",
+        "bundle fails or reports incomplete if required artifact missing",
+        "bundle does not mutate constituent proof semantics"
+      ],
+      "required_cli": [
+        "cortex proof-bundle [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-proof-bundle.json"
+      ],
+      "source_product_features": [
+        "Cortex Proof Spine I1-I7 + Unified Proof Bundle",
+        "Unified Proof Bundle"
+      ]
+    },
+    {
+      "id": "CORTEX-022",
+      "title": "Content-addressed proof bundle identity",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "summary": "proof_bundle_id must equal deterministic Merkle root/content hash identity.",
+      "verification_evidence_required": [
+        "Merkle/root calculation",
+        "Sorted deterministic artifact hashes",
+        "SHA-256 content identity"
+      ],
+      "minimum_tests_required": [
+        "proof_bundle_id equals merkle_root",
+        "artifact hash order deterministic",
+        "tampered artifact changes root"
+      ],
+      "required_cli": [
+        "cortex proof-bundle [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-proof-bundle.json"
+      ],
+      "source_product_features": [
+        "Content-Addressed Proof Bundle Identity"
+      ]
+    },
+    {
+      "id": "CORTEX-023",
+      "title": "Proof CLI command surface",
+      "claim_type": "cli",
+      "severity_if_missing": "critical",
+      "summary": "All claimed proof CLI commands must exist, run, support output where claimed, and emit deterministic JSON or documented output.",
+      "verification_evidence_required": [
+        "CLI command registrations",
+        "Command help",
+        "Output file handling"
+      ],
+      "minimum_tests_required": [
+        "each proof command is registered",
+        "--output writes file for commands that claim it",
+        "stdout JSON supported where claimed",
+        "exit code nonzero on failure where applicable"
+      ],
+      "required_cli": [
+        "cortex proof",
+        "cortex replay-proof",
+        "cortex tenant-isolation-proof",
+        "cortex authority-proof",
+        "cortex shard-identity-proof",
+        "cortex decay-reinforcement-proof",
+        "cortex governed-signing-proof",
+        "cortex invariant-manifest",
+        "cortex proof-bundle",
+        "cortex benchmark"
+      ],
+      "required_artifacts": [
+        "cortex-proof.json",
+        "cortex-replay-proof.json",
+        "cortex-tenant-isolation-proof.json",
+        "cortex-authority-proof.json",
+        "cortex-shard-identity-proof.json",
+        "cortex-decay-reinforcement-proof.json",
+        "cortex-governed-signing-proof.json",
+        "cortex-proof-bundle.json",
+        "benchmark-report.json"
+      ],
+      "source_product_features": [
+        "Verify-All Proof Command",
+        "Cortex Proof CLI"
+      ]
+    },
+    {
+      "id": "CORTEX-024",
+      "title": "Byte-identical deterministic proof gates",
+      "claim_type": "ci_hardening",
+      "severity_if_missing": "critical",
+      "summary": "Proof commands that claim deterministic artifacts must be double-run diff gated in tests or CI.",
+      "verification_evidence_required": [
+        "CI workflow or test command evidence",
+        "Double-run artifact compare",
+        "Failure path if diff exists"
+      ],
+      "minimum_tests_required": [
+        "individual proof artifacts double-run byte-identical",
+        "proof bundle double-run byte-identical",
+        "CI/test fails on nondeterminism"
+      ],
+      "source_product_features": [
+        "Byte-Identical Deterministic Proof Gates",
+        "CI-Uploaded Proof and Benchmark Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-025",
+      "title": "Portable auditor-grade proof artifact",
+      "claim_type": "positioning",
+      "severity_if_missing": "high",
+      "summary": "Auditor-facing proof claims require portable artifacts that can be generated and inspected without trusting screenshots or marketing copy.",
+      "verification_evidence_required": [
+        "Proof bundle output",
+        "Manifest/hashes",
+        "Documentation describing verification steps"
+      ],
+      "minimum_tests_required": [
+        "bundle can be generated locally",
+        "artifact contains enough metadata to inspect included proofs",
+        "docs avoid requiring trust in screenshots"
+      ],
+      "required_cli": [
+        "cortex proof-bundle [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-proof-bundle.json"
+      ],
+      "source_product_features": [
+        "Portable Auditor-Grade Cortex Proof Artifact",
+        "Verifier-First Cortex Positioning"
+      ]
+    },
+    {
+      "id": "CORTEX-026",
+      "title": "Benchmark CLI deterministic reports",
+      "claim_type": "benchmarking",
+      "severity_if_missing": "medium",
+      "summary": "Benchmark reports must be deterministic, CI-safe, provider-attributed, and generated through the Cortex benchmark command.",
+      "verification_evidence_required": [
+        "benchmark CLI implementation",
+        "Stable JSON/Markdown report generation",
+        "Provider metadata fields"
+      ],
+      "minimum_tests_required": [
+        "cortex benchmark writes deterministic report",
+        "report includes provider_name/provider_kind/provider_version/fixture_version or equivalent",
+        "quality gate rules are stable and inspectable"
+      ],
+      "required_cli": [
+        "cortex benchmark"
+      ],
+      "required_artifacts": [
+        "benchmark-report.json"
+      ],
+      "source_product_features": [
+        "Deterministic Semantic Benchmark Artifacts",
+        "Provider Metadata in Benchmark Reports",
+        "Cortex Benchmark CLI"
+      ]
+    },
+    {
+      "id": "CORTEX-027",
+      "title": "Cortex must not be positioned as vector DB/RAG only",
+      "claim_type": "false_claim_guard",
+      "severity_if_missing": "medium",
+      "summary": "Docs/copy must not reduce Cortex to vector search, RAG, or chat history, and must not present vector index as canonical truth.",
+      "verification_evidence_required": [
+        "README/docs search",
+        "Website/copy surfaces if in repo",
+        "Forbidden copy check"
+      ],
+      "minimum_tests_required": [
+        "no 'vector index is canonical truth' claim",
+        "no RAG-only positioning",
+        "no contradiction of authoritative store over derivative index"
+      ],
+      "source_product_features": [
+        "Verifier-First Cortex Positioning"
+      ],
+      "false_claim_gate": "Any public claim that the vector index is canonical truth is a critical contradiction."
+    },
+    {
+      "id": "CORTEX-028",
+      "title": "Cortex must not claim Runtime execution governance ownership",
+      "claim_type": "false_claim_guard",
+      "severity_if_missing": "critical",
+      "summary": "Cortex may preserve receipt-linked memory/evidence but must not claim to perform Runtime policy decisions, execution authorization, or MCP Gateway enforcement.",
+      "verification_evidence_required": [
+        "README/docs/API search",
+        "Module boundary inspection",
+        "No direct governed execution authority path"
+      ],
+      "minimum_tests_required": [
+        "no code path authorizes external execution as Cortex authority",
+        "docs state Cortex preserves/proves memory truth rather than decides/executes",
+        "Runtime/Gateway responsibilities not duplicated"
+      ],
+      "source_product_features": [
+        "Verifier-First Cortex Positioning"
+      ],
+      "false_claim_gate": "Claiming Runtime execution governance inside Cortex is a scope violation and false claim."
+    },
+    {
+      "id": "CORTEX-029",
+      "title": "Open-core unsigned receipts vs governed signing distinction",
+      "claim_type": "false_claim_guard",
+      "severity_if_missing": "high",
+      "summary": "Docs and code must preserve the distinction that unsigned open-core receipts may exist when governed signing is not enforced, while governed mode enforces signing.",
+      "verification_evidence_required": [
+        "README/docs search",
+        "Governed mode config/guard",
+        "Signing proof tests"
+      ],
+      "minimum_tests_required": [
+        "open-core path allows unsigned receipts only outside governed enforcement",
+        "governed mode rejects unsigned/tampered where required",
+        "docs do not imply signing is universally mandatory in open core"
+      ],
+      "required_cli": [
+        "cortex governed-signing-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-governed-signing-proof.json"
+      ],
+      "source_product_features": [
+        "Cortex Governed Mode",
+        "Governed Ed25519 Signing Proof Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-030",
+      "title": "CI-uploaded proof/benchmark artifacts",
+      "claim_type": "ci_hardening",
+      "severity_if_missing": "medium",
+      "summary": "CI should upload deterministic proof and benchmark artifacts where the repo claims CI-backed proof/benchmark evidence.",
+      "verification_evidence_required": [
+        "CI workflow artifact upload",
+        "Artifact naming",
+        "Commands run in CI"
+      ],
+      "minimum_tests_required": [
+        "proof artifacts uploaded by CI",
+        "benchmark report artifacts uploaded where claimed",
+        "workflow runs on PR or protected main as appropriate"
+      ],
+      "source_product_features": [
+        "CI-Uploaded Proof and Benchmark Artifacts"
+      ]
+    },
+    {
+      "id": "CORTEX-031",
+      "title": "Python tooling hygiene for proof lanes",
+      "claim_type": "quality_hardening",
+      "severity_if_missing": "low",
+      "summary": "Formatter/import/type-checker hygiene must remain bounded enough that proof/CI lanes do not drift silently.",
+      "verification_evidence_required": [
+        "pyproject/tool config",
+        "CI commands",
+        "Version bounds for dev tools where claimed"
+      ],
+      "minimum_tests_required": [
+        "black/isort or equivalent clean on touched scope where configured",
+        "mypy/static typing command passes where claimed",
+        "dev-tool major version drift bounded"
+      ],
+      "source_product_features": [
+        "Black/isort/mypy Cleanup",
+        "Dev-Tool Version Drift Protection"
+      ]
+    },
+    {
+      "id": "CORTEX-032",
+      "title": "Documentation claim consistency with proof spine",
+      "claim_type": "false_claim_guard",
+      "severity_if_missing": "high",
+      "summary": "README/docs must not claim I1-I7, proof bundle, governed signing, or benchmark artifacts as complete unless code, CLI, tests, and artifacts support the claim.",
+      "verification_evidence_required": [
+        "Docs claim scan",
+        "CLI/proof implementation",
+        "Test/CI receipts"
+      ],
+      "minimum_tests_required": [
+        "I1-I7 docs match invariant manifest",
+        "proof bundle docs match command output",
+        "deferred items are labeled deferred not complete"
+      ],
+      "required_cli": [
+        "cortex invariant-manifest",
+        "cortex proof-bundle [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-proof-bundle.json"
+      ],
+      "source_product_features": [
+        "Cortex Proof Spine I1-I7 + Unified Proof Bundle",
+        "Verifier-First Cortex Positioning"
+      ],
+      "false_claim_gate": "Unsupported proof-spine marketing claims are false_claim findings."
+    },
+    {
+      "id": "CORTEX-033",
+      "title": "Evidentiary Memory category claim",
+      "claim_type": "positioning",
+      "severity_if_missing": "critical",
+      "summary": "Cortex may claim Evidentiary Memory only when memory can testify through immutable spine records, hash verification, epoch-root proof, and replay evidence.",
+      "verification_evidence_required": [
+        "Implementation of immutable spine records or equivalent canonical causal substrate",
+        "Proof artifacts tying memory to content hashes and epoch roots",
+        "Docs/copy using Evidentiary Memory and Verifiable Memory consistently"
+      ],
+      "minimum_tests_required": [
+        "memory record includes canonical spine/event reference",
+        "memory proof includes contentHash verification result",
+        "unsupported memory-only or vector-only testimony claim is flagged"
+      ],
+      "source_product_features": [
+        "Evidentiary Memory",
+        "Verifiable Memory",
+        "Memory that can testify"
+      ],
+      "required_cli": [
+        "cortex evidentiary-memory-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-evidentiary-memory-proof.json"
+      ],
+      "false_claim_gate": "Any claim that unverified summaries, embeddings, or narratives can testify without canonical anchors is a false claim."
+    },
+    {
+      "id": "CORTEX-034",
+      "title": "Two-plane storage separation",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Plane 1 immutable spine records and Plane 2 mutable gravity weights must remain separate; gravity orders recall but never gates access to Plane 1.",
+      "verification_evidence_required": [
+        "RecordStore append-only interface evidence",
+        "GravityIndex mutable weight interface evidence",
+        "Recall path resolves ordered candidates through RecordStore"
+      ],
+      "minimum_tests_required": [
+        "RecordStore exposes no update/delete API",
+        "zeroing gravity weight does not remove RecordStore.get or scan result",
+        "recall always performs contentHash verification before returning memory"
+      ],
+      "source_product_features": [
+        "Two-Plane Storage Architecture",
+        "Immutable record store",
+        "Mutable gravity index"
+      ],
+      "required_cli": [
+        "cortex evidentiary-memory-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-evidentiary-memory-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-035",
+      "title": "Spine record immutability and content hashing",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Spine events must be immutable and permanent, with contentHash computed from canonical serialization.",
+      "verification_evidence_required": [
+        "ISpineEvent or equivalent model",
+        "Single canonical serialization module",
+        "Append path computes or validates contentHash"
+      ],
+      "minimum_tests_required": [
+        "attempted mutation is impossible by interface or rejected",
+        "contentHash changes when canonical event bytes change",
+        "canonical JSON fixtures are stable across field-order variation"
+      ],
+      "source_product_features": [
+        "ISpineEvent",
+        "Canonical serialization"
+      ],
+      "required_cli": [
+        "cortex evidentiary-memory-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-evidentiary-memory-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-036",
+      "title": "IMemory recall lens verification",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "IMemory must be a recall lens over a spine event and must add no new truth beyond verification metadata.",
+      "verification_evidence_required": [
+        "MemoryLens.toMemory implementation",
+        "VerificationMeta contentHash result",
+        "Inclusion-proof availability field"
+      ],
+      "minimum_tests_required": [
+        "IMemory includes event reference and verification metadata",
+        "verification failure is explicit and never silently included as valid",
+        "IMemory model does not contain independent truth payload that can outrank the event"
+      ],
+      "source_product_features": [
+        "IMemory recall lens"
+      ],
+      "required_cli": [
+        "cortex evidentiary-memory-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-evidentiary-memory-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-037",
+      "title": "Epoch Root hierarchy and late-arrival semantics",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Epoch roots must follow spine to day to week to quarter hierarchy, close on UTC boundaries, and never recompute closed roots for late-arriving events.",
+      "verification_evidence_required": [
+        "SpineRoot.compute implementation",
+        "EpochTree closeDay/closeWeek/closeQuarter implementation",
+        "Late-arrival attestedLate marker behavior"
+      ],
+      "minimum_tests_required": [
+        "same events ordered by occurredAt/id produce same spine root",
+        "late event for closed day records in current open day with attestedLate original date",
+        "closed day/week/quarter roots are not recomputed"
+      ],
+      "source_product_features": [
+        "Epoch Roots",
+        "Tamper-evident hash tree"
+      ],
+      "required_cli": [
+        "cortex epoch-roots-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-epoch-roots-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-038",
+      "title": "Offline inclusion proof verification",
+      "claim_type": "evidence_pack",
+      "severity_if_missing": "critical",
+      "summary": "An event must be verifiable against an epoch root using only event bytes, proof, and root, without store access.",
+      "verification_evidence_required": [
+        "InclusionProof.generate implementation",
+        "InclusionProof.verify pure function",
+        "Cross-implementation test vectors"
+      ],
+      "minimum_tests_required": [
+        "single event verifies against quarter root with no store access",
+        "mutating historical event byte breaks all relevant levels",
+        "deleting day data breaks containing week root"
+      ],
+      "source_product_features": [
+        "Offline inclusion proofs",
+        "Epoch Root attestation tree"
+      ],
+      "required_cli": [
+        "cortex epoch-roots-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-epoch-roots-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-039",
+      "title": "Hash tree construction safety",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Epoch hash trees must use domain-separated leaf/node hashes, promote odd nodes without duplicate-last, and define empty-day sentinel roots.",
+      "verification_evidence_required": [
+        "Leaf and node prefix/domain separation evidence",
+        "Odd-node promote-unpaired rule",
+        "Empty day sentinel root definition"
+      ],
+      "minimum_tests_required": [
+        "leaf/node domain separation fixture passes",
+        "odd-node duplicate-last is rejected by test",
+        "empty day sentinel root stable and documented"
+      ],
+      "source_product_features": [
+        "Tamper-evident hash tree",
+        "Proof-critical tree construction"
+      ],
+      "required_cli": [
+        "cortex epoch-roots-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-epoch-roots-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-040",
+      "title": "Gravitational Recall v1 fixed force taxonomy",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "summary": "Gravity v1 must score recall with the fixed force taxonomy: occurrence, recall, recency, and association.",
+      "verification_evidence_required": [
+        "GravityFunction v1.0.0 implementation",
+        "GravityScore force breakdown fields",
+        "No unapproved extra force fields"
+      ],
+      "minimum_tests_required": [
+        "all four force fields are present",
+        "unapproved force taxonomy extension fails contract test",
+        "score total is bounded within [0,1] or explicitly normalized"
+      ],
+      "source_product_features": [
+        "Gravitational Recall",
+        "Gravity v1"
+      ],
+      "required_cli": [
+        "cortex gravity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-gravity-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-041",
+      "title": "Gravity deterministic explicit-time scoring",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Gravity scoring must be deterministic with explicit asOf input and no hidden randomness or wall-clock time.",
+      "verification_evidence_required": [
+        "score(memoryId, asOf, params, history) signature or equivalent",
+        "No Date.now/time.time/random in scoring path",
+        "Determinism stress tests"
+      ],
+      "minimum_tests_required": [
+        "1000 generated histories score twice with byte-identical output",
+        "static/lint test blocks hidden now/random in scoring path",
+        "same inputs after process restart produce same output"
+      ],
+      "source_product_features": [
+        "Deterministic scoring",
+        "No hidden now"
+      ],
+      "required_cli": [
+        "cortex gravity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-gravity-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-042",
+      "title": "Gravity hash-pinned params and emitted function identity",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Every GravityScore must record gravityVersion and gravityFunctionHash derived from version plus canonical params.",
+      "verification_evidence_required": [
+        "GravityParams versioned bundle",
+        "Canonical params serialization/hashing",
+        "GravityScore emits gravityVersion and gravityFunctionHash"
+      ],
+      "minimum_tests_required": [
+        "changing any param changes gravityFunctionHash",
+        "same params produce same hash across runs",
+        "score output records the exact hash used"
+      ],
+      "source_product_features": [
+        "Hash-pinned gravity function",
+        "GravityParams"
+      ],
+      "required_cli": [
+        "cortex gravity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-gravity-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-043",
+      "title": "Semantic bootstrap blend remains subordinate to gravity proof",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Semantic bootstrap may blend with gravity for sparse tenants, but recall output must carry full GravityScore and deterministic blend metadata.",
+      "verification_evidence_required": [
+        "Semantic scorer interface",
+        "Pinned crossover function of tenant history depth",
+        "RecallService ordering by blended score with GravityScore breakdown"
+      ],
+      "minimum_tests_required": [
+        "semantic scorer is pluggable and not canonical truth",
+        "history-depth crossover is deterministic",
+        "recall result records gravity score breakdown and blend metadata"
+      ],
+      "source_product_features": [
+        "Semantic bootstrap blend"
+      ],
+      "required_cli": [
+        "cortex gravity-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-gravity-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-044",
+      "title": "Production recall events are spine records",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Every production recall must write a Recall spine event capturing query, asOf, gravity version/hash, params hash, result set, scores, and epochRef.",
+      "verification_evidence_required": [
+        "Recall event model",
+        "Production recall write path",
+        "Event payload includes scoring and epoch metadata"
+      ],
+      "minimum_tests_required": [
+        "recall writes kind=Recall spine event",
+        "event includes query/asOf/gravityVersion/gravityFunctionHash/paramsHash",
+        "event includes result set memoryIds with scores and epochRef"
+      ],
+      "source_product_features": [
+        "Recall events as spine records"
+      ],
+      "required_cli": [
+        "cortex recall-replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-recall-replay-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-045",
+      "title": "ReplayService reconstructs pinned historical recall",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "ReplayService must rebuild HistoryView as of the original recall timestamp and recompute with the pinned gravity version and params.",
+      "verification_evidence_required": [
+        "ReplayService implementation",
+        "Versioned gravity function registry",
+        "Diff reporting when replay mismatches"
+      ],
+      "minimum_tests_required": [
+        "production recall to replay matches true across generated scenarios",
+        "gravity/1.0.0 recall still replays under 1.0.0 after 1.1.0 exists",
+        "mismatch produces explicit diff finding"
+      ],
+      "source_product_features": [
+        "Replayable Recall"
+      ],
+      "required_cli": [
+        "cortex recall-replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-recall-replay-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-046",
+      "title": "Counterfactual recall purity",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Counterfactual recall must run in read-only sandboxed HistoryView modes and must not mutate Plane 1 or Plane 2.",
+      "verification_evidence_required": [
+        "withoutMemory mode",
+        "forceMemory mode",
+        "withParams mode",
+        "Store spy tests proving no writes"
+      ],
+      "minimum_tests_required": [
+        "withoutMemory reports changed or unchanged result set explicitly",
+        "forceMemory includes gravity gap explanation",
+        "withParams simulates alternate params without production state mutation",
+        "counterfactual run writes nothing to RecordStore or GravityIndex"
+      ],
+      "source_product_features": [
+        "Counterfactual Recall"
+      ],
+      "required_cli": [
+        "cortex recall-replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-recall-replay-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-047",
+      "title": "Recall replay and counterfactual Evidence Pack entries",
+      "claim_type": "evidence_pack",
+      "severity_if_missing": "high",
+      "summary": "Evidence Packs must be able to include recall replay and counterfactual results as structured, epoch-referenced artifacts.",
+      "verification_evidence_required": [
+        "Evidence Pack export integration",
+        "Artifact schema with recallEventId and epochRef",
+        "Verification path for included recall replay artifact"
+      ],
+      "minimum_tests_required": [
+        "recall replay artifact exports with epochRef",
+        "counterfactual artifact exports with mode and result diff",
+        "tampering exported artifact changes pack verification/root"
+      ],
+      "source_product_features": [
+        "Evidence Pack recall replay artifact"
+      ],
+      "required_cli": [
+        "cortex recall-replay-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-recall-replay-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-048",
+      "title": "Deliberation records are cognitive spine artifacts",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Collective deliberation snapshots may be stored as Deliberation spine events but must be explicitly cognitive and distinct from execution receipts.",
+      "verification_evidence_required": [
+        "DeliberationRecord schema",
+        "kind=Deliberation spine event storage",
+        "delib_ identifier prefix and namespace separation from rcpt_"
+      ],
+      "minimum_tests_required": [
+        "stored DeliberationRecord includes branches/reviewer verdicts/heat/dissent/witness narrative ref",
+        "identifier prefix is delib_ not rcpt_",
+        "rendering or schema distinguishes cognitive record from receipt"
+      ],
+      "source_product_features": [
+        "Collective Bridge",
+        "DeliberationRecord"
+      ],
+      "required_cli": [
+        "cortex collective-bridge-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-collective-bridge-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-049",
+      "title": "Receipt verification does not consult deliberation",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "summary": "Receipt verification must never import, call, or require deliberation modules or records.",
+      "verification_evidence_required": [
+        "Architecture test for import boundaries",
+        "Receipt verifier implementation evidence",
+        "Receipt linkage optional deliberationRef semantics"
+      ],
+      "minimum_tests_required": [
+        "receipt verification path has zero imports/calls into deliberation modules",
+        "receipt with deliberationRef verifies solely from receipt evidence",
+        "missing deliberation record does not make valid receipt invalid"
+      ],
+      "source_product_features": [
+        "Cognition is non-effecting",
+        "Receipts outrank stories"
+      ],
+      "required_cli": [
+        "cortex collective-bridge-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-collective-bridge-proof.json"
+      ],
+      "false_claim_gate": "Any verification path requiring deliberation material to prove receipt validity is a critical doctrine violation."
+    },
+    {
+      "id": "CORTEX-050",
+      "title": "Heat as versioned trust anchor input",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "summary": "Cortex may expose Collective heat as a policy-evaluable trust anchor input, but heat remains versioned, hash-pinned, and non-authorizing by itself.",
+      "verification_evidence_required": [
+        "TrustAnchorProvider.heat implementation or adapter",
+        "heatVersion and heatFunctionHash emitted",
+        "Policy attribute binding evidence"
+      ],
+      "minimum_tests_required": [
+        "heat provider returns score/consensus/version/hash",
+        "changing heat weights changes heatFunctionHash",
+        "low-consensus effect-bound action requires co-sign or fails closed in policy integration tests where Runtime contract is stubbed"
+      ],
+      "source_product_features": [
+        "Heat-as-policy-input",
+        "TrustAnchorProvider"
+      ],
+      "required_cli": [
+        "cortex collective-bridge-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-collective-bridge-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-051",
+      "title": "Narrative corroboration remains anchored",
+      "claim_type": "memory_semantics",
+      "severity_if_missing": "medium",
+      "summary": "Witness or narrative factual claims stored through Cortex should carry optional spineRefs and a record-level corroboration status.",
+      "verification_evidence_required": [
+        "Narrative corroboration model",
+        "spineRefs per factual claim or equivalent",
+        "Computed corroboration enum full/partial/uncorroborated"
+      ],
+      "minimum_tests_required": [
+        "full coverage computes full corroboration",
+        "partial coverage computes partial",
+        "uncorroborated narratives cannot be treated as receipt truth"
+      ],
+      "source_product_features": [
+        "Narrative corroboration v0"
+      ],
+      "required_cli": [
+        "cortex collective-bridge-proof [--output FILE]"
+      ],
+      "required_artifacts": [
+        "cortex-collective-bridge-proof.json"
+      ]
+    },
+    {
+      "id": "CORTEX-052",
+      "title": "Doctrine vocabulary lint",
+      "claim_type": "false_claim_guard",
+      "severity_if_missing": "medium",
+      "summary": "Cortex code, comments, and docs for this substrate must use approved vocabulary and avoid blockchain, ledger, or chain terminology.",
+      "verification_evidence_required": [
+        "Repo-wide naming lint or forbidden-term test",
+        "Docs/copy scan",
+        "Approved terminology guidance"
+      ],
+      "minimum_tests_required": [
+        "no public symbol contains blockchain/ledger/chain for this substrate",
+        "approved terms tamper-evident hash tree/transparency log/attestation are used where applicable",
+        "lint fails on forbidden vocabulary in touched scope"
+      ],
+      "source_product_features": [
+        "Doctrine vocabulary"
+      ],
+      "false_claim_gate": "Using blockchain, ledger, or chain for this substrate is a naming and positioning violation unless explicitly isolated to third-party integration references."
+    }
+  ],
+  "required_negative_tests": [
+    {
+      "id": "NEG-CORTEX-001",
+      "requirement_ids": [
+        "CORTEX-007"
+      ],
+      "scenario": "missing tenant context is rejected fail-closed"
+    },
+    {
+      "id": "NEG-CORTEX-002",
+      "requirement_ids": [
+        "CORTEX-007"
+      ],
+      "scenario": "empty/whitespace/non-string tenant context is rejected"
+    },
+    {
+      "id": "NEG-CORTEX-003",
+      "requirement_ids": [
+        "CORTEX-008"
+      ],
+      "scenario": "foreign tenant provider/vector result is filtered and never returned"
+    },
+    {
+      "id": "NEG-CORTEX-004",
+      "requirement_ids": [
+        "CORTEX-002"
+      ],
+      "scenario": "duplicate ingestion or replay does not create duplicate authoritative shards"
+    },
+    {
+      "id": "NEG-CORTEX-005",
+      "requirement_ids": [
+        "CORTEX-006"
+      ],
+      "scenario": "leased outbox item after restart/lease expiry is safely reprocessed without lost writes"
+    },
+    {
+      "id": "NEG-CORTEX-006",
+      "requirement_ids": [
+        "CORTEX-009"
+      ],
+      "scenario": "vector index outage does not corrupt or roll back authoritative memory"
+    },
+    {
+      "id": "NEG-CORTEX-007",
+      "requirement_ids": [
+        "CORTEX-010"
+      ],
+      "scenario": "missing vector hit does not imply missing authoritative memory"
+    },
+    {
+      "id": "NEG-CORTEX-008",
+      "requirement_ids": [
+        "CORTEX-010"
+      ],
+      "scenario": "divergent vector payload cannot become canonical truth"
+    },
+    {
+      "id": "NEG-CORTEX-009",
+      "requirement_ids": [
+        "CORTEX-013"
+      ],
+      "scenario": "poisoned or low-trust memory cannot become authoritative by reinforcement volume alone"
+    },
+    {
+      "id": "NEG-CORTEX-010",
+      "requirement_ids": [
+        "CORTEX-018"
+      ],
+      "scenario": "tampered governed receipt payload fails verification"
+    },
+    {
+      "id": "NEG-CORTEX-011",
+      "requirement_ids": [
+        "CORTEX-018"
+      ],
+      "scenario": "revoked governed signing key fails verification"
+    },
+    {
+      "id": "NEG-CORTEX-012",
+      "requirement_ids": [
+        "CORTEX-019"
+      ],
+      "scenario": "modified Evidence Pack artifact fails verification"
+    },
+    {
+      "id": "NEG-CORTEX-013",
+      "requirement_ids": [
+        "CORTEX-021",
+        "CORTEX-022"
+      ],
+      "scenario": "missing/tampered proof bundle artifact fails or changes Merkle root"
+    },
+    {
+      "id": "NEG-CORTEX-014",
+      "requirement_ids": [
+        "CORTEX-024"
+      ],
+      "scenario": "nondeterministic proof artifact double-run diff fails the gate"
+    },
+    {
+      "id": "NEG-CORTEX-015",
+      "requirement_ids": [
+        "CORTEX-028"
+      ],
+      "scenario": "any Cortex code/doc path claiming direct execution authorization is flagged as false claim"
+    },
+    {
+      "id": "NEG-CORTEX-016",
+      "requirement_ids": [
+        "CORTEX-034"
+      ],
+      "scenario": "zeroed gravity weight does not remove or hide the immutable spine record"
+    },
+    {
+      "id": "NEG-CORTEX-017",
+      "requirement_ids": [
+        "CORTEX-036"
+      ],
+      "scenario": "contentHash verification failure is explicit and is never silently returned as valid memory"
+    },
+    {
+      "id": "NEG-CORTEX-018",
+      "requirement_ids": [
+        "CORTEX-037"
+      ],
+      "scenario": "late-arriving event for closed day does not recompute the closed day root"
+    },
+    {
+      "id": "NEG-CORTEX-019",
+      "requirement_ids": [
+        "CORTEX-038"
+      ],
+      "scenario": "mutated event bytes fail offline inclusion proof verification against quarter root"
+    },
+    {
+      "id": "NEG-CORTEX-020",
+      "requirement_ids": [
+        "CORTEX-039"
+      ],
+      "scenario": "odd hash-tree node duplicate-last behavior is rejected"
+    },
+    {
+      "id": "NEG-CORTEX-021",
+      "requirement_ids": [
+        "CORTEX-041"
+      ],
+      "scenario": "hidden wall-clock or random input in gravity scoring path fails lint/test"
+    },
+    {
+      "id": "NEG-CORTEX-022",
+      "requirement_ids": [
+        "CORTEX-042"
+      ],
+      "scenario": "changing gravity params changes gravityFunctionHash"
+    },
+    {
+      "id": "NEG-CORTEX-023",
+      "requirement_ids": [
+        "CORTEX-045"
+      ],
+      "scenario": "historical recall under old gravity version does not replay with newer gravity version"
+    },
+    {
+      "id": "NEG-CORTEX-024",
+      "requirement_ids": [
+        "CORTEX-046"
+      ],
+      "scenario": "counterfactual recall does not write to Plane 1 or Plane 2"
+    },
+    {
+      "id": "NEG-CORTEX-025",
+      "requirement_ids": [
+        "CORTEX-049"
+      ],
+      "scenario": "receipt verification path importing or consulting deliberation modules is rejected"
+    },
+    {
+      "id": "NEG-CORTEX-026",
+      "requirement_ids": [
+        "CORTEX-050"
+      ],
+      "scenario": "heat score alone cannot authorize an effect-bound action"
+    },
+    {
+      "id": "NEG-CORTEX-027",
+      "requirement_ids": [
+        "CORTEX-052"
+      ],
+      "scenario": "forbidden blockchain/ledger/chain vocabulary in Cortex substrate identifiers/docs fails lint"
+    }
+  ],
+  "false_claim_gates": [
+    {
+      "id": "FC-CORTEX-001",
+      "claim": "Cortex proof spine I1-I7 is complete",
+      "required_evidence": [
+        "I1-I7 invariant manifest",
+        "all individual proof modules/CLI commands",
+        "proof bundle composition",
+        "deterministic double-run gate"
+      ],
+      "fail_if": "Any invariant family is absent, not runnable, not deterministic, or only documented."
+    },
+    {
+      "id": "FC-CORTEX-002",
+      "claim": "Cortex is deterministic/replayable",
+      "required_evidence": [
+        "append-only authoritative model",
+        "replay implementation",
+        "restart/retry/outbox tests",
+        "byte-identical replay proof"
+      ],
+      "fail_if": "Replay proof is missing, nondeterministic, or does not cover retry/restart-style scenarios."
+    },
+    {
+      "id": "FC-CORTEX-003",
+      "claim": "Cortex has fail-closed tenant isolation",
+      "required_evidence": [
+        "tenant validation negative tests",
+        "query/provider boundary filtering",
+        "no fallback/alias tenant behavior"
+      ],
+      "fail_if": "Missing tenant falls back, foreign provider results leak, or tenant checks are docs-only."
+    },
+    {
+      "id": "FC-CORTEX-004",
+      "claim": "Vector index is derivative only",
+      "required_evidence": [
+        "authoritative write-before-index path",
+        "vector outage/divergence tests",
+        "rebuild from authority"
+      ],
+      "fail_if": "Vector hit/miss can override canonical document truth."
+    },
+    {
+      "id": "FC-CORTEX-005",
+      "claim": "Governed signing/evidence pack integrity is implemented",
+      "required_evidence": [
+        "Ed25519 signing/verifier",
+        "tamper rejection",
+        "revoked/retired key semantics",
+        "deterministic Evidence Pack manifest/hash tree"
+      ],
+      "fail_if": "Governed signing is a stub, accepts tampered artifacts, or lacks key lifecycle tests."
+    },
+    {
+      "id": "FC-CORTEX-006",
+      "claim": "Portable auditor-grade proof bundle exists",
+      "required_evidence": [
+        "cortex proof-bundle command",
+        "proof_bundle_id equals Merkle root",
+        "I1-I7 artifacts included",
+        "double-run deterministic output"
+      ],
+      "fail_if": "Bundle is screenshots/docs only, not content-addressed, or cannot be generated locally."
+    },
+    {
+      "id": "FC-CORTEX-007",
+      "claim": "Cortex governs execution",
+      "required_evidence": [
+        "None; this claim is out of scope and should be rejected"
+      ],
+      "fail_if": "Cortex claims Runtime/MCP Gateway execution authorization ownership."
+    },
+    {
+      "id": "FC-CORTEX-008",
+      "claim": "Cortex provides Evidentiary Memory",
+      "required_evidence": [
+        "immutable spine records",
+        "contentHash verification",
+        "epoch-root inclusion proof",
+        "replay or proof artifact evidence"
+      ],
+      "fail_if": "The claim is supported only by vector search, summaries, chat history, or docs."
+    },
+    {
+      "id": "FC-CORTEX-009",
+      "claim": "Epoch Roots prove historical memory",
+      "required_evidence": [
+        "deterministic spine/day/week/quarter roots",
+        "offline inclusion proofs",
+        "domain-separated hash tree",
+        "late-arrival no-recompute semantics"
+      ],
+      "fail_if": "Roots are mutable, closed roots are recomputed, proofs require database trust, or tree construction is underspecified."
+    },
+    {
+      "id": "FC-CORTEX-010",
+      "claim": "Gravitational Recall is deterministic and inspectable",
+      "required_evidence": [
+        "fixed force taxonomy",
+        "explicit asOf input",
+        "gravityVersion and gravityFunctionHash",
+        "determinism stress tests"
+      ],
+      "fail_if": "Scoring uses hidden now/randomness, unversioned params, or unrecorded force behavior."
+    },
+    {
+      "id": "FC-CORTEX-011",
+      "claim": "Recall is replayable and counterfactual",
+      "required_evidence": [
+        "Recall spine events",
+        "ReplayService with pinned version registry",
+        "counterfactual read-only store spy tests",
+        "diff reporting"
+      ],
+      "fail_if": "Replay uses current params/version, omits result scores, mutates production state, or swallows mismatch findings."
+    },
+    {
+      "id": "FC-CORTEX-012",
+      "claim": "Collective deliberation is preserved without becoming authority",
+      "required_evidence": [
+        "DeliberationRecord cognitive schema",
+        "receipt verifier import-boundary test",
+        "heat trust anchor version/hash pinning",
+        "delib_ vs rcpt_ distinction"
+      ],
+      "fail_if": "Deliberation is required for receipt verification, presented as execution proof, or heat authorizes effects by itself."
+    }
+  ],
+  "recommended_verification_commands": [
+    "python -m pytest",
+    "python -m pytest tests -q",
+    "cortex proof --output /tmp/cortex-proof.json",
+    "cortex tenant-isolation-proof --output /tmp/cortex-tenant-isolation-proof.json",
+    "cortex replay-proof --output /tmp/cortex-replay-proof.json",
+    "cortex authority-proof --output /tmp/cortex-authority-proof.json",
+    "cortex shard-identity-proof --output /tmp/cortex-shard-identity-proof.json",
+    "cortex decay-reinforcement-proof --output /tmp/cortex-decay-reinforcement-proof.json",
+    "cortex governed-signing-proof --output /tmp/cortex-governed-signing-proof.json",
+    "cortex invariant-manifest",
+    "cortex proof-bundle --output /tmp/cortex-proof-bundle.json",
+    "cortex benchmark",
+    "cortex evidentiary-memory-proof --output /tmp/cortex-evidentiary-memory-proof.json",
+    "cortex epoch-roots-proof --output /tmp/cortex-epoch-roots-proof.json",
+    "cortex gravity-proof --output /tmp/cortex-gravity-proof.json",
+    "cortex recall-replay-proof --output /tmp/cortex-recall-replay-proof.json",
+    "cortex collective-bridge-proof --output /tmp/cortex-collective-bridge-proof.json"
+  ],
+  "artifact_verification_rules": [
+    "When a proof artifact claims byte-identical determinism, run the command twice and compare bytes.",
+    "When a proof bundle claims content-addressed identity, verify proof_bundle_id equals merkle_root.",
+    "When a Merkle/hash tree is claimed, verify deterministic sort/canonicalization before hashing.",
+    "When an Evidence Pack claims tamper detection, mutate an included artifact and require verification failure.",
+    "When CI-backed claims are made, inspect workflow commands and artifact upload steps, not just local scripts.",
+    "When Evidentiary Memory is claimed, verify the memory can testify through spine record, content hash, epoch root or proof artifact, not through summary text alone.",
+    "When Epoch Roots are claimed, verify inclusion proof without store access using only event bytes, proof, and root.",
+    "When Gravity scoring is claimed deterministic, verify no hidden wall-clock or randomness is reachable from scoring paths.",
+    "When replayable recall is claimed, verify replay uses the original gravity version and params hash, not the latest defaults.",
+    "When counterfactual recall is claimed, assert no writes to Plane 1 or Plane 2.",
+    "When deliberation linkage is claimed, verify receipt verification does not import or call deliberation modules."
+  ],
+  "remediation_lane_groups": [
+    {
+      "lane": "Lane A - Identity, Idempotency, and Append-Only Memory",
+      "requirements": [
+        "CORTEX-001",
+        "CORTEX-002",
+        "CORTEX-003",
+        "CORTEX-004",
+        "CORTEX-016"
+      ],
+      "boundary": "No signing, CI, or benchmark work."
+    },
+    {
+      "lane": "Lane B - Replay, Outbox, and Durability",
+      "requirements": [
+        "CORTEX-005",
+        "CORTEX-006"
+      ],
+      "boundary": "No tenant isolation or governed signing changes."
+    },
+    {
+      "lane": "Lane C - Tenant Isolation Negative Proofs",
+      "requirements": [
+        "CORTEX-007",
+        "CORTEX-008"
+      ],
+      "boundary": "No broad query rewrite outside tenant enforcement seams."
+    },
+    {
+      "lane": "Lane D - Authority vs Derivative Index",
+      "requirements": [
+        "CORTEX-009",
+        "CORTEX-010",
+        "CORTEX-011",
+        "CORTEX-027"
+      ],
+      "boundary": "Do not change canonical store semantics outside needed authority/index seams."
+    },
+    {
+      "lane": "Lane E - Decay, Reinforcement, and Influence Receipts",
+      "requirements": [
+        "CORTEX-012",
+        "CORTEX-013",
+        "CORTEX-014",
+        "CORTEX-015"
+      ],
+      "boundary": "No proof-bundle or signing work."
+    },
+    {
+      "lane": "Lane F - Governed Signing and Evidence Pack Integrity",
+      "requirements": [
+        "CORTEX-017",
+        "CORTEX-018",
+        "CORTEX-019",
+        "CORTEX-029"
+      ],
+      "boundary": "No Runtime authorization logic."
+    },
+    {
+      "lane": "Lane G - Proof Bundle, CLI, Manifest, and Determinism Gates",
+      "requirements": [
+        "CORTEX-020",
+        "CORTEX-021",
+        "CORTEX-022",
+        "CORTEX-023",
+        "CORTEX-024",
+        "CORTEX-025",
+        "CORTEX-032"
+      ],
+      "boundary": "Compose existing proofs; do not redefine underlying invariant semantics."
+    },
+    {
+      "lane": "Lane H - Benchmark, CI, and Tooling Hygiene",
+      "requirements": [
+        "CORTEX-026",
+        "CORTEX-030",
+        "CORTEX-031"
+      ],
+      "boundary": "No behavioral proof semantics unless needed to make benchmark/tooling claims truthful."
+    },
+    {
+      "lane": "Lane I - Scope and False-Claim Cleanup",
+      "requirements": [
+        "CORTEX-028",
+        "CORTEX-032"
+      ],
+      "boundary": "Docs/copy/API claims only unless code contradicts scope."
+    },
+    {
+      "lane": "Lane J - Evidentiary Memory and Two-Plane Storage",
+      "requirements": [
+        "CORTEX-033",
+        "CORTEX-034",
+        "CORTEX-035",
+        "CORTEX-036"
+      ],
+      "boundary": "No gravity computation, epoch tree construction, replay, or Collective bridge behavior beyond shared interfaces."
+    },
+    {
+      "lane": "Lane K - Epoch Roots and Offline Inclusion Proofs",
+      "requirements": [
+        "CORTEX-037",
+        "CORTEX-038",
+        "CORTEX-039"
+      ],
+      "boundary": "No external anchoring, transparency-log service, governance authorization, or recall scoring changes."
+    },
+    {
+      "lane": "Lane L - Gravitational Recall v1",
+      "requirements": [
+        "CORTEX-040",
+        "CORTEX-041",
+        "CORTEX-042",
+        "CORTEX-043"
+      ],
+      "boundary": "No counterfactual replay, quarantine workflow, tenant tuning UI, or policy authorization logic."
+    },
+    {
+      "lane": "Lane M - Replayable and Counterfactual Recall",
+      "requirements": [
+        "CORTEX-044",
+        "CORTEX-045",
+        "CORTEX-046",
+        "CORTEX-047"
+      ],
+      "boundary": "Read-only cognition over spine records. No production state writes in counterfactual paths."
+    },
+    {
+      "lane": "Lane N - Collective Bridge and Doctrine Vocabulary",
+      "requirements": [
+        "CORTEX-048",
+        "CORTEX-049",
+        "CORTEX-050",
+        "CORTEX-051",
+        "CORTEX-052"
+      ],
+      "boundary": "Preserve deliberation as cognitive material only. Do not make deliberation, heat, or narratives into execution receipts or authorization proof."
+    }
+  ],
+  "verdict_policy": {
+    "conformant": "All critical and high requirements pass with direct implementation/test/proof evidence, including I1-I12; medium/low gaps are documented and non-contradictory.",
+    "conditionally_conformant": "No critical gaps or false claims; high gaps are limited, non-security, and have explicit remediation lanes.",
+    "non_conformant": "Any critical requirement missing/contradicted, any proof-spine or Evidentiary Memory false claim, any tenant leakage, any vector-as-authority contradiction, any broken governed signing integrity claim, any mutable closed epoch root, any nondeterministic gravity scoring path, any counterfactual production write, any receipt verification dependency on deliberation, or any Cortex direct-execution-governance claim."
+  },
+  "verify_canon_usage": {
+    "recommended_command": "verify-canon --canon D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_cortex_canon_v2_locked.json --repo D:\\Repos\\keon-omega\\keon-cortex --strict --no-remediate",
+    "remediation_command": "verify-canon --canon D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_cortex_canon_v2_locked.json --repo D:\\Repos\\keon-omega\\keon-cortex --strict --remediate --max-workers 4"
+  }
+}

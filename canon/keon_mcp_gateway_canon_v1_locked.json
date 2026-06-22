@@ -1,86 +1,1132 @@
-[
-  {
-    "feature": "Official Governed MCP Gateway",
-    "product": "MCP Gateway",
-    "claim_type": "feature",
-    "one_line_description": "Universal enforcement layer that intercepts and governs all MCP tool execution, injecting identity, policy, receipts, and causal lineage into every interaction",
-    "source_file": "keon-mcp-gateway/README.md",
-    "source_section": "What This Is",
-    "confidence": "explicit",
-    "canonical_owner": "MCP Gateway",
-    "ui_surface": ["control", "governance", "proof"],
-    "impact_level": "core"
-  }, 
-  {
-  "feature": "No-Bypass Governance Enforcement",
-  "product": "MCP Gateway",
-  "claim_type": "invariant",
-  "one_line_description": "All MCP tool execution must pass through the governed gateway; there are no direct execution paths or side channels",
-  "source_file": "keon-mcp-gateway/README.md",
-  "source_section": "Design Philosophy",
-  "confidence": "inferred",
-  "canonical_owner": "MCP Gateway",
-  "ui_surface": ["governance"],
-  "impact_level": "core"
-},
 {
-  "feature": "Zero-Friction MCP Adoption",
-  "product": "MCP Gateway",
-  "claim_type": "differentiator",
-  "one_line_description": "Existing MCP clients connect without modification and immediately receive governed, receipt-rich execution with no integration overhead",
-  "source_file": "keon-mcp-gateway/README.md",
-  "source_section": "What This Is",
-  "confidence": "inferred",
-  "canonical_owner": "MCP Gateway",
-  "ui_surface": ["governance"],
-  "impact_level": "differentiator"
-},
-  {
-    "feature": "Keon Governed Envelope in StructuredContent",
-    "product": "MCP Gateway",
-    "claim_type": "mechanism",
-    "one_line_description": "Every tool result is wrapped in a canonical governance envelope containing decision, policy state, receipts, correlation, and verifiable proof artifacts",
-    "source_file": "keon-mcp-gateway/README.md",
-    "source_section": "Example MCP Tool Result",
-    "confidence": "explicit",
-    "canonical_owner": "MCP Gateway",
-    "ui_surface": ["proof"],
-    "impact_level": "core"
+  "document_id": "KEON-MCP-GATEWAY-VERIFICATION-CANON-v1.0-LOCKED",
+  "file_name": "keon_mcp_gateway_canon_v1_locked.json",
+  "version": "1.0",
+  "status": "locked",
+  "date_locked": "2026-06-10",
+  "intended_path": "D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_mcp_gateway_canon_v1_locked.json",
+  "purpose": "Verification canon for evaluating the Keon MCP Gateway repository against its claimed product and governance behavior. This is a repo-verification canon, not marketing copy.",
+  "product_scope": {
+    "canonical_owner": "Keon MCP Gateway",
+    "primary_repo": "keon-mcp-gateway",
+    "owned_surfaces": [
+      "MCP Streamable HTTP server surface",
+      "MCP stdio server surface",
+      "legacy HTTP compatibility endpoints",
+      "gateway authentication and identity binding",
+      "per-tool scope enforcement",
+      "MCP tool descriptor and call handling",
+      "canonical governed envelope preservation in MCP structuredContent",
+      "runtime Decide-before-Execute orchestration",
+      "ingress spine append behavior and persistence modes",
+      "origin enforcement for browser-based clients",
+      "local development examples and smoke scripts",
+      "gateway-specific contracts, schemas, tests, CI, deployment config, and operational docs"
+    ],
+    "non_targets": [
+      "Do not verify Keon Systems Runtime internals except that the gateway calls the expected runtime contracts and handles runtime responses safely.",
+      "Do not verify Cortex internals except that gateway-produced receipts/spine references are shaped and exposed for downstream memory/audit use when claimed.",
+      "Do not verify Keon Collective cognition, planning, deliberation, or worker orchestration.",
+      "Do not verify website, dashboard, marketing site, pitch deck, or product copy except for false claims inside the gateway repo itself.",
+      "Do not require live SaaS connectivity unless the repo explicitly claims live integration and provides live-test configuration."
+    ],
+    "integration_boundaries": [
+      {
+        "system": "Keon Systems Runtime",
+        "relationship": "Gateway delegates policy decision and execution to Runtime. Gateway must enforce authentication, identity binding, scope checks, request shaping, Decide-before-Execute ordering, receipt preservation, fail-closed runtime handling, and governed envelope exposure.",
+        "verification_rule": "Verify gateway-side call order, request/response contracts, error handling, and evidence preservation. Do not require proving Runtime policy internals in this repo."
+      },
+      {
+        "system": "Cortex or governed memory/audit substrate",
+        "relationship": "Gateway may emit or expose durable ingress spine receipts and evidence references for memory/audit.",
+        "verification_rule": "Verify gateway append behavior, persistence-mode semantics, spine refs, and receipt linkage where implemented or claimed. Do not verify Cortex storage internals."
+      },
+      {
+        "system": "MCP clients",
+        "relationship": "Gateway presents standard MCP methods/transports so existing MCP clients can connect with minimal adoption friction.",
+        "verification_rule": "Verify protocol-level methods, result shape, auth/header/env handling, and client-compatible stdio/HTTP behavior."
+      }
+    ]
   },
-  {
-    "feature": "Durable Ingress Spine Receipts",
-    "product": "MCP Gateway",
-    "claim_type": "mechanism",
-    "one_line_description": "Automatically emits append-only causal receipts (directive → intent → decision → execution → outcome)",
-    "source_file": "keon-mcp-gateway/README.md",
-    "source_section": "Governance And Memory Lifecycle",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "memory"],
-    "impact_level": "differentiator"
+  "source_capability_index": {
+    "input_file": "keon_mcp_gateway_canon_v1_locked.json",
+    "capability_count": 7,
+    "capabilities": [
+      {
+        "feature": "Official Governed MCP Gateway",
+        "product": "MCP Gateway",
+        "claim_type": "feature",
+        "one_line_description": "Universal enforcement layer that intercepts and governs all MCP tool execution, injecting identity, policy, receipts, and causal lineage into every interaction",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "What This Is",
+        "confidence": "explicit",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "control",
+          "governance",
+          "proof"
+        ],
+        "impact_level": "core"
+      },
+      {
+        "feature": "No-Bypass Governance Enforcement",
+        "product": "MCP Gateway",
+        "claim_type": "invariant",
+        "one_line_description": "All MCP tool execution must pass through the governed gateway; there are no direct execution paths or side channels",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "Design Philosophy",
+        "confidence": "inferred",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "governance"
+        ],
+        "impact_level": "core"
+      },
+      {
+        "feature": "Zero-Friction MCP Adoption",
+        "product": "MCP Gateway",
+        "claim_type": "differentiator",
+        "one_line_description": "Existing MCP clients connect without modification and immediately receive governed, receipt-rich execution with no integration overhead",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "What This Is",
+        "confidence": "inferred",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "governance"
+        ],
+        "impact_level": "differentiator"
+      },
+      {
+        "feature": "Keon Governed Envelope in StructuredContent",
+        "product": "MCP Gateway",
+        "claim_type": "mechanism",
+        "one_line_description": "Every tool result is wrapped in a canonical governance envelope containing decision, policy state, receipts, correlation, and verifiable proof artifacts",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "Example MCP Tool Result",
+        "confidence": "explicit",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "proof"
+        ],
+        "impact_level": "core"
+      },
+      {
+        "feature": "Durable Ingress Spine Receipts",
+        "product": "MCP Gateway",
+        "claim_type": "mechanism",
+        "one_line_description": "Automatically emits append-only causal receipts (directive → intent → decision → execution → outcome)",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "Governance And Memory Lifecycle",
+        "confidence": "explicit",
+        "canonical_owner": "Keon Systems Runtime",
+        "ui_surface": [
+          "proof",
+          "memory"
+        ],
+        "impact_level": "differentiator"
+      },
+      {
+        "feature": "Fail-Closed Identity Binding",
+        "product": "MCP Gateway",
+        "claim_type": "mechanism",
+        "one_line_description": "Automatic tenant_id + actor_id binding from JWT or API keys with scope enforcement",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "Auth Modes",
+        "confidence": "explicit",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "governance"
+        ],
+        "impact_level": "core"
+      },
+      {
+        "feature": "Ingress Spine Persistence Modes",
+        "product": "MCP Gateway",
+        "claim_type": "mechanism",
+        "one_line_description": "Configurable durability (Off / BestEffort / Required) with fail-closed behavior on Required mode",
+        "source_file": "keon-mcp-gateway/README.md",
+        "source_section": "Important Settings",
+        "confidence": "explicit",
+        "canonical_owner": "MCP Gateway",
+        "ui_surface": [
+          "governance"
+        ],
+        "impact_level": "supporting"
+      }
+    ]
   },
-  {
-    "feature": "Fail-Closed Identity Binding",
-    "product": "MCP Gateway",
-    "claim_type": "mechanism",
-    "one_line_description": "Automatic tenant_id + actor_id binding from JWT or API keys with scope enforcement",
-    "source_file": "keon-mcp-gateway/README.md",
-    "source_section": "Auth Modes",
-    "confidence": "explicit",
-    "canonical_owner": "MCP Gateway",
-    "ui_surface": ["governance"],
-    "impact_level": "core"
+  "verification_principles": [
+    "Claims require receipts: docs and README claims are not implementation proof.",
+    "Gateway governance is proven by enforced call paths, negative tests, schemas/contracts, and observable result envelopes.",
+    "Missing identity, missing scope, runtime failure, invalid request shape, and required spine failures must fail closed.",
+    "MCP client compatibility cannot bypass governance.",
+    "The gateway may adapt protocol transport, but it must not weaken authorization or receipt preservation.",
+    "Any claimed support surface must have tests or executable smoke evidence.",
+    "Deferred features must be labeled deferred and must not be claimed as production-ready."
+  ],
+  "requirement_status_taxonomy": [
+    "implemented_with_evidence",
+    "implemented_but_untested",
+    "documented_only",
+    "partial",
+    "missing",
+    "contradicted",
+    "false_claim",
+    "ambiguous",
+    "out_of_scope"
+  ],
+  "severity_policy": {
+    "critical": [
+      "Any direct execution path that bypasses gateway governance or Runtime Decide-before-Execute",
+      "Execution proceeds after denial, missing identity, missing scope, invalid receipt, or runtime failure",
+      "Required ingress spine mode fails open when configured as Required",
+      "Authentication can be bypassed on protected tool call surfaces",
+      "Tenant or actor can be silently widened or spoofed",
+      "README/public repo claims production support for unimplemented governance behavior"
+    ],
+    "high": [
+      "Core MCP method or transport claimed but missing or untested",
+      "Canonical structuredContent envelope missing decision, receipts, correlation, or status fields",
+      "Legacy and standard MCP surfaces diverge in governance enforcement",
+      "Origin enforcement absent when browser HTTP access is supported",
+      "Schema validation missing for claimed canonical envelopes"
+    ],
+    "medium": [
+      "Implemented but weakly tested behavior",
+      "Smoke examples outdated or non-runnable",
+      "Operational docs incomplete for auth modes, env vars, or failure modes",
+      "CI does not cover advertised primary workflows"
+    ],
+    "low": [
+      "Minor docs drift, naming inconsistencies, or incomplete examples that do not affect safety"
+    ]
   },
-  {
-    "feature": "Ingress Spine Persistence Modes",
-    "product": "MCP Gateway",
-    "claim_type": "mechanism",
-    "one_line_description": "Configurable durability (Off / BestEffort / Required) with fail-closed behavior on Required mode",
-    "source_file": "keon-mcp-gateway/README.md",
-    "source_section": "Important Settings",
-    "confidence": "explicit",
-    "canonical_owner": "MCP Gateway",
-    "ui_surface": ["governance"],
-    "impact_level": "supporting"
-  }
-]
+  "requirements": [
+    {
+      "id": "MCPGW-001",
+      "title": "Official governed MCP gateway surface",
+      "type": "feature",
+      "priority": "core",
+      "requirement": "The repo MUST implement a gateway that fronts governed tool execution and injects identity, policy decision state, receipts, and causal lineage into MCP interactions.",
+      "evidence_required": [
+        "source implementing MCP request handling",
+        "tests proving governed envelope output",
+        "docs showing supported client configuration"
+      ],
+      "negative_checks": [
+        "No MCP tool call path may return successful execution without governance metadata."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-002",
+      "title": "Streamable HTTP MCP endpoint",
+      "type": "interface",
+      "priority": "core",
+      "requirement": "The gateway MUST support the advertised official MCP Streamable HTTP request/response endpoint, normally POST /mcp.",
+      "evidence_required": [
+        "route/controller/minimal API registration",
+        "initialize/tools-list/tools-call tests over HTTP",
+        "README/client config"
+      ],
+      "negative_checks": [
+        "Unsupported methods must return protocol errors rather than ungoverned fallbacks."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-003",
+      "title": "stdio MCP mode",
+      "type": "interface",
+      "priority": "core",
+      "requirement": "If stdio mode is claimed, the gateway MUST support launching as an MCP stdio server without non-protocol stdout noise.",
+      "evidence_required": [
+        "--stdio entry path",
+        "stdio handler tests or smoke script",
+        "docs with client config"
+      ],
+      "negative_checks": [
+        "Startup banners, logs, or diagnostics must not corrupt stdout protocol stream."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-004",
+      "title": "Supported MCP methods",
+      "type": "interface",
+      "priority": "core",
+      "requirement": "The gateway MUST implement every advertised MCP method, at minimum initialize, notifications/initialized, ping, tools/list, and tools/call when claimed.",
+      "evidence_required": [
+        "method dispatch table or handlers",
+        "tests for each advertised method",
+        "unsupported method tests"
+      ],
+      "negative_checks": [
+        "Advertised methods must not be docs-only."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-005",
+      "title": "Supported MCP protocol versions",
+      "type": "interface",
+      "priority": "supporting",
+      "requirement": "The gateway MUST explicitly negotiate or validate the advertised MCP protocol versions and reject or safely handle unsupported versions.",
+      "evidence_required": [
+        "config/default version list",
+        "version negotiation/validation code",
+        "tests for supported and unsupported versions"
+      ],
+      "negative_checks": [
+        "Unsupported protocol version must not silently downgrade into unsafe execution."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-006",
+      "title": "No-bypass governance enforcement",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "All tool execution through the gateway MUST traverse the same governance enforcement path. Standard MCP and legacy surfaces must not provide side-channel execution.",
+      "evidence_required": [
+        "shared service/path for tools/call and legacy invoke",
+        "tests comparing standard and legacy governance",
+        "static search for direct execution bypasses"
+      ],
+      "negative_checks": [
+        "No handler may call execution/runtime directly without auth, scope, Decide-before-Execute, and receipt handling."
+      ],
+      "source_capabilities": [
+        "No-Bypass Governance Enforcement"
+      ]
+    },
+    {
+      "id": "MCPGW-007",
+      "title": "Decide before Execute orchestration",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "For any effect-bearing tool invocation, the gateway MUST call Runtime Decide before Runtime Execute and MUST NOT Execute when Decide denies, fails, times out, or returns invalid/missing approval.",
+      "evidence_required": [
+        "runtime client/service code",
+        "ordered interaction tests",
+        "deny/no-execute tests",
+        "runtime unavailable tests"
+      ],
+      "negative_checks": [
+        "Execute must not be called after denial, invalid decision, missing receipt, timeout, or runtime failure."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway",
+        "No-Bypass Governance Enforcement"
+      ]
+    },
+    {
+      "id": "MCPGW-008",
+      "title": "Canonical governed envelope in structuredContent",
+      "type": "mechanism",
+      "priority": "core",
+      "requirement": "MCP tools/call responses MUST preserve the canonical Keon governed envelope in result.structuredContent, including correlation_id, tool, ok/status, decision, result or denial/error, receipts when available, and isError semantics.",
+      "evidence_required": [
+        "response mapping code",
+        "schema or contract fixture",
+        "golden payload tests",
+        "example output"
+      ],
+      "negative_checks": [
+        "Human-readable content alone is insufficient; structuredContent must carry machine-verifiable governance data."
+      ],
+      "source_capabilities": [
+        "Keon Governed Envelope in StructuredContent"
+      ]
+    },
+    {
+      "id": "MCPGW-009",
+      "title": "MCP error semantics",
+      "type": "mechanism",
+      "priority": "core",
+      "requirement": "Gateway failures, denials, invalid auth, invalid request shapes, and runtime failures MUST return safe MCP error semantics with isError=true or JSON-RPC error as appropriate while preserving available governance context.",
+      "evidence_required": [
+        "error mapper",
+        "tests for denied/failed/invalid cases",
+        "golden error fixtures"
+      ],
+      "negative_checks": [
+        "Denied or failed governance decisions must not be represented as successful executions."
+      ],
+      "source_capabilities": [
+        "Keon Governed Envelope in StructuredContent"
+      ]
+    },
+    {
+      "id": "MCPGW-010",
+      "title": "Bearer JWT authentication",
+      "type": "security",
+      "priority": "core",
+      "requirement": "When bearer JWT mode is supported, the gateway MUST validate issuer, audience, signature, expiration when applicable, and required gateway/per-tool scopes before listing or invoking protected tools.",
+      "evidence_required": [
+        "JWT validation configuration/code",
+        "tests for valid/invalid/missing token",
+        "scope failure tests"
+      ],
+      "negative_checks": [
+        "Unsigned, expired, wrong-audience, or insufficient-scope JWTs must fail closed."
+      ],
+      "source_capabilities": [
+        "Fail-Closed Identity Binding"
+      ]
+    },
+    {
+      "id": "MCPGW-011",
+      "title": "API key authentication",
+      "type": "security",
+      "priority": "core",
+      "requirement": "When API key mode is supported, the gateway MUST validate key format/secret/active state/entitlement/quota as claimed and require tenant and actor binding for invocation.",
+      "evidence_required": [
+        "API key validator",
+        "entitlement/quota checks if claimed",
+        "missing/invalid API key tests",
+        "docs for required headers/env vars"
+      ],
+      "negative_checks": [
+        "API key mode must not default to anonymous tenant or actor for effect-bearing operations."
+      ],
+      "source_capabilities": [
+        "Fail-Closed Identity Binding"
+      ]
+    },
+    {
+      "id": "MCPGW-012",
+      "title": "Fail-closed tenant and actor binding",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "Every governed invocation MUST bind tenant_id and actor_id from trusted JWT claims, validated API-key headers/env vars, or explicitly configured safe local defaults. Missing, conflicting, or mismatched identity must deny before Runtime execution.",
+      "evidence_required": [
+        "identity binding service",
+        "tenant mismatch tests",
+        "missing actor/tenant tests",
+        "claim/header precedence rules"
+      ],
+      "negative_checks": [
+        "Tenant/actor must not be widened, guessed, synthesized silently, or taken from untrusted payload fields."
+      ],
+      "source_capabilities": [
+        "Fail-Closed Identity Binding"
+      ]
+    },
+    {
+      "id": "MCPGW-013",
+      "title": "Per-tool scope enforcement",
+      "type": "security",
+      "priority": "core",
+      "requirement": "tools/list and tools/call MUST enforce gateway scopes and per-tool scopes consistently across auth modes and transports.",
+      "evidence_required": [
+        "tool registry with required scopes",
+        "scope enforcement tests",
+        "missing scope negative tests"
+      ],
+      "negative_checks": [
+        "A client lacking invoke or per-tool scope must not call the tool even if it can list tools unless listing scope explicitly permits it."
+      ],
+      "source_capabilities": [
+        "Fail-Closed Identity Binding"
+      ]
+    },
+    {
+      "id": "MCPGW-014",
+      "title": "Tool descriptor accuracy",
+      "type": "contract",
+      "priority": "supporting",
+      "requirement": "tools/list MUST return accurate MCP tool descriptors for every advertised tool, including name, description, input schema, and required parameters.",
+      "evidence_required": [
+        "tool metadata registry",
+        "schema validation tests",
+        "snapshot/golden descriptor tests"
+      ],
+      "negative_checks": [
+        "Advertised tools must not appear in tools/list if they cannot be invoked safely or are deferred."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-015",
+      "title": "Governed execute tool",
+      "type": "feature",
+      "priority": "core",
+      "requirement": "The gateway MUST implement the advertised governed execute tool surface, including request shape validation and mapping into the Runtime decision/execution contract.",
+      "evidence_required": [
+        "tool implementation",
+        "input validation schema/tests",
+        "approve-and-execute test",
+        "deny-without-execute test"
+      ],
+      "negative_checks": [
+        "Malformed tool arguments must deny or return validation error before Runtime execution."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-016",
+      "title": "Hardening/attestation tool honesty",
+      "type": "feature_gate",
+      "priority": "supporting",
+      "requirement": "If a hardening or attestation tool is advertised, the repo MUST distinguish real execution from governed stub/demo behavior and tests must match the actual claim.",
+      "evidence_required": [
+        "tool descriptor",
+        "implementation code",
+        "docs marking stub/deferred when applicable",
+        "tests for current behavior"
+      ],
+      "negative_checks": [
+        "Stubbed hardening execution must not be claimed as production hardening execution."
+      ],
+      "source_capabilities": [
+        "Keon Governed Envelope in StructuredContent"
+      ]
+    },
+    {
+      "id": "MCPGW-017",
+      "title": "Legacy HTTP compatibility remains governed",
+      "type": "interface",
+      "priority": "core",
+      "requirement": "Legacy endpoints such as GET /health, POST /mcp/tools/list, and POST /mcp/tools/invoke MUST remain consistent with gateway governance semantics when advertised.",
+      "evidence_required": [
+        "legacy endpoint handlers",
+        "shared service path",
+        "legacy schema validation tests",
+        "legacy invoke deny/no-execute tests"
+      ],
+      "negative_checks": [
+        "Legacy invoke must not bypass auth, scope, identity binding, Decide-before-Execute, or receipts."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway",
+        "No-Bypass Governance Enforcement"
+      ]
+    },
+    {
+      "id": "MCPGW-018",
+      "title": "Canonical legacy schema validation",
+      "type": "contract",
+      "priority": "supporting",
+      "requirement": "Legacy request and response envelopes MUST be validated against the repo's canonical schema when such schemas are claimed.",
+      "evidence_required": [
+        "schema files",
+        "golden payload fixture tests",
+        "invalid fixture tests"
+      ],
+      "negative_checks": [
+        "Invalid envelope shape must not flow into Runtime execution."
+      ],
+      "source_capabilities": [
+        "Keon Governed Envelope in StructuredContent"
+      ]
+    },
+    {
+      "id": "MCPGW-019",
+      "title": "Ingress spine event lifecycle",
+      "type": "mechanism",
+      "priority": "core",
+      "requirement": "When ingress spine receipts are enabled/claimed, each governed invoke MUST emit or expose the claimed lifecycle events in causal order: directive, intent, request when execute attempted, decision, execution when executed, outcome, and evidence_pack when available.",
+      "evidence_required": [
+        "spine sink/outbox code",
+        "event lifecycle tests",
+        "receipt refs in structuredContent",
+        "ordering assertions"
+      ],
+      "negative_checks": [
+        "Outcome must be recorded for deny/failure paths when claimed; execution receipt must not exist when execution did not occur."
+      ],
+      "source_capabilities": [
+        "Durable Ingress Spine Receipts"
+      ]
+    },
+    {
+      "id": "MCPGW-020",
+      "title": "Ingress spine persistence modes",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "IngressSpine modes MUST behave as documented: Off disables persistence without pretending durability; BestEffort logs append failures without blocking; Required fails closed when required append operations fail.",
+      "evidence_required": [
+        "config options",
+        "mode branch tests",
+        "append failure tests",
+        "docs for each mode"
+      ],
+      "negative_checks": [
+        "Required mode must not call Runtime if directive append fails; BestEffort must not claim durable proof when append failed."
+      ],
+      "source_capabilities": [
+        "Ingress Spine Persistence Modes"
+      ]
+    },
+    {
+      "id": "MCPGW-021",
+      "title": "Correlation preservation",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "The gateway MUST preserve or generate a canonical correlation identifier and carry it through ingress event lifecycle, Runtime Decide, Runtime Execute, and structuredContent response.",
+      "evidence_required": [
+        "correlation propagation code",
+        "tests across decide and execute",
+        "golden response with correlation_id"
+      ],
+      "negative_checks": [
+        "Correlation IDs must not be regenerated independently per phase such that lineage is broken."
+      ],
+      "source_capabilities": [
+        "Keon Governed Envelope in StructuredContent",
+        "Durable Ingress Spine Receipts"
+      ]
+    },
+    {
+      "id": "MCPGW-022",
+      "title": "Runtime unavailable fail-closed behavior",
+      "type": "invariant",
+      "priority": "core",
+      "requirement": "If Runtime is unavailable, times out, returns invalid content, or throws during Decide or Execute, the gateway MUST fail closed and return a governed error/denial without performing local side-effect execution.",
+      "evidence_required": [
+        "runtime client error handling",
+        "runtime-down demo/test",
+        "timeout tests"
+      ],
+      "negative_checks": [
+        "Gateway must not locally execute requested effects as a fallback."
+      ],
+      "source_capabilities": [
+        "No-Bypass Governance Enforcement"
+      ]
+    },
+    {
+      "id": "MCPGW-023",
+      "title": "Origin enforcement for browser clients",
+      "type": "security",
+      "priority": "supporting",
+      "requirement": "For browser-based HTTP clients, non-loopback origins MUST be blocked by default and only explicitly configured origins may be allowed.",
+      "evidence_required": [
+        "origin middleware/config",
+        "allowed/disallowed origin tests",
+        "docs for AllowedOrigins"
+      ],
+      "negative_checks": [
+        "Wildcard browser origins must not be default for governed invocation."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-024",
+      "title": "Rate limiting behavior",
+      "type": "operational",
+      "priority": "supporting",
+      "requirement": "If rate limiting is advertised, it MUST be configurable and tested on public MCP routes without breaking authorized normal traffic.",
+      "evidence_required": [
+        "rate limiting config/middleware",
+        "rate limit tests",
+        "docs for settings"
+      ],
+      "negative_checks": [
+        "Rate limiting must not be documented as active if disabled by default and untested."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-025",
+      "title": "Health endpoint semantics",
+      "type": "operational",
+      "priority": "supporting",
+      "requirement": "GET /health MUST accurately report gateway health and downstream Runtime state when claimed.",
+      "evidence_required": [
+        "health endpoint code",
+        "runtime healthy/unhealthy tests",
+        "docs"
+      ],
+      "negative_checks": [
+        "Health must not report fully healthy when downstream Runtime is unavailable unless status clearly distinguishes degraded runtime."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-026",
+      "title": "Secret and local default discipline",
+      "type": "security",
+      "priority": "core",
+      "requirement": "DefaultBearerToken, DefaultApiKey, JWT public keys, and API keys MUST be documented as local/dev or environment-provided secrets and MUST NOT be committed as real production secrets.",
+      "evidence_required": [
+        "config with empty/safe defaults",
+        "secret scanning or grep",
+        "docs recommending env vars"
+      ],
+      "negative_checks": [
+        "No checked-in real bearer token, private key, API key, or production secret."
+      ],
+      "source_capabilities": [
+        "Fail-Closed Identity Binding"
+      ]
+    },
+    {
+      "id": "MCPGW-027",
+      "title": "Example and demo accuracy",
+      "type": "documentation",
+      "priority": "supporting",
+      "requirement": "Examples and demos MUST be runnable or honestly marked as illustrative/deferred, and trust-failure demos MUST demonstrate runtime-down and deny-without-execute paths when claimed.",
+      "evidence_required": [
+        "example scripts",
+        "README commands",
+        "demo tests or manual smoke receipt",
+        "deferred labels if not runnable"
+      ],
+      "negative_checks": [
+        "Broken examples must not be used as proof of production functionality."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-028",
+      "title": "Automated test coverage for advertised behavior",
+      "type": "test_gate",
+      "priority": "core",
+      "requirement": "The repo MUST contain automated tests for core advertised behavior: schema fixtures, approve/execute, deny/no-execute, missing scope, tenant mismatch, runtime unavailable, correlation preservation, spine modes, rate limiting when advertised, MCP initialize, tools/list, tools/call, origin enforcement, and legacy compatibility when advertised.",
+      "evidence_required": [
+        "test files with assertions",
+        "test command passing",
+        "CI workflow invoking tests"
+      ],
+      "negative_checks": [
+        "Test names alone are not evidence; assertions must verify behavior."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway",
+        "Fail-Closed Identity Binding",
+        "Ingress Spine Persistence Modes"
+      ]
+    },
+    {
+      "id": "MCPGW-029",
+      "title": "CI validates restore, build, test, and smoke coverage",
+      "type": "operational",
+      "priority": "supporting",
+      "requirement": "CI MUST validate restore/build/test for the gateway and any claimed smoke scripts or Python examples that are part of the release gate.",
+      "evidence_required": [
+        "workflow files",
+        "commands in CI",
+        "passing local equivalent if available"
+      ],
+      "negative_checks": [
+        "Deploy must not be treated as validated if PR validation skips core gateway tests."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-030",
+      "title": "Deployment safety boundaries",
+      "type": "operational",
+      "priority": "supporting",
+      "requirement": "If deploy workflows are present, PRs must not deploy to staging, protected main/manual dispatch rules must be respected, and rollback runbooks must exist when claimed.",
+      "evidence_required": [
+        "GitHub Actions workflow checks",
+        "environment protection docs",
+        "rollback runbook"
+      ],
+      "negative_checks": [
+        "Fork PRs must not receive deploy credentials or run production/staging deploy."
+      ],
+      "source_capabilities": [
+        "Official Governed MCP Gateway"
+      ]
+    },
+    {
+      "id": "MCPGW-031",
+      "title": "Deferred feature honesty",
+      "type": "false_claim_gate",
+      "priority": "core",
+      "requirement": "Features marked deferred, not emitted yet, stubs, or compatibility-only must not be claimed as complete production functionality.",
+      "evidence_required": [
+        "README deferred section",
+        "tool descriptors omit deferred features or label them clearly",
+        "tests reflect current behavior"
+      ],
+      "negative_checks": [
+        "SSE, resources, prompts, live spine persistence, hardening execution, or remote PR publication must not be claimed complete unless implemented and tested."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    },
+    {
+      "id": "MCPGW-032",
+      "title": "Zero-friction adoption claim gating",
+      "type": "false_claim_gate",
+      "priority": "differentiator",
+      "requirement": "The gateway may claim low-friction MCP adoption only if standard MCP clients can connect using documented HTTP or stdio config without custom client code beyond auth/header/env configuration.",
+      "evidence_required": [
+        "valid MCP config examples",
+        "initialize/list/call smoke tests",
+        "stdio or HTTP client compatibility proof"
+      ],
+      "negative_checks": [
+        "If only custom legacy HTTP clients work, zero-friction MCP adoption is a false or overstated claim."
+      ],
+      "source_capabilities": [
+        "Zero-Friction MCP Adoption"
+      ]
+    }
+  ],
+  "required_negative_tests": [
+    {
+      "id": "MCPGW-NEG-001",
+      "title": "Deny does not execute",
+      "must_prove": "Runtime Execute is never called when Runtime Decide denies."
+    },
+    {
+      "id": "MCPGW-NEG-002",
+      "title": "Runtime unavailable fails closed",
+      "must_prove": "Runtime outage/timeout/invalid response returns governed error/denial and no local fallback execution."
+    },
+    {
+      "id": "MCPGW-NEG-003",
+      "title": "Missing scope blocks invoke",
+      "must_prove": "A client without required gateway or per-tool invoke scope cannot call protected tools."
+    },
+    {
+      "id": "MCPGW-NEG-004",
+      "title": "Tenant mismatch blocks invoke",
+      "must_prove": "Tenant identity mismatch between trusted auth binding and request context is denied before Runtime execution."
+    },
+    {
+      "id": "MCPGW-NEG-005",
+      "title": "Missing actor or tenant blocks invoke",
+      "must_prove": "Effect-bearing invocation cannot proceed without bound tenant_id and actor_id."
+    },
+    {
+      "id": "MCPGW-NEG-006",
+      "title": "Invalid JWT blocks protected surfaces",
+      "must_prove": "Unsigned, wrong audience/issuer, expired, or malformed JWT cannot list/invoke protected tools as configured."
+    },
+    {
+      "id": "MCPGW-NEG-007",
+      "title": "Required spine append failure blocks runtime",
+      "must_prove": "When IngressSpine mode is Required and directive append fails, Runtime is not called."
+    },
+    {
+      "id": "MCPGW-NEG-008",
+      "title": "BestEffort spine failure is honest",
+      "must_prove": "When BestEffort append fails, response/logs do not falsely claim durable persistence for failed append."
+    },
+    {
+      "id": "MCPGW-NEG-009",
+      "title": "Legacy invoke cannot bypass governance",
+      "must_prove": "POST /mcp/tools/invoke follows auth, scope, identity, Decide-before-Execute, and receipt behavior."
+    },
+    {
+      "id": "MCPGW-NEG-010",
+      "title": "Browser origin blocked by default",
+      "must_prove": "Non-loopback browser origins are rejected unless explicitly allowed."
+    },
+    {
+      "id": "MCPGW-NEG-011",
+      "title": "Malformed tool arguments fail before execution",
+      "must_prove": "Invalid tool arguments/schema never reach Runtime Execute."
+    },
+    {
+      "id": "MCPGW-NEG-012",
+      "title": "Unsupported MCP version/method safe failure",
+      "must_prove": "Unsupported protocol versions or methods return protocol-safe errors without invoking tools."
+    },
+    {
+      "id": "MCPGW-NEG-013",
+      "title": "stdio stdout purity",
+      "must_prove": "stdio mode does not write non-protocol logs/banner text to stdout."
+    },
+    {
+      "id": "MCPGW-NEG-014",
+      "title": "Execution receipt absent when execution absent",
+      "must_prove": "Responses for denial/not-executed paths do not include a misleading execution receipt."
+    }
+  ],
+  "false_claim_gates": [
+    {
+      "claim": "Official MCP support",
+      "allowed_only_if": [
+        "standard MCP initialize works",
+        "tools/list works",
+        "tools/call works",
+        "protocol result shape is MCP-compatible",
+        "tests or smoke receipts prove at least one supported transport"
+      ],
+      "false_if": [
+        "only legacy custom HTTP endpoints work",
+        "MCP methods are docs-only",
+        "stdio corrupts stdout protocol stream"
+      ]
+    },
+    {
+      "claim": "No-bypass governance",
+      "allowed_only_if": [
+        "all invoke surfaces share or enforce equivalent governance path",
+        "direct execution bypass search is clean",
+        "deny/no-execute and legacy no-bypass tests exist"
+      ],
+      "false_if": [
+        "legacy invoke bypasses Runtime Decide",
+        "tool handlers can call execution directly",
+        "tests only cover happy path"
+      ]
+    },
+    {
+      "claim": "Receipt-rich / durable ingress spine",
+      "allowed_only_if": [
+        "responses include receipt references when available",
+        "spine append behavior exists and is tested for configured modes",
+        "docs distinguish Off, BestEffort, Required",
+        "failure paths are honest about durability"
+      ],
+      "false_if": [
+        "receipts are static demo values",
+        "spine persistence is deferred but described as complete",
+        "denial/failure paths lose outcome lineage"
+      ]
+    },
+    {
+      "claim": "Fail-closed identity binding",
+      "allowed_only_if": [
+        "tenant_id and actor_id come from trusted auth/config channels",
+        "missing or conflicting identity blocks invoke",
+        "per-tool scopes are enforced",
+        "negative tests exist for invalid identity and scopes"
+      ],
+      "false_if": [
+        "payload-provided tenant/actor is trusted without validation",
+        "missing identity defaults silently in non-local/protected mode",
+        "scope checks are absent or docs-only"
+      ]
+    },
+    {
+      "claim": "Zero-friction MCP adoption",
+      "allowed_only_if": [
+        "documented standard MCP client config works",
+        "auth setup is bounded to headers/env vars/token minting",
+        "no custom client SDK is required for basic initialize/list/call"
+      ],
+      "false_if": [
+        "only bespoke scripts work",
+        "client must use nonstandard protocol extensions for basic calls",
+        "examples are stale or not executable"
+      ]
+    }
+  ],
+  "required_artifacts": [
+    {
+      "artifact": "MCP tool result envelope",
+      "required_fields": [
+        "jsonrpc or MCP result wrapper as applicable",
+        "result.content human-readable summary",
+        "result.structuredContent.correlation_id",
+        "result.structuredContent.tool",
+        "result.structuredContent.ok or terminal status",
+        "result.structuredContent.decision.status",
+        "result.structuredContent.decision.policy_hash when provided by Runtime",
+        "result.structuredContent.result or denial/error object",
+        "result.structuredContent.receipts when available",
+        "result.isError"
+      ]
+    },
+    {
+      "artifact": "Ingress event/receipt lifecycle",
+      "required_events_when_claimed": [
+        "directive",
+        "intent",
+        "request when execute is attempted",
+        "decision",
+        "execution when execute succeeds",
+        "outcome",
+        "evidence_pack when available"
+      ]
+    },
+    {
+      "artifact": "Gateway configuration",
+      "required_settings_when_claimed": [
+        "Runtime:BaseUrl",
+        "Runtime:TimeoutSeconds",
+        "Runtime:MaxRetries",
+        "IngressSpine:Mode",
+        "McpServer:SupportedProtocolVersions",
+        "McpServer:AllowedOrigins",
+        "Auth:Issuer",
+        "Auth:Audience",
+        "Auth:JwksUrl or Auth:JwtPublicKeyPem",
+        "Auth:RequiredScopes",
+        "RateLimiting settings if rate limiting is advertised"
+      ]
+    }
+  ],
+  "verification_algorithm_hints": {
+    "repo_map_first": [
+      "Identify language/framework, entrypoint, routes, MCP handlers, auth services, runtime client, tool registry, schemas, tests, examples, and CI.",
+      "Use targeted search terms before reading full files."
+    ],
+    "targeted_search_terms": [
+      "tools/call",
+      "tools/list",
+      "initialize",
+      "notifications/initialized",
+      "ping",
+      "structuredContent",
+      "isError",
+      "Decision",
+      "Execute",
+      "tenant_id",
+      "actor_id",
+      "scope",
+      "IngressSpine",
+      "Required",
+      "BestEffort",
+      "AllowedOrigins",
+      "JwtPublicKeyPem",
+      "X-Api-Key",
+      "MCP-Protocol-Version",
+      "correlation_id",
+      "runtime unavailable",
+      "tenant mismatch",
+      "missing scope",
+      "deny without execute",
+      "stdio"
+    ],
+    "evidence_rules": [
+      "Docs are claim evidence only, not implementation evidence.",
+      "Test names are not proof unless assertions are inspected.",
+      "Mock runtime tests are acceptable for gateway behavior when they prove request ordering and failure handling.",
+      "Live Runtime tests are not required for gateway conformance unless the repo claims live integration readiness.",
+      "Generated example payloads are not proof unless validated by tests or smoke commands.",
+      "Search for bypasses using direct runtime execute calls, direct tool execution services, and legacy endpoints."
+    ]
+  },
+  "recommended_test_commands": [
+    "dotnet restore tests\\Keon.McpGateway.Tests\\Keon.McpGateway.Tests.csproj",
+    "dotnet test tests\\Keon.McpGateway.Tests\\Keon.McpGateway.Tests.csproj",
+    "dotnet build src\\Keon.McpGateway\\Keon.McpGateway.csproj",
+    "python examples\\demo_jwt.py --help"
+  ],
+  "remediation_lane_groups": [
+    {
+      "lane": "Lane A - MCP protocol surface",
+      "scope": [
+        "MCP initialize/ping/tools-list/tools-call",
+        "protocol version handling",
+        "stdio/HTTP compatibility"
+      ],
+      "forbidden_scope": [
+        "Runtime policy internals",
+        "Cortex storage internals",
+        "website copy"
+      ],
+      "success_condition": "Advertised MCP transports and methods are implemented, tested, and protocol-safe."
+    },
+    {
+      "lane": "Lane B - Auth, identity, and scopes",
+      "scope": [
+        "JWT validation",
+        "API key validation",
+        "tenant/actor binding",
+        "scope enforcement"
+      ],
+      "forbidden_scope": [
+        "tool business logic",
+        "spine persistence internals unless identity-linked"
+      ],
+      "success_condition": "Invalid/missing identity and scope failures deny before Runtime execution."
+    },
+    {
+      "lane": "Lane C - Governed execution orchestration",
+      "scope": [
+        "Runtime Decide-before-Execute",
+        "deny/no-execute",
+        "runtime-down fail-closed",
+        "request/response mapping"
+      ],
+      "forbidden_scope": [
+        "Runtime implementation",
+        "policy language changes"
+      ],
+      "success_condition": "Gateway never executes or reports execution without prior approved decision."
+    },
+    {
+      "lane": "Lane D - Structured envelope and schemas",
+      "scope": [
+        "structuredContent",
+        "legacy schemas",
+        "golden payloads",
+        "error envelope"
+      ],
+      "forbidden_scope": [
+        "auth implementation",
+        "deployment workflows"
+      ],
+      "success_condition": "All outputs preserve canonical governed envelope and honest error semantics."
+    },
+    {
+      "lane": "Lane E - Ingress spine and receipts",
+      "scope": [
+        "directive/intent/request/decision/execution/outcome lifecycle",
+        "spine modes",
+        "correlation preservation"
+      ],
+      "forbidden_scope": [
+        "Cortex internals",
+        "Runtime receipt signer internals"
+      ],
+      "success_condition": "Receipt/spine behavior is ordered, mode-correct, and honest across success, denial, and failure."
+    },
+    {
+      "lane": "Lane F - Operational hardening and docs truth",
+      "scope": [
+        "origin enforcement",
+        "rate limiting",
+        "health",
+        "secret discipline",
+        "CI/deploy safety",
+        "examples",
+        "deferred feature honesty"
+      ],
+      "forbidden_scope": [
+        "core governance changes unless required by discovered defect"
+      ],
+      "success_condition": "Operational claims match implementation and tests; unsafe public/deploy defaults are blocked."
+    }
+  ],
+  "final_verdict_policy": {
+    "conformant": "All core requirements implemented with evidence, all required negative tests pass or are explicitly not applicable with justification, and no false claims remain.",
+    "conditionally_conformant": "No critical failures or false claims; limited medium/low gaps remain with honest deferred labels and no safety-impacting missing tests.",
+    "non_conformant": "Any critical requirement fails, any protected execution path bypasses governance, any fail-closed invariant fails, or any material public claim is contradicted by repo evidence.",
+    "unknown": "Repository evidence is insufficient to evaluate core claims; use only when the verifier cannot inspect required files or commands."
+  },
+  "notes_for_verify_canon": [
+    "Keep findings gateway-specific. If a defect belongs to Runtime, Cortex, Collective, or website, mark as integration dependency or out_of_scope.",
+    "For gateway verification, the most important proof is call path behavior under failure: denial, missing identity, missing scope, runtime down, and spine append failure.",
+    "Treat every advertised transport as a separate verification surface. HTTP MCP passing does not prove stdio, and legacy passing does not prove standard MCP.",
+    "Treat deferred README items as acceptable only if not claimed complete elsewhere in the repo.",
+    "Do not spawn remediation workers unless explicitly requested."
+  ]
+}

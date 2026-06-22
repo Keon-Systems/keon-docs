@@ -1,188 +1,693 @@
-# Keon Runtime Product Feature Canon – Capability Index v1.2
-
-**Version:** 1.2 (April 2026)  
-**Status:** Production-grade canonical input for agents  
-**Purpose:** Single source of truth for website pages, marketing copy, public posts, pitch decks, sales collateral, and agent workflows.  
-**Schema:**  
-- `canonical_owner`: Primary product that owns the concept (prevents duplication)  
-- `ui_surface`: Array of marketing/UI surfaces where this belongs (`control`, `proof`, `how-it-works`, `memory`, `governance`, `dashboard`, etc.)  
-- `impact_level`: `core` | `differentiator` | `supporting`  
-- `confidence`: `explicit` (directly stated) | `inferred` (derived from doctrine)  
-
-**File ID:** `/product/capability-index.v1.json` (copy-paste this entire JSON per section or the full merged array)
-
----
-
-## Keon Systems Runtime (AI Governance)
-
-```json
-[
-  {
-    "feature": "Pre-Execution Cryptographic Proof",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "differentiator",
-    "one_line_description": "Enforces that no action can occur without cryptographic proof of prior authorization, making unauthorized execution structurally impossible",
-    "source_file": "keon_public_canon_v1.1.md",
-    "source_section": "Core Statement",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "how-it-works", "control"],
-    "impact_level": "differentiator"
-  },
-  {
-    "feature": "Decision Receipts",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "Cryptographically signed pre-execution authorization artifacts proving policy approval occurred before any effect-boundary action",
-    "source_file": "caes-standard.md",
-    "source_section": "Core Primitives",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "governance"],
-    "impact_level": "core"
-  },
-  {
-    "feature": "PolicyHash Verification",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "Cryptographic hash of the exact policy state used during evaluation, enabling deterministic verification of authorization conditions",
-    "source_file": "caes-standard.md",
-    "source_section": "Core Primitives",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "governance"],
-    "impact_level": "core"
-  },
-  {
-    "feature": "Governed Spine",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "Append-only, irreversible causal ledger of all governed events, ensuring complete lineage and preventing retroactive alteration of system history",
-    "source_file": "caes-standard.md",
-    "source_section": "Core Primitives",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "memory"],
-    "impact_level": "core"
-  },
-  {
-  "feature": "No Execution Without Receipt",
-  "product": "Keon Systems Runtime",
-  "claim_type": "invariant",
-  "one_line_description": "No effect-bound action can execute unless a valid Decision Receipt exists and is verified prior to execution",
-  "source_file": "caes-standard.md",
-  "source_section": "Core Enforcement",
-  "confidence": "inferred",
-  "canonical_owner": "Keon Systems Runtime",
-  "ui_surface": ["governance", "proof"],
-  "impact_level": "core"
-},
 {
-  "feature": "Fail-Closed Execution Model",
-  "product": "Keon Systems Runtime",
-  "claim_type": "invariant",
-  "one_line_description": "Any failure in policy evaluation, identity binding, receipt validation, or execution flow results in immediate denial rather than degraded or partial execution",
-  "source_file": "caes-standard.md",
-  "source_section": "Enforcement Principles",
-  "confidence": "inferred",
-  "canonical_owner": "Keon Systems Runtime",
-  "ui_surface": ["governance", "how-it-works"],
-  "impact_level": "core"
-},
-  {
-    "feature": "Governed Execution Boundary",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "The constitutional boundary that defines how AI systems can interact with reality, enforcing that all effect-bound actions pass through governed authorization and receipt generation",
-    "source_file": "caes-standard.md",
-    "source_section": "Scope",
-    "confidence": "explicit",
+  "$schema": "https://keon.systems/schemas/canon/keon-runtime-verification-canon.v1.json",
+  "document_id": "KEON-RUNTIME-CANON-v1-LOCKED",
+  "file_id": "/canon/keon_runtime_canon_v1_locked.json",
+  "title": "Keon Systems Runtime Verification Canon v1 Locked",
+  "version": "1.0.0",
+  "status": "locked",
+  "created_for_path": "D:\\Repos\\keon-omega\\keon-docs\\canon\\keon_runtime_canon_v1_locked.json",
+  "product": {
     "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["governance", "how-it-works"],
-    "impact_level": "core"
+    "canonical_name": "Keon Systems Runtime",
+    "product_class": "AI governance runtime",
+    "primary_responsibility": "Evaluate authority before consequential execution, produce verifiable authorization artifacts, enforce fail-closed governed execution, and preserve receipt-linked evidence for audit and offline verification."
   },
-  {
-    "feature": "Artifact Hierarchy",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "Strict ordering: Decision Receipt → Evidence Pack → Execution Package → Attestation (receipts always supreme)",
-    "source_file": "keon_public_canon_v1.1.md",
-    "source_section": "Artifact Hierarchy (NEW)",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof"],
-    "impact_level": "core"
+  "purpose": {
+    "summary": "Repo-verification canon for evaluating whether the Keon Systems Runtime implementation supports the claims made about governed execution, Decision Receipts, PolicyHash, fail-closed enforcement, evidence production, and CAES-aligned conformance.",
+    "intended_consumer": "verify-canon skill and implementation-review agents",
+    "not_marketing_copy": true,
+    "verification_default": "A claim is not accepted unless supported by implementation evidence, contract/schema evidence, and meaningful tests or executable verification receipts."
   },
-  {
-    "feature": "Receipt Supremacy",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "invariant",
-    "one_line_description": "Receipts outrank all interpretations; narratives are derived only and cannot override receipts",
-    "source_file": "execution_package_canon_v1.1.md",
-    "source_section": "Law Reinforcement",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof"],
-    "impact_level": "core"
+  "scope": {
+    "in_scope": [
+      "Runtime authority evaluation",
+      "Decision Receipt creation and verification semantics",
+      "PolicyHash canonicalization and binding",
+      "Decide-before-Execute enforcement",
+      "Fail-closed runtime behavior",
+      "Tenant, actor, authority, and delegation binding",
+      "Effect-boundary classification used by Runtime",
+      "Runtime evidence envelopes and evidence packs",
+      "Runtime-managed governed event recording or Runtime integration contract for governed spine append",
+      "Offline verification artifacts exposed by Runtime",
+      "CAES Level 1, Level 2, and Level 3 claim gating as implemented by Runtime",
+      "Runtime APIs, services, contracts, schemas, tests, and CI checks that prove the above"
+    ],
+    "out_of_scope": [
+      "MCP Gateway transport implementation except where Runtime exposes or requires a contract consumed by the Gateway",
+      "Cortex storage internals except where Runtime emits receipt, spine, or causal evidence contracts consumed by Cortex",
+      "Collective cognition, deliberation, planning, branch collapse, heat, witnesses, or swarm behavior",
+      "Website copy, pitch decks, sales collateral, and UI page content unless they make Runtime conformance claims",
+      "General platform deployment features not involved in governed execution"
+    ],
+    "integration_boundary_notes": [
+      {
+        "system": "Keon MCP Gateway",
+        "runtime_relevance": "Gateway may call Runtime for Decide and Execute, but this canon evaluates Runtime-side authority semantics, contracts, and guarantees only. Gateway-specific transport, MCP protocol handling, headers, structuredContent, and client compatibility belong in the MCP Gateway canon."
+      },
+      {
+        "system": "Keon Cortex",
+        "runtime_relevance": "Runtime may emit receipt-linked records intended for Cortex or a governed spine. This canon verifies Runtime emission contracts and fail-closed requirements, not Cortex persistence internals."
+      },
+      {
+        "system": "Keon Collective",
+        "runtime_relevance": "Collective may submit governed execution candidates to Runtime through approved boundaries. This canon verifies Runtime cannot be bypassed and does not grant cognition execution authority. Collective planning and cognition are separate canon targets."
+      }
+    ]
   },
-  {
-    "feature": "Canonical Policy Protocol",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "mechanism",
-    "one_line_description": "Template hash equals authority; requires signed manifests, machine-evaluable constraints, and local ratification",
-    "source_file": "keon_public_canon_v1.1.md",
-    "source_section": "Policy Protocol (NEW)",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["governance"],
-    "impact_level": "core"
+  "source_alignment": [
+    {
+      "source": "CAES v0.1.1",
+      "relevant_primitives": [
+        "Decision Receipt",
+        "PolicyHash",
+        "Governed Spine",
+        "Receipt-bounded execution",
+        "Verifiable evidence chain",
+        "Full constitutional conformance",
+        "Fail-closed enforcement",
+        "Offline-verifiable artifacts"
+      ]
+    },
+    {
+      "source": "Keon Runtime Product Feature Canon v1.2",
+      "relevant_claims": [
+        "Pre-Execution Cryptographic Proof",
+        "Decision Receipts",
+        "PolicyHash Verification",
+        "Governed Spine",
+        "No Execution Without Receipt",
+        "Fail-Closed Execution Model",
+        "Governed Execution Boundary",
+        "Artifact Hierarchy",
+        "Receipt Supremacy",
+        "Canonical Policy Protocol",
+        "CAES Level 1",
+        "CAES Level 2",
+        "CAES Level 3",
+        "Advisory-Only Federation"
+      ]
+    }
+  ],
+  "core_doctrine": [
+    {
+      "id": "RT-DOCTRINE-001",
+      "statement": "Effects are governed. Runtime must not permit any effect-bound execution path that bypasses authority evaluation and receipt verification."
+    },
+    {
+      "id": "RT-DOCTRINE-002",
+      "statement": "Receipts outrank stories. Logs, summaries, UI narratives, and memory records are not authorization proof unless anchored to valid Decision Receipts and supporting evidence."
+    },
+    {
+      "id": "RT-DOCTRINE-003",
+      "statement": "Missing anchors fail closed. If identity, authority, policy state, receipt validity, or execution lineage is missing or unverifiable, Runtime must deny or block execution."
+    },
+    {
+      "id": "RT-DOCTRINE-004",
+      "statement": "Policy must be deterministic at the authorization boundary. LLM-only, prompt-only, or post-hoc governance cannot satisfy Runtime authorization semantics."
+    },
+    {
+      "id": "RT-DOCTRINE-005",
+      "statement": "Runtime may integrate with Gateway, Cortex, or Collective, but Runtime remains responsible for its own authority-evaluation guarantees and must not rely on downstream narrative or storage layers to prove authorization happened."
+    }
+  ],
+  "artifact_hierarchy": {
+    "canonical_order": [
+      "DecisionReceipt",
+      "EvidencePack",
+      "ExecutionPackage",
+      "Attestation"
+    ],
+    "rule": "DecisionReceipt is the primary authorization artifact. EvidencePack, ExecutionPackage, Attestation, logs, narratives, and UI summaries derive from or reference receipts and must not override them.",
+    "verification_expectation": "The repo must define or consume explicit contracts/schemas/types for these artifacts when claimed. Any public or code-level claim that an artifact exists must be backed by implementation and tests."
   },
-  {
-    "feature": "CAES Level 1 - Receipt-Bounded Execution",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "feature",
-    "one_line_description": "All effect-boundary actions require verified Decision Receipts with strict fail-closed enforcement",
-    "source_file": "caes-standard.md",
-    "source_section": "Compliance Levels",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["governance", "proof"],
-    "impact_level": "core"
+  "runtime_verification_requirements": [
+    {
+      "id": "RUNTIME-001",
+      "title": "Decide before Execute",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must require an authorization decision before any effect-bound execution attempt.",
+      "acceptable_evidence": [
+        "Service or pipeline code showing Execute cannot be reached before Decide approval",
+        "Contract or API shape separating decision from execution or explicitly enforcing decide_then_execute",
+        "Negative test proving denied decisions do not execute",
+        "Negative test proving missing decision state blocks execution"
+      ],
+      "false_claim_trigger": "Repo claims governed execution but exposes an execution path that does not require a prior approved decision."
+    },
+    {
+      "id": "RUNTIME-002",
+      "title": "Decision Receipt required before effect",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must produce or verify a valid Decision Receipt before an approved effect-bound action can execute.",
+      "acceptable_evidence": [
+        "Receipt model/schema with required authorization fields",
+        "Execution guard requiring valid receipt reference or verified receipt object",
+        "Tests for missing receipt, malformed receipt, expired receipt, and receipt/action mismatch"
+      ],
+      "false_claim_trigger": "Execution can occur with only an approval boolean, log entry, or narrative explanation instead of a receipt-backed authorization artifact."
+    },
+    {
+      "id": "RUNTIME-003",
+      "title": "Cryptographic receipt signing",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "requirement": "Runtime must cryptographically sign Decision Receipts when claiming cryptographic proof or CAES Level 2 or above.",
+      "acceptable_evidence": [
+        "Signing service, key material abstraction, or signer interface",
+        "Signature fields in receipt schema",
+        "Verification tests proving tampered receipt fails",
+        "Key rotation or key identifier handling when production-grade claims are made"
+      ],
+      "false_claim_trigger": "Repo claims cryptographic proof but receipts are unsigned, only hashed, or only logged."
+    },
+    {
+      "id": "RUNTIME-004",
+      "title": "PolicyHash canonicalization",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must compute PolicyHash from canonical policy state using deterministic serialization/canonicalization before or during authorization evaluation.",
+      "acceptable_evidence": [
+        "Canonicalization function or deterministic serializer",
+        "Hash algorithm explicitly defined",
+        "Tests proving equivalent policy state produces identical hash",
+        "Tests proving policy mutation changes hash",
+        "Receipt or evidence pack binds to PolicyHash"
+      ],
+      "false_claim_trigger": "PolicyHash is random, timestamp-dependent, display-only, omitted from receipts, or computed from non-canonical input."
+    },
+    {
+      "id": "RUNTIME-005",
+      "title": "Receipt binds policy, identity, action, and time",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Decision Receipts must bind the evaluated policy state, tenant, actor or delegate, requested capability/effect, decision status, correlation identity, and evaluation timestamp.",
+      "acceptable_evidence": [
+        "Receipt schema/type includes required binding fields",
+        "Decision service populates fields from inherited context",
+        "Tests for tenant mismatch, actor mismatch, action mismatch, policy mismatch, and replay mismatch"
+      ],
+      "false_claim_trigger": "Receipts exist but do not bind enough context to prove what was authorized."
+    },
+    {
+      "id": "RUNTIME-006",
+      "title": "Fail-closed policy evaluation",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Any failure in policy lookup, parsing, canonicalization, evaluation, dependency resolution, or policy service availability must deny or block execution.",
+      "acceptable_evidence": [
+        "Exception/error paths return Denied, Blocked, Invalid, or equivalent non-executing status",
+        "Tests for policy unavailable, invalid policy, unknown capability, malformed constraints, timeout, and evaluator failure",
+        "No fallback to allow on policy errors"
+      ],
+      "false_claim_trigger": "Policy evaluation errors degrade to allow, best-effort execution, warning-only behavior, or post-hoc logging."
+    },
+    {
+      "id": "RUNTIME-007",
+      "title": "Fail-closed identity binding",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must deny or block when tenant, actor, authority, or delegation context is missing, inconsistent, unverifiable, expired, or outside scope.",
+      "acceptable_evidence": [
+        "Identity binding validator",
+        "Tenant and actor fields required in decision request or inherited authority context",
+        "Delegation validation logic when delegation is supported",
+        "Tests for missing tenant, missing actor, tenant mismatch, invalid delegate, expired delegation, and widened scope attempts"
+      ],
+      "false_claim_trigger": "Runtime defaults to anonymous, default tenant, system actor, or widened authority in production paths."
+    },
+    {
+      "id": "RUNTIME-008",
+      "title": "Capability and scope enforcement",
+      "claim_type": "mechanism",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must evaluate requested capability/effect against tenant, actor, policy, and entitlement constraints before approval.",
+      "acceptable_evidence": [
+        "Capability registry or policy binding model",
+        "Scope matching logic",
+        "Tests for missing scope, wrong scope, insufficient entitlement, unknown capability, and overbroad request"
+      ],
+      "false_claim_trigger": "Runtime authorizes based only on authentication or tool existence without capability-specific policy checks."
+    },
+    {
+      "id": "RUNTIME-009",
+      "title": "No invocation-layer bypass",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must not expose alternate public, internal, worker, queue, admin, debug, or compatibility paths that perform effect-bound execution without governed authorization.",
+      "acceptable_evidence": [
+        "Route/controller/job scan showing effecting paths traverse the same authorization guard",
+        "Static or architectural tests for direct executor usage",
+        "Tests or review evidence covering admin/debug/queue/batch paths"
+      ],
+      "false_claim_trigger": "Any route, command handler, queue consumer, background worker, or admin endpoint can execute effects directly."
+    },
+    {
+      "id": "RUNTIME-010",
+      "title": "Governed Spine event emission contract",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "requirement": "Runtime must define and honor a causal event emission contract for governed events when claiming Governed Spine support.",
+      "acceptable_evidence": [
+        "Event model/schema for directive, intent, request, decision, execution, outcome, or Runtime-specific equivalents",
+        "Append or outbox contract preserving correlation and receipt references",
+        "Tests proving events are causally ordered and linked",
+        "Clear documented ownership if actual persistence belongs to another repo"
+      ],
+      "false_claim_trigger": "Repo claims append-only spine but only emits mutable logs or unlinked telemetry."
+    },
+    {
+      "id": "RUNTIME-011",
+      "title": "Spine append failure semantics",
+      "claim_type": "invariant",
+      "severity_if_missing": "critical",
+      "requirement": "When Runtime is configured to require spine or evidence append, append failure must fail closed before effect execution.",
+      "acceptable_evidence": [
+        "Configuration distinguishing required vs best-effort evidence persistence if both modes exist",
+        "Tests proving required append failure blocks execution",
+        "Tests proving best-effort mode is explicit and not marketed as full conformance"
+      ],
+      "false_claim_trigger": "Runtime claims full spine-backed governance but proceeds with execution after required evidence append failure."
+    },
+    {
+      "id": "RUNTIME-012",
+      "title": "Outcome receipt or terminal outcome evidence",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "requirement": "Runtime must produce terminal evidence for the final outcome of an approved, denied, failed, or blocked governed operation.",
+      "acceptable_evidence": [
+        "Outcome receipt or terminal event schema",
+        "Decision and execution result models include terminal status",
+        "Tests for approved/executed, denied/not-executed, failed, blocked, and runtime-down outcomes"
+      ],
+      "false_claim_trigger": "Runtime records only approvals but not denied, blocked, failed, or terminal outcomes."
+    },
+    {
+      "id": "RUNTIME-013",
+      "title": "Denied decision never executes",
+      "claim_type": "negative_test_gate",
+      "severity_if_missing": "critical",
+      "requirement": "A denied authorization decision must never invoke the executor, external adapter, downstream tool, queue publication, or side-effecting code path.",
+      "acceptable_evidence": [
+        "Unit/integration test using spy/fake executor proving zero calls on deny",
+        "Control flow preventing executor invocation after deny",
+        "Terminal denied outcome evidence"
+      ],
+      "false_claim_trigger": "Denied path still calls executor, queues work, mutates external state, or relies on executor to self-deny."
+    },
+    {
+      "id": "RUNTIME-014",
+      "title": "Runtime dependency unavailable fails closed",
+      "claim_type": "negative_test_gate",
+      "severity_if_missing": "critical",
+      "requirement": "Unavailable policy, receipt, signer, evidence, entitlement, or downstream runtime dependency must not result in unauthorized execution.",
+      "acceptable_evidence": [
+        "Tests for dependency timeout/unavailable/exception",
+        "Explicit blocked or denied status",
+        "No executor invocation when preconditions cannot be verified"
+      ],
+      "false_claim_trigger": "Runtime executes in degraded mode when required authorization or evidence dependencies are unavailable."
+    },
+    {
+      "id": "RUNTIME-015",
+      "title": "Offline receipt verification",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "requirement": "Runtime must expose or generate artifacts sufficient to verify authorization offline when claiming CAES Level 2 or offline-verifiable proof.",
+      "acceptable_evidence": [
+        "Verifier API, CLI, library, or documented verification procedure",
+        "Receipt includes signature, PolicyHash, canonicalization metadata, key identifier, and enough bound fields",
+        "Test vectors or golden fixtures for valid and tampered receipts"
+      ],
+      "false_claim_trigger": "Repo claims offline verification but verification requires mutable server state, hidden logs, or undocumented manual trust."
+    },
+    {
+      "id": "RUNTIME-016",
+      "title": "Evidence pack completeness",
+      "claim_type": "mechanism",
+      "severity_if_missing": "medium",
+      "requirement": "Evidence packs must contain or reference the receipt, PolicyHash, policy/evaluator version, identity binding, requested effect, decision result, terminal outcome, and correlation lineage.",
+      "acceptable_evidence": [
+        "Evidence pack schema/type",
+        "Builder service populating fields from authorization and outcome paths",
+        "Tests that evidence packs include required references"
+      ],
+      "false_claim_trigger": "Evidence pack exists but is just a log bundle, UI summary, or unbound metadata collection."
+    },
+    {
+      "id": "RUNTIME-017",
+      "title": "Canonical policy protocol",
+      "claim_type": "mechanism",
+      "severity_if_missing": "high",
+      "requirement": "Runtime must implement or consume a canonical policy protocol with versioned policy templates/manifests, deterministic constraints, and local ratification semantics when claiming canonical policy governance.",
+      "acceptable_evidence": [
+        "Policy manifest/schema/type",
+        "Template hash or policy version binding",
+        "Machine-evaluable constraints",
+        "Tests for manifest signature/hash mismatch and unratified policy rejection"
+      ],
+      "false_claim_trigger": "Runtime claims canonical policy protocol but accepts ad hoc prompt text or mutable local policy without deterministic manifest binding."
+    },
+    {
+      "id": "RUNTIME-018",
+      "title": "Policy evaluator determinism",
+      "claim_type": "invariant",
+      "severity_if_missing": "high",
+      "requirement": "For identical canonical input, policy state, identity context, and requested effect, Runtime policy evaluation must produce deterministic authorization output and PolicyHash.",
+      "acceptable_evidence": [
+        "Deterministic evaluator implementation",
+        "Tests for repeated identical evaluations",
+        "Tests proving nondeterministic LLM-only decisions are not used as authority"
+      ],
+      "false_claim_trigger": "Authorization depends solely on nondeterministic model output, prompt interpretation, clock randomness, or unpinned external state."
+    },
+    {
+      "id": "RUNTIME-019",
+      "title": "Effect boundary classification",
+      "claim_type": "mechanism",
+      "severity_if_missing": "medium",
+      "requirement": "Runtime must classify or receive classification for effect-bound actions so advisory-only operations are distinguishable from governed execution requirements.",
+      "acceptable_evidence": [
+        "Effect boundary enum/model/schema",
+        "Policy rules keyed by effect class or capability",
+        "Tests proving effect-bound actions require receipts and advisory-only actions cannot masquerade as execution"
+      ],
+      "false_claim_trigger": "Runtime treats all requests the same and cannot prove which operations cross an effect boundary."
+    },
+    {
+      "id": "RUNTIME-020",
+      "title": "Immutable receipt record after issuance",
+      "claim_type": "invariant",
+      "severity_if_missing": "high",
+      "requirement": "Issued Decision Receipts must be immutable in content and identity. Corrections or revocations must create new linked records rather than mutate prior receipts.",
+      "acceptable_evidence": [
+        "Immutable receipt model or append-only storage/outbox semantics",
+        "Tests preventing update-in-place of issued receipt content",
+        "Revocation/correction model creates linked event"
+      ],
+      "false_claim_trigger": "Receipt content can be silently changed after execution."
+    },
+    {
+      "id": "RUNTIME-021",
+      "title": "Correlation lineage preservation",
+      "claim_type": "mechanism",
+      "severity_if_missing": "medium",
+      "requirement": "Runtime must preserve correlation identity across decision, receipt, execution attempt, terminal outcome, and emitted evidence.",
+      "acceptable_evidence": [
+        "Correlation ID in request/receipt/result/evidence schemas",
+        "Tests proving correlation survives decide and execute",
+        "Query or retrieval path by correlation ID where claimed"
+      ],
+      "false_claim_trigger": "Decision, receipt, execution, and outcome cannot be linked except by timestamp or manual inspection."
+    },
+    {
+      "id": "RUNTIME-022",
+      "title": "Public conformance statement gating",
+      "claim_type": "claim_gate",
+      "severity_if_missing": "critical",
+      "requirement": "Runtime must not claim CAES conformance level, cryptographic proof, append-only spine, or offline verification unless the repo contains the required implementation and tests for that level.",
+      "acceptable_evidence": [
+        "Conformance statement with CAES version and level",
+        "Mapped evidence for every claimed level requirement",
+        "CI/test receipts proving conformance gates"
+      ],
+      "false_claim_trigger": "Docs, README, site copy, metadata, or comments claim conformance beyond the implemented evidence."
+    },
+    {
+      "id": "RUNTIME-023",
+      "title": "CAES Level 1 gate",
+      "claim_type": "conformance_gate",
+      "severity_if_missing": "critical",
+      "requirement": "To claim CAES Level 1, Runtime must prove all effect-boundary actions require verified Decision Receipts and fail-closed enforcement.",
+      "acceptable_evidence": [
+        "RUNTIME-001 through RUNTIME-008 pass",
+        "RUNTIME-013 and RUNTIME-014 pass",
+        "Conformance statement cites CAES version and governed effect categories"
+      ],
+      "false_claim_trigger": "Runtime claims CAES Level 1 while any effect-bound action can execute without verified receipt or fail-closed enforcement."
+    },
+    {
+      "id": "RUNTIME-024",
+      "title": "CAES Level 2 gate",
+      "claim_type": "conformance_gate",
+      "severity_if_missing": "critical",
+      "requirement": "To claim CAES Level 2, Runtime must satisfy Level 1 plus cryptographic signing, PolicyHash canonicalization, governed spine/evidence chain, and offline verification.",
+      "acceptable_evidence": [
+        "RUNTIME-003, RUNTIME-004, RUNTIME-010, RUNTIME-011, RUNTIME-015, and RUNTIME-016 pass",
+        "Golden verification fixtures",
+        "Tests for tamper detection and append/evidence failures"
+      ],
+      "false_claim_trigger": "Runtime claims CAES Level 2 without signing, deterministic PolicyHash, append-only evidence semantics, or offline verification."
+    },
+    {
+      "id": "RUNTIME-025",
+      "title": "CAES Level 3 gate",
+      "claim_type": "conformance_gate",
+      "severity_if_missing": "critical",
+      "requirement": "To claim CAES Level 3, Runtime must satisfy Level 2 plus explicit human authority delegation model, complete causal invariants, full spine specification, and effect classification.",
+      "acceptable_evidence": [
+        "Delegation model and tests",
+        "Complete causal invariant test suite",
+        "Full spine specification or Runtime contract to an authoritative spine implementation",
+        "Effect classification tests and conformance statement"
+      ],
+      "false_claim_trigger": "Runtime claims full constitutional conformance while delegation, causal invariants, spine specification, or effect classification remain partial or deferred."
+    },
+    {
+      "id": "RUNTIME-026",
+      "title": "Advisory-only federation boundary",
+      "claim_type": "integration_boundary",
+      "severity_if_missing": "high",
+      "requirement": "When Runtime participates in federation or cross-system proof exchange, it must preserve local authority and must not accept remote execution authority without local Runtime policy evaluation.",
+      "acceptable_evidence": [
+        "Federation/proof exchange contract distinguishes advisory proof from local authority",
+        "Tests proving remote proof cannot bypass local policy",
+        "Docs clarify proofs shared do not transfer execution rights"
+      ],
+      "false_claim_trigger": "Runtime accepts external proof, agent request, or federation message as execution authority without local evaluation."
+    },
+    {
+      "id": "RUNTIME-027",
+      "title": "Execution package cannot outrank receipt",
+      "claim_type": "invariant",
+      "severity_if_missing": "high",
+      "requirement": "Execution packages, run bundles, job records, or task envelopes must reference and remain subordinate to Decision Receipts.",
+      "acceptable_evidence": [
+        "Execution package schema includes receipt reference and policy/hash binding",
+        "Tests preventing execution package creation without receipt",
+        "Docs or type comments identify receipt supremacy"
+      ],
+      "false_claim_trigger": "Execution package or job record is treated as sufficient authorization without receipt verification."
+    },
+    {
+      "id": "RUNTIME-028",
+      "title": "Attestation derivation",
+      "claim_type": "mechanism",
+      "severity_if_missing": "medium",
+      "requirement": "Attestations must be derived from receipts and evidence, not independently asserted as truth.",
+      "acceptable_evidence": [
+        "Attestation builder requires receipt/evidence inputs",
+        "Attestation schema references receipt/evidence IDs",
+        "Tests proving attestation cannot be produced from unverified narrative only"
+      ],
+      "false_claim_trigger": "Attestation can be generated from unverified summary, user claim, or mutable log only."
+    },
+    {
+      "id": "RUNTIME-029",
+      "title": "Secure configuration for production proof claims",
+      "claim_type": "operational_gate",
+      "severity_if_missing": "medium",
+      "requirement": "Production paths must not rely on checked-in secrets, default signing keys, disabled verification, or dev-only bypass flags for proof claims.",
+      "acceptable_evidence": [
+        "Configuration separates development and production modes",
+        "Tests or startup guards reject insecure production config",
+        "No checked-in private keys or static production secrets",
+        "Docs identify dev-only settings as non-conformant for production"
+      ],
+      "false_claim_trigger": "Runtime claims production-grade cryptographic governance while using dev keys, disabled verification, or permissive defaults in production mode."
+    },
+    {
+      "id": "RUNTIME-030",
+      "title": "CI conformance gate",
+      "claim_type": "operational_gate",
+      "severity_if_missing": "medium",
+      "requirement": "Runtime repo should expose repeatable CI or local commands that run conformance-relevant tests for governed execution, receipts, PolicyHash, fail-closed paths, and claim gates.",
+      "acceptable_evidence": [
+        "CI workflow or documented command",
+        "Focused test suite names or categories",
+        "Passing receipt from local or CI run"
+      ],
+      "false_claim_trigger": "Conformance can only be asserted manually with no repeatable verification command."
+    }
+  ],
+  "required_negative_tests": [
+    {
+      "id": "NEG-001",
+      "title": "Denied policy does not execute",
+      "maps_to": ["RUNTIME-001", "RUNTIME-013"]
+    },
+    {
+      "id": "NEG-002",
+      "title": "Missing Decision Receipt blocks execution",
+      "maps_to": ["RUNTIME-002", "RUNTIME-023"]
+    },
+    {
+      "id": "NEG-003",
+      "title": "Tampered Decision Receipt fails verification",
+      "maps_to": ["RUNTIME-003", "RUNTIME-015", "RUNTIME-024"]
+    },
+    {
+      "id": "NEG-004",
+      "title": "PolicyHash mismatch fails verification",
+      "maps_to": ["RUNTIME-004", "RUNTIME-015", "RUNTIME-024"]
+    },
+    {
+      "id": "NEG-005",
+      "title": "Missing tenant or actor fails closed",
+      "maps_to": ["RUNTIME-005", "RUNTIME-007"]
+    },
+    {
+      "id": "NEG-006",
+      "title": "Tenant or actor mismatch fails closed",
+      "maps_to": ["RUNTIME-005", "RUNTIME-007"]
+    },
+    {
+      "id": "NEG-007",
+      "title": "Missing or insufficient capability scope denies",
+      "maps_to": ["RUNTIME-008"]
+    },
+    {
+      "id": "NEG-008",
+      "title": "Policy evaluator unavailable fails closed",
+      "maps_to": ["RUNTIME-006", "RUNTIME-014"]
+    },
+    {
+      "id": "NEG-009",
+      "title": "Receipt signer/verifier unavailable fails closed",
+      "maps_to": ["RUNTIME-002", "RUNTIME-003", "RUNTIME-014"]
+    },
+    {
+      "id": "NEG-010",
+      "title": "Required spine/evidence append failure blocks execution",
+      "maps_to": ["RUNTIME-010", "RUNTIME-011"]
+    },
+    {
+      "id": "NEG-011",
+      "title": "Alternate route/job/worker cannot bypass Runtime guard",
+      "maps_to": ["RUNTIME-009"]
+    },
+    {
+      "id": "NEG-012",
+      "title": "Remote federation proof cannot bypass local authorization",
+      "maps_to": ["RUNTIME-026"]
+    }
+  ],
+  "claim_status_rules": {
+    "implemented_with_evidence": "Requirement has direct code evidence, contract/schema evidence when applicable, and meaningful tests or executable receipts.",
+    "implemented_but_untested": "Code appears to exist, but required negative or positive tests are absent or assertions are weak.",
+    "documented_only": "Claim appears in docs/comments/README but implementation evidence is absent.",
+    "partial": "Some implementation exists, but required binding, failure behavior, or artifact completeness is missing.",
+    "missing": "No meaningful evidence found.",
+    "contradicted": "Code behavior conflicts with the canon requirement.",
+    "false_claim": "Repo or public-facing docs claim a capability/conformance level that the repo cannot prove.",
+    "ambiguous": "Evidence is insufficient or unclear. In strict mode, treat as failing.",
+    "out_of_scope": "Requirement belongs to another Keon repo or product canon and should not be used to fail Runtime."
   },
-  {
-    "feature": "CAES Level 2 - Verifiable Evidence Chain",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "feature",
-    "one_line_description": "Cryptographic signing, PolicyHash, append-only spine, and offline verification",
-    "source_file": "caes-standard.md",
-    "source_section": "Compliance Levels",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["proof", "how-it-works"],
-    "impact_level": "differentiator"
+  "false_claim_guards": [
+    {
+      "id": "FCG-001",
+      "claim": "CAES Level 1",
+      "must_pass": ["RUNTIME-001", "RUNTIME-002", "RUNTIME-006", "RUNTIME-007", "RUNTIME-008", "RUNTIME-013", "RUNTIME-014", "RUNTIME-023"]
+    },
+    {
+      "id": "FCG-002",
+      "claim": "CAES Level 2",
+      "must_pass": ["FCG-001", "RUNTIME-003", "RUNTIME-004", "RUNTIME-010", "RUNTIME-011", "RUNTIME-015", "RUNTIME-016", "RUNTIME-024"]
+    },
+    {
+      "id": "FCG-003",
+      "claim": "CAES Level 3",
+      "must_pass": ["FCG-002", "RUNTIME-019", "RUNTIME-025", "RUNTIME-026"]
+    },
+    {
+      "id": "FCG-004",
+      "claim": "Pre-execution cryptographic proof",
+      "must_pass": ["RUNTIME-001", "RUNTIME-002", "RUNTIME-003", "RUNTIME-004", "RUNTIME-005", "RUNTIME-013"]
+    },
+    {
+      "id": "FCG-005",
+      "claim": "Governed Spine",
+      "must_pass": ["RUNTIME-010", "RUNTIME-011", "RUNTIME-012", "RUNTIME-021"]
+    },
+    {
+      "id": "FCG-006",
+      "claim": "Offline verification",
+      "must_pass": ["RUNTIME-003", "RUNTIME-004", "RUNTIME-005", "RUNTIME-015"]
+    }
+  ],
+  "verification_instructions_for_agents": {
+    "default_mode": "verification_only",
+    "strict_mode": "Treat ambiguous evidence, documented-only claims, and missing negative tests as failing for critical/high requirements.",
+    "repo_review_order": [
+      "Map repo structure and stack",
+      "Search public claims first: README, docs, package metadata, OpenAPI, schemas, comments, examples",
+      "Search Runtime APIs and service boundaries",
+      "Search policy evaluator and receipt services",
+      "Search execution/adapters/side-effecting paths",
+      "Search tests and inspect assertions, not just names",
+      "Search CI workflows and conformance commands",
+      "Build requirement matrix with evidence citations",
+      "Classify gaps and false claims",
+      "Suggest remediation lanes only if requested"
+    ],
+    "evidence_rules": [
+      "Do not treat docs as implementation proof.",
+      "Do not treat a test name as proof without inspecting assertions.",
+      "Do not treat logging as receipt generation unless receipt schema and verification semantics exist.",
+      "Do not fail Runtime for MCP Gateway transport gaps, Cortex persistence internals, or Collective cognition gaps unless Runtime itself claims ownership.",
+      "Do flag Runtime docs that claim capabilities owned by another repo without a clear integration boundary.",
+      "If a feature is marked deferred, do not classify it as false unless public claims present it as complete."
+    ],
+    "required_outputs": [
+      "Canon Requirement Matrix",
+      "Gap Report",
+      "False Claim Report",
+      "Runtime-specific Remediation Lane Plan if remediation is requested",
+      "Verification Receipt with commands, files inspected, tests run, pass/fail status, assumptions, and unresolved ambiguity"
+    ]
   },
-  {
-    "feature": "CAES Level 3 - Full Constitutional Conformance",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "feature",
-    "one_line_description": "Human authority delegation, complete causal invariants, and full spine specification",
-    "source_file": "caes-standard.md",
-    "source_section": "Compliance Levels",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["governance"],
-    "impact_level": "differentiator"
-  },
-  {
-    "feature": "Advisory-Only Federation",
-    "product": "Keon Systems Runtime (AI Governance)",
-    "claim_type": "differentiator",
-    "one_line_description": "Cross-system coordination layer where only proofs are shared, while authority, execution rights, and policy enforcement remain strictly local",
-    "source_file": "public_governance_narrative_v1.2.md",
-    "source_section": "Key Additions",
-    "confidence": "explicit",
-    "canonical_owner": "Keon Systems Runtime",
-    "ui_surface": ["governance"],
-    "impact_level": "differentiator"
+  "recommended_remediation_lane_groups": [
+    {
+      "lane": "authority-evaluation-core",
+      "covers": ["RUNTIME-001", "RUNTIME-006", "RUNTIME-008", "RUNTIME-013", "RUNTIME-014"],
+      "scope_hint": "Policy evaluation, decision service, execution guard, deny/failure paths"
+    },
+    {
+      "lane": "receipt-policyhash-proof",
+      "covers": ["RUNTIME-002", "RUNTIME-003", "RUNTIME-004", "RUNTIME-005", "RUNTIME-015"],
+      "scope_hint": "Receipt schema, signer/verifier, PolicyHash canonicalization, offline verification fixtures"
+    },
+    {
+      "lane": "identity-delegation-binding",
+      "covers": ["RUNTIME-007", "RUNTIME-025"],
+      "scope_hint": "Tenant/actor/delegation context, authority inheritance, scope narrowing and widening guards"
+    },
+    {
+      "lane": "spine-evidence-chain",
+      "covers": ["RUNTIME-010", "RUNTIME-011", "RUNTIME-012", "RUNTIME-016", "RUNTIME-021"],
+      "scope_hint": "Governed event emission, evidence packs, terminal outcome receipts, correlation lineage"
+    },
+    {
+      "lane": "bypass-and-claim-gates",
+      "covers": ["RUNTIME-009", "RUNTIME-022", "RUNTIME-023", "RUNTIME-024", "RUNTIME-026", "RUNTIME-030"],
+      "scope_hint": "Static route/job scan, conformance statements, CI gates, public claim alignment"
+    }
+  ],
+  "final_verdict_policy": {
+    "conformant": "All critical and high requirements pass with evidence, required false-claim guards pass for claims made, and no contradicted or false_claim findings remain.",
+    "conditionally_conformant": "Critical requirements pass, high/medium gaps are documented as not publicly claimed or explicitly deferred, and no false public conformance claims remain.",
+    "non_conformant": "Any critical requirement is missing, contradicted, or falsely claimed; or any CAES/proof/spine/offline-verification claim exceeds implemented evidence."
   }
-]
+}

@@ -1,127 +1,93 @@
-TECHNICAL WHITEPAPER · v2.0
+TECHNICAL WHITEPAPER · v2.1
 
-# GOVERNED EXECUTION FOR OPERATIONAL AI
-### A Universal Governed Execution Substrate — With an Optional Cognitive Civilization Layer
+# GOVERNING THE REASONING-TO-ACTION CHAIN
+### Audit-ready evidence for consequential autonomous action
 
 **Keon Systems** | 2026 · Distribution: Public
 
-Keon Systems provides the enforcement substrate for AI agents operating in production environments where actions carry legal, financial, and operational consequence.
+> **Keon governs the reasoning-to-action chain for autonomous AI systems and produces audit-ready evidence for consequential action.**
+
+---
+
+### How to read this paper — claim tagging and falsification
+
+Every public claim in this paper is tagged for provenance, and every headline claim states how a skeptic would catch us if it were false.
+
+- **`[S]` standards-backed** — the claim is anchored in an external, independently published standard (CAES / CPP, owned by the CAES Working Group). This paper *references* that standard; it does not author it.
+- **`[P]` product-only** — the claim is a property of the Keon product (Collective deliberation, telemetry, causal-reconstruction depth). It is real and falsifiable, but it is not a standards claim. We never imply standards backing a claim does not have.
+- **`Falsification:`** — for each headline claim, the concrete test a skeptic can run to prove us wrong. A claim with no falsification method is not a headline claim.
+
+The mechanical substrate that earlier Keon material led with — decision receipts, fail-closed enforcement, PolicyHash binding, append-only records — is **not the headline of this paper. It is the substrate.** It is necessary, it is preserved in full in the Technical Addendum, and it is what makes the headline claims provable. But the differentiated claim is the one above: governance of the whole chain from reasoning to action, and audit-ready evidence of consequential action.
 
 ---
 
 ## ABSTRACT
 ### Executive Summary
 
-Artificial Intelligence has crossed a threshold from advisory capabilities — summarization, search, content generation — to operational capabilities: transaction execution, code modification, data access, and autonomous decision-making at scale. This shift fundamentally alters the risk profile of enterprise software.
+Artificial Intelligence has crossed a threshold from advisory capabilities — summarization, search, content generation — to operational capabilities: transaction execution, code modification, data access, and autonomous decision-making at scale. This shift changes the question enterprises must answer. It is no longer *"what did the model say?"* It is *"what did the system decide, why, what else did it consider, and can we prove all of it after the fact?"*
 
-> **Advisory AI incurs reputational risk. Operational AI incurs liability.**
+> **Advisory AI incurs reputational risk. Operational AI incurs liability.** `[P]`
 
-Current enterprise infrastructure is ill-equipped to manage this liability. Existing patterns of logging, monitoring, and role-based access control were designed for deterministic systems operated by humans. AI agents violate every assumption those patterns were built on.
+Autonomous systems now cross **Effect Boundaries** — the points where reasoning becomes consequence: an external call, a human-facing message, a state change, a safety-critical actuation — faster than any enterprise can audit by hand. The gap between *action* and *provable account of that action* is the exposure.
 
-This paper defines **Governed Execution** — the architectural standard for containing, authorizing, and auditing AI-initiated actions. It argues that the critical challenge of the next decade is not making models smarter, but creating the mechanical certainty required to let them act.
+This paper defines how Keon closes that gap. Keon governs the **reasoning-to-action chain** — the path from what an agent intends, through what it considered and rejected, to what it was authorized to do and what it actually did — and produces **audit-ready evidence** for every consequential action. `[P]`
 
-Keon operates in two modes. In **BYOAI mode**, any external AI — any model, any framework — is governed by the Keon enforcement layer. The intelligence is yours. The accountability is ours. In **Full Keon mode**, the Keon Collective provides the cognition layer: a governed cognitive civilization whose internal thought may scale, branch, and adapt freely, but whose effects may only enter reality through cryptographically authorized law.
+Keon operates in two modes. In **BYOAI mode**, any external AI — any model, any framework — is governed by the Keon enforcement layer. The intelligence is yours. The accountability is ours. In **Full Keon mode**, the Keon Collective provides the cognition layer: a governed cognitive civilization whose internal thought may scale, branch, and challenge itself freely, but whose effects may only enter reality through cryptographically authorized law.
 
-> **Thought is free. Effects are governed.**
+> **Thought is free. Effects are governed.** `[P]`
 
-Both modes share an identical enforcement boundary. The governed execution substrate is not optional in either.
+The substrate that enforces this — pre-execution authorization, signed decision receipts, deterministic policy binding, fail-closed behavior, append-only records — is identical in both modes and is documented mechanically in the Technical Addendum. It is the floor, not the headline.
 
-> **Within five years, deploying autonomous AI systems in regulated industries without verifiable decision receipts will be considered operationally negligent.**
-
-The era of AI experimentation is ending. The era of AI accountability is beginning. Keon is built for what comes next.
+> **Within five years, deploying autonomous AI in regulated industries without an audit-ready account of the reasoning-to-action chain will be considered operationally negligent.** `[P]`
+> **Falsification:** name a regulated-industry incident review, post-2026, that accepted "the logs show the action" in place of a reconstructable decision-and-authorization chain. If that becomes the norm, this prediction is wrong.
 
 ---
 
-## SECTION 01
-### The Problem: The Liability Shift
+## 1 · The Problem: Autonomy Crosses Effect Boundaries Faster Than Enterprises Can Audit
 
-For the past decade, AI was "Read-Only." If a model hallucinated in a chat interface, the cost was wasted time or user confusion. The human user remained the operational firewall, evaluating output before acting on it.
+For a decade, AI was "read-only." If a model hallucinated in a chat interface, the cost was wasted time. The human user was the operational firewall, evaluating output before acting on it.
 
-We have now entered the "Read-Write" era. Agents are being integrated directly into toolchains with the authority to query production databases, commit code, authorize payments, and modify system configurations.
+We are now in the "read-write" era. Agents query production databases, commit code, authorize payments, and modify configuration directly. The latency between AI intent and real-world consequence has collapsed to milliseconds. The human firewall no longer exists at scale.
 
-> **In this paradigm, the AI is no longer a tool. It is an actor.**
+> **In this paradigm, the AI is no longer a tool. It is an actor.** `[P]`
 
-The fundamental problem is that AI models are **probabilistic**, while enterprise operations require **determinism**. A model may output a correct SQL query 99 times and a destructive one the 100th time, with no change in its underlying permissions.
+The fundamental tension: AI models are **probabilistic**, while enterprise operations require **determinism and accountability**. A model may output a correct action 99 times and a destructive one the 100th, with no change in its permissions. Each time it acts, it crosses an **Effect Boundary** — the line where reasoning becomes consequence:
 
-When a probabilistic actor is granted access to deterministic systems, three failure modes emerge:
+| Effect Boundary | Examples |
+| :--- | :--- |
+| `ExternalSideEffect` | Network calls, filesystem writes, external APIs |
+| `HumanFacingOutput` | Messages, emails, tickets, notifications |
+| `GovernanceRelevantState` | Policy changes, permission changes, memory writes |
+| `SafetyCriticalActuation` | Actuation beyond configured safety thresholds |
+| `WorkflowTransition` | Workflow completion, gate reached, run-state transition |
+
+> **Micro-steps are not actions. Actions are consequences.** `[P]`
+
+When a probabilistic actor crosses these boundaries at machine speed, three failure modes emerge — and all three are failures of *audit*, not just of control:
 
 | UNDEFINED BEHAVIOR | AUDIT GAPS | LIABILITY DRIFT |
 | :--- | :--- | :--- |
-| Actions that are technically possible but policy-violating. | The inability to reconstruct why an action was taken, only that it happened. | Gradual expansion of an agent's operational scope beyond original design intent. |
+| Actions technically possible but policy-violating. | Inability to reconstruct *why* an action was taken — only *that* it happened. | Gradual expansion of an agent's scope beyond original design intent. |
+
+The center column is the one that converts an engineering problem into a liability. The action happened in a millisecond; the obligation to *prove what happened and why* lasts for years.
+
+> **The problem is not that AI systems are malicious. It is that they are architecturally incapable of proving they weren't.** `[P]`
 
 ---
 
-## SECTION 02
-### The Villain: Ungoverned AI
+## 2 · Why Logs, Prompts, and Post-Hoc Review Fail
 
-Before defining the solution, it is necessary to name the problem precisely.
+Standard controls were built for humans and deterministic software. They fail when applied to probabilistic agents crossing Effect Boundaries autonomously.
 
-**Ungoverned AI** is any system capable of autonomous decision-making that cannot produce a verifiable chain of authorization, policy evaluation, and outcome evidence.
+**Logs are not evidence.** `[P]` Logs are mutable, non-standardized streams of text. They record *what* happened, after the fact, and rarely capture the *authorization logic* that permitted the event. A log shows a crash; it does not prove the brakes were applied. **Falsification:** take any log line for a consequential action and try to prove, offline, which policy version authorized it and that the log was not edited. If you can, logs were sufficient and Keon is unnecessary.
 
-This is not a rhetorical definition. It is a structural one. Absence of any of the following properties renders an autonomous execution structurally unverifiable.
+**Prompts are not policy.** `[P]` Prompt-level instructions ("only act within policy") are probabilistic guidance to the model, not a deterministic, evaluable constraint at the moment of action. A prompt cannot be hashed, bound to a decision, or replayed by an auditor. Prompt determinism is not execution determinism.
 
-- No deterministic policy hash binding at evaluation time
-- No cryptographic decision receipt before execution
-- No causation linkage between decision and outcome
-- No append-only authoritative ledger
-- No cryptographic attestation of evidence
-- Mutable logs that can be altered after the fact
-- Replayable execution state without replay verification
-- Prompt-level determinism with no execution-level determinism
+**Post-hoc review is not governance.** `[P]` Observability platforms alert *after* a threshold is breached. Reconstruction-after-the-fact assumes the record is complete, ordered, and unaltered — exactly the assumptions an autonomous probabilistic actor violates. Governance requires active, blocking interception *before* the effect, plus an account that survives adversarial scrutiny *after* it.
 
-These are not edge cases. They are the default state of virtually every AI agent framework deployed in production today.
+**API keys are not intent.** `[P]` An API key grants capability, not governance of intent. A key to the UserDB can read one record or dump the table. RBAC cannot inspect the semantic intent of a specific context-driven request.
 
-> **The problem is not that AI systems are malicious.**
-> **The problem is that they are architecturally incapable of proving they weren't.**
-
-Ungoverned AI is not a product category. It is an architectural condition. And it is the condition most enterprises are in right now.
-
----
-
-## SECTION 03
-### Why Now
-
-Three forces are converging simultaneously. Together, they make Governed Execution not an option but an inevitability.
-
-**Force 1: Autonomy Is Escalating**
-
-AI agents have moved from suggestion to execution. They are no longer drafting emails for humans to send — they are sending them. They are no longer recommending database queries — they are running them. The latency between AI intent and real-world consequence has collapsed to milliseconds. The operational firewall that humans once provided no longer exists at scale.
-
-**Force 2: Liability Is Shifting**
-
-Insurance underwriters are beginning to price AI-related operational risk. Regulators in the EU, UK, and US are drafting frameworks that treat autonomous AI decisions as events requiring evidence trails. Legal discovery in AI-related litigation is increasingly targeting decision logs — and finding them either missing or unverifiable. The question is no longer whether organizations will be held accountable for AI decisions. It is whether they will be able to prove what actually happened.
-
-**Force 3: Trust Has Collapsed**
-
-High-profile failures of autonomous agent frameworks have made enterprises cautious. Black-box AI decision-making — where a system acts but cannot explain why, or worse, cannot prove that it acted within policy — has become a board-level risk conversation. The industry optimized for capability. The market is now demanding accountability.
-
-> **The first era of AI optimized for capability.**
-> **The second era will optimize for accountability.**
-
-Keon is not early. Keon is synchronized with inevitability.
-
----
-
-## SECTION 04
-### Why Existing Patterns Fail
-
-Standard IT controls were built for humans and deterministic software. They fail when applied to probabilistic agents.
-
-**Logs Are Not Evidence**
-Logs are mutable, non-standardized streams of text. They record *what* happened, usually after the fact. In a forensic context, logs must be correlated, parsed, and interpreted. They rarely capture the *authorization logic* that permitted the event. A log shows a crash; it does not prove the brakes were applied.
-
-**Monitoring Is Not Governance**
-Observability platforms are designed to track performance and uptime. They are passive — alerting operators *after* a threshold is breached. Governance requires active, blocking interception *before* the action occurs.
-
-**API Keys Are Not Intent**
-Granting an agent an API key gives it the capability to act, but it does not govern the intent of the action. If an agent has a key to the UserDB, it has the technical ability to read one record or dump the entire table. Standard RBAC lacks the granularity to inspect the semantic intent of a specific context-driven request.
-
----
-
-## SECTION 05
-### Where Other Frameworks Stop
-
-Every layer of the current AI stack solves a real problem. None of them solve accountability.
+Every layer of the current AI stack solves a real problem. None of them, alone, governs the reasoning-to-action chain:
 
 | Layer | What It Solves | Where It Stops |
 | :--- | :--- | :--- |
@@ -129,590 +95,184 @@ Every layer of the current AI stack solves a real problem. None of them solve ac
 | **Agent Frameworks** | Task delegation | No policy-bound decisions |
 | **Orchestration** | Workflow routing | No forensic linkage |
 | **Observability** | Performance logging | No authoritative ledger |
-| **Governed AI** | Verifiable decision lifecycle | — |
+| **Gateway-only governance** | Tool-boundary admission | No reasoning, no causal reconstruction, no deliberation record (see §8) |
 
-Orchestration frameworks stop at execution. Agent frameworks stop at delegation. LLM wrappers stop at prompt management. Observability tools stop at logs.
-
-> **Governed AI begins where orchestration ends.**
+> **Governance of the reasoning-to-action chain begins where each of these stops.** `[P]`
 
 ---
 
-## SECTION 06
-### Governed Execution
+## 3 · Thesis
 
-**Governed Execution** is an architectural layer that sits between the AI model and the execution environment. It treats the AI not as a trusted user, but as an untrusted signal generator.
+> **Keon governs the reasoning-to-action chain for autonomous AI systems and produces audit-ready evidence for consequential action.** `[P]`
 
-It enforces a strict, mechanical workflow for every AI-initiated operation. This flow is non-negotiable:
+Two commitments, stated precisely:
 
-| Step | Action |
-| :--- | :--- |
-| **01 INTERCEPT** | The AI proposes an action. |
-| **02 EVALUATE** | The proposal is validated against a codified policy. |
-| **03 RECEIPT** | A cryptographic record of the decision is minted. |
-| **04 EXECUTE** | The runtime performs the action if — and only if — the receipt exists. |
-| **05 SEAL** | An immutable Evidence Pack artifact is generated. |
+1. **Govern the chain, not just the boundary.** Keon governs the full path — intent, the alternatives considered and rejected, the authorization decision, the policy in force, the execution, and the outcome — for any action that crosses an Effect Boundary. A tool gateway that only admits or blocks calls governs one point on that chain. Keon governs the chain.
 
-> **When in doubt, the system denies. Uncertainty is not permission.**
+2. **Produce audit-ready evidence.** For every consequential action, Keon produces an account that an auditor, a regulator, or a court can verify — offline, without access to the live system — covering *was it allowed, what happened and why, what else was considered, and what it cost operationally.*
+
+The mechanical primitives that make this provable — pre-execution authorization, signed decision receipts, deterministic PolicyHash binding, fail-closed enforcement, append-only records — are **substrate**. They are necessary and non-negotiable (Technical Addendum, ADDENDUM 01–14), and no claim in this paper is softer than the primitive it rests on. But they are the floor beneath the thesis, not the thesis itself.
+
+> **Thought is free. Effects are governed. And every governed effect leaves an account that survives scrutiny.** `[P]`
+> **Falsification:** exhibit a consequential action governed by Keon for which no offline-verifiable account of authority, causation, and outcome can be produced. One such case falsifies the thesis.
 
 ---
 
-## SECTION 07
-### ALPHA: Explicit Authority
+## 4 · Architecture: Collective · Cortex · MCP Gateway · Runtime · Control
 
-The core of Governed Execution is **ALPHA** — Authority & Lawful Policy Handshake for Action. ALPHA is the protocol for deciding whether a specific request is authorized.
+Keon governs the chain across five surfaces. Each has a defined role; none may absorb another's authority.
 
-Unlike standard RBAC, which asks *"Can this user call this API?"*, ALPHA asks:
-
-> **Does this specific request, with this context and these parameters, comply with the currently effective policy?**
-
-**The Decision as an Event**
-In Keon, an authorization decision is not a silent boolean check. It is a discrete system event. Every **PASS** and every **DENY** is serialized, hashed, and signed.
-
-This creates a **Decision Receipt** — proof that at a specific millisecond, Policy Version X was evaluated against Request Y, resulting in Decision Z.
-
-**Human Authority**
-When high-stakes actions require human review, ALPHA does not simply pause the thread. It generates a cryptographic signing request. The human operator does not just "click approve" — they cryptographically sign a **narrow delegation of authority** for that specific action. This binds the biological identity of the operator to the machine execution permanently.
-
-| Letter | Meaning | Property |
+| Surface | Role | Governs |
 | :--- | :--- | :--- |
-| **A** | **Attested** | Cryptographically signed, canonicalized, non-repudiable |
-| **L** | **Ledger** | Append-only causal spine (Keon Memory) |
-| **P** | **Policy-Bound** | Tied to deterministic PolicyHash at evaluation time |
-| **H** | **Human** | Explicit human authorization domains for high-stakes actions |
-| **A** | **Authority** | Binding governance transitions |
+| **Collective** | Cognition before action | Reasoning, branching, self-challenge, deliberation evidence (Full Keon mode) `[P]` |
+| **Cortex** | Causal truth + reconstructable evidence | Memory substrate, causal spine, Evidence Pack, deliberation record `[P]` |
+| **MCP Gateway** | Execution at the tool boundary | Boundary admission, identity/scope binding, non-bypassability |
+| **Runtime** | Authority and mechanics | Policy decision, authority, execution mechanics, receipt emission |
+| **Control** | Operator surface | Tenant / operator / audit / evidence cockpit |
 
----
+**The Gateway and Runtime are distinct, and the distinction is load-bearing.** `[P]` The **MCP Gateway** is the sole lawful boundary between cognition and external consequence: it enforces boundary admission, binds identity and scope, and guarantees non-bypassability. It may call the Runtime to Decide and Execute — but it does **not** own policy evaluation or authorization. The **Runtime** owns authority, the policy decision, execution mechanics, and receipt emission. Conflating them is how "gateway-only" systems end up unable to prove *why* an action was allowed (see §8).
 
-## SECTION 08
-### The Keon Spine Specification
+> **Gateway falsification:** an Effect-Boundary invocation that executes without passing through **both** Gateway enforcement **and** a Runtime decision. If that path exists, non-bypassability is broken.
 
-The **Keon Spine Specification (KEON-SPINE-SPEC v1.0)** defines the minimum structural contract required for governed autonomous execution.
-
-This is not a logging schema. It is not an observability model. It is the ontological contract that binds every event, decision, and action in a Keon-governed system into a causally ordered, cryptographically attested, append-only chain of governed memory.
-
-> **If it exists in Keon, it is governed memory.**
-> **If it acts, it was governed before execution.**
-> **If it executes, it produces a terminal outcome.**
-
-**The Causal Chain**
-
-Every operation in a Keon-governed system produces a spine — an ordered sequence of governed memory objects with enforced causal linkage:
-
-```
-ITrigger → IIntent → IJustification → IDecision → IAction → IOutcome
-```
-
-If any stage is absent, authorization fails closed. Each node in the spine is an immutable memory object. Each carries a cryptographic commitment to its payload, a lineage reference to its causal parent, and a governance receipt binding the decision that authorized it.
-
-**Spine Invariants**
-
-- Exactly one `ITrigger` per spine
-- Exactly one terminal `IOutcome` per `IAction`
-- No action executes without a preceding governance disposition
-- Progress telemetry is not an Outcome and cannot satisfy the terminal outcome requirement
-- No spine object is mutable after promotion
-- Append failure halts execution — no partial state, no silent degradation
-
-**The Canonical Event Envelope**
-
-Every event emitted into the Keon pipeline carries a canonical envelope:
-
-```json
-{
-  "event_id":       "uuidv7",
-  "spine_id":       "uuidv7",
-  "tenant_id":      "uuid|string",
-  "actor_id":       "string|uuid",
-  "correlation_id": "uuidv7",
-  "causation_id":   "uuidv7|null",
-  "occurred_at":    "utc-timestamp",
-  "ingested_at":    "utc-timestamp|null",
-  "sequence":       "int64|null",
-  "event_type":     "string",
-  "payload":        {},
-  "metadata":       {}
-}
-```
-
-**Effect Boundaries**
-
-Events are promoted to governed `IAction` objects only when they cross a defined Effect Boundary. Everything below the boundary is telemetry.
-
-| Boundary | Examples |
-| :--- | :--- |
-| `ExternalSideEffect` | Network calls, filesystem writes, external APIs |
-| `HumanFacingOutput` | Messages, emails, tickets, notifications |
-| `GovernanceRelevantState` | Policy changes, permission changes, memory writes |
-| `SafetyCriticalActuation` | Actuation beyond configured safety thresholds |
-| `WorkflowTransition` | Workflow node completion, gate reached, run state transition |
-
-> **Micro-steps are not actions. Actions are consequences.**
-
----
-
-## SECTION 09
-### Two Operating Modes
-
-Keon is a governed execution substrate. That substrate is not exclusive to a single cognitive source.
-
-**BYOAI Mode — Bring Your Own AI**
-
-In BYOAI mode, the customer's chosen AI — any model, any agent framework, any orchestration layer — operates under Keon governance. The intelligence is the customer's. The accountability substrate is Keon's.
-
-The AI proposes. Keon evaluates, receipts, and gates. The model never touches the execution environment directly. Every action crosses the governed boundary regardless of which model requested it.
-
-This mode requires no change to the customer's reasoning layer. It requires only that effects route through the MCP Gateway.
-
-**Full Keon Mode — Collective Cognition**
-
-In Full Keon mode, the Keon Collective provides the cognitive layer. A governed cognitive civilization — councils, guilds, workers — decomposes goals, simulates futures, challenges its own proposals, and requests governed execution through the same enforcement boundary that governs any external AI.
-
-The Collective is a sophisticated upstream client of Keon law. It obeys the same physics.
-
-**What Both Modes Share**
-
-| Property | BYOAI | Full Keon |
-| :--- | :--- | :--- |
-| Governed execution boundary | Yes | Yes |
-| Decision receipts | Yes | Yes |
-| PolicyHash binding | Yes | Yes |
-| Append-only spine | Yes | Yes |
-| Evidence Pack export | Yes | Yes |
-| Fail-closed invariants | Yes | Yes |
-| Cognitive civilization layer | No | Yes |
-| Temporal Echo planning | No | Yes |
-| Adversarial self-examination | No | Yes |
-| Witness Narratives | No | Yes |
-
-> **The enforcement substrate is identical. The cognitive source is optional.**
-
----
-
-## SECTION 10
-### The Three Planes
-
-Governed execution in Keon is organized across three architectural planes. Each plane has a defined law. None may be collapsed into another.
-
-**The Reality Plane**
-
-The Reality Plane is the only plane permitted to cross an Effect Boundary. It contains the governed execute tool, the MCP Gateway integration, receipt capture, actor and tenant binding, and evidence linkage. Every external effect — every consequence — passes through this plane and nowhere else.
-
-> **Nothing may touch external reality except through governed execution.**
-
-**The Cognition Plane**
-
-The Cognition Plane is where intelligence operates. In BYOAI mode, this is the customer's AI. In Full Keon mode, this is the Collective — councils, guilds, workers, branch planners, adversarial reviewers. The Cognition Plane may be parallel, speculative, recursive, and emergent. It may not directly cause effects.
-
-> **Cognition may explore freely, but it may not directly cause effects.**
-
-**The Meaning Plane**
-
-The Meaning Plane makes the system legible. It contains Witness Narratives, civilization heartbeat, operator-facing chronicles, branch collapse summaries, and lineage records. Raw logs are not enough. Humans do not merely need proof. They need intelligible proof.
-
-The Meaning Plane never contradicts the Reality Plane. Narrative is always anchored to causal truth.
-
-> **Meaning must never contradict reality, and narrative must always remain anchored to causal truth.**
-
-**Why Separation Is Constitutional**
-
-If cognition and consequence share a plane, cognitive richness erodes constitutional safety. A system that can think freely and act directly is ungoverned by definition. Separation is not a design preference. It is the physics that makes autonomous scale acceptable.
-
-| Plane | Contents | Law |
-| :--- | :--- | :--- |
-| **Reality** | Governed execute, receipts, gateway, evidence | Effects only through governed execution |
-| **Cognition** | Reasoning, planning, simulation, challenge | No direct effects |
-| **Meaning** | Narratives, heartbeat, chronicles, lineage | Never contradict receipt truth |
-
----
-
-## SECTION 11
-### The MCP Gateway
-
-The Keon MCP Gateway is the sole lawful boundary between internal cognition and external consequence. It is not middleware. It is not a convenience wrapper. It is the constitutional physics of reality interaction.
-
-Every effect-bound request — from any AI, in either operating mode — must traverse the MCP Gateway. There is no side door. There is no direct tool escape. There is no temporary bypass for performance.
-
-**What the Gateway Enforces**
-
-When a request arrives at the MCP Gateway, it undergoes the full ALPHA protocol: policy evaluation against the currently active policy version, PolicyHash binding, Decision Receipt minting via the ARO, and spine append before any execution proceeds. If any step fails, the gateway fails closed. Execution does not occur. No partial state.
-
-**Gateway as Forensic Anchor**
-
-Every gateway interaction produces canonical artifacts: the Decision Receipt, the spine entries, and — on execution — the execution trace bound to the receipt. These are not logs. They are governed memory objects. They are what an auditor examines. They are what a regulator requests. They are what a court subpoenas.
-
-**Multi-Tenant, Multi-Surface**
-
-The gateway enforces tenant isolation at every layer. A request from Tenant A cannot touch Tenant B's execution context regardless of how it is invoked. This property holds across all invocation surfaces: in-process, A2A transport, remote agent boundary. The governance substrate is not API-level. It is system-level.
-
-> **The MCP Gateway is not a feature of the system.**
-> **It is the feature that makes the system trustworthy.**
-
----
-
-## SECTION 12
-### The Keon Collective
-
-The Keon Collective is a governed cognitive civilization. It is the Full Keon cognition layer — a system of cooperating intelligences that can decompose goals, form temporary working structures, simulate futures, challenge themselves, and evolve safely. All while remaining fully legible to human operators.
-
-The Collective is organized into three archetypes: Councils (strategic decomposition and oversight), Guilds (specialized domain knowledge), and Workers (execution-oriented agents). These entities form swarms, pursue goals, and coordinate across a shared governed substrate.
-
-**What the Collective Can Do**
-
-The Collective can think broadly. It can plan speculatively. It can simulate multiple futures in parallel before committing to one. It can challenge its own proposals through internal adversarial review. It can reorganize itself in response to failure. It can generate proposals from accumulated memory during quiescent periods. It can preserve lineage across lifecycle transitions.
-
-**What the Collective Cannot Do**
-
-The Collective cannot act on the world directly. No entity in the Collective — no council, no guild, no worker, regardless of how sophisticated — has a direct path from cognition to consequence. Every effect request traverses the MCP Gateway under full ALPHA governance.
-
-> **The Collective is powerful precisely because cognition and consequence are not conflated.**
-
-**Governance Is Not a Constraint on the Collective. It Is What Makes the Collective Possible.**
-
-An ungoverned cognitive civilization is chaos at scale. The governance substrate is not a limitation imposed on the Collective. It is the condition that makes the Collective acceptable to deploy. The Collective is permitted to become powerful because it is forbidden from becoming lawless.
-
----
-
-## SECTION 13
-### Self-Governance Before Execution
-
-The Keon Collective does not simply generate proposals and submit them to the gateway. It challenges them first.
-
-**Temporal Echo Planning**
-
-Before committing to an execution path, the Collective explores multiple speculative branches simultaneously. These branches are sandboxed, non-effecting, measurable, and comparable. Each is evaluated for utility, risk, and governance tension. A collapse operation selects one winner. All others are archived — not discarded. Dead branches are preserved as warnings.
-
-The selected branch is the only branch eligible for a governed effect request. An uncollapsed speculative branch may never directly trigger execution.
-
-**Adversarial Self-Examination**
-
-Before any effect request reaches the MCP Gateway, the Collective challenges its own proposal through internal adversarial review. This review is designed to expose hidden risk, instability, unintended consequence, and governance tension. It does not replace gateway authority. It strengthens what reaches it.
-
-The Collective does not merely generate proposals. It attempts to break them.
-
-**Cognitive Heat**
-
-The Collective tracks a measurable notion of strain, risk, and governance tension across entities, plans, and swarms. Cognitive Heat is compositional — it arises across six dimensions: entity heat, branch heat, interaction heat, challenge heat, boundary heat, and swarm heat. A swarm may be hot even when its constituent entities are individually cool.
-
-Heat thresholds govern behavior. Cool: normal operation. Warm: increased scrutiny. Hot: escalation triggers. Critical: automatic self-pruning or abort before any effect request.
-
-Heat is not poetic decoration. It is a calculated, inspectable, operational signal.
-
-**Gradient Authority**
-
-Human oversight depth is adjustable by operator, domain, or time window. Operators may choose Strategic (broad autonomy), Tactical (surface branch options at moderate heat), Surgical (frequent review on sensitive domains), or Observational (minimal interruption, maximum visibility).
-
-Lower human oversight does not reduce governance rigor. It increases machine-side safeguards. The Compensation Rule is absolute: when human touchpoints decrease, witness narrative fidelity, heartbeat richness, adversarial challenge depth, and heat-threshold sensitivity must increase correspondingly.
-
-> **Governance surface area must remain constant or become stricter. Only the human-visible slice may change.**
-
----
-
-## SECTION 14
-### The Truth System
-
-Governed execution produces receipts. The Collective wraps receipts in meaning. The truth system ensures meaning never drifts from receipts.
-
-**Collective Causal Records**
-
-Every consequential operation in the Collective produces a Collective Causal Record — an anchored wrapper around the gateway receipts. The record links: the originating intent, the selected branch, the branch collapse proof, the adversarial review state, the governed effect request, the Decision Receipt, the outcome receipt, the spine references, the heat profile at submission time, and the Witness Digest.
-
-The Collective Causal Record is not a replacement for receipts. It is the Collective's organized view of them.
-
-**Witness Narratives**
-
-Witness Narratives are operator-facing human-legible stories anchored to causal records. They translate swarm activity into understanding. A Witness Narrative explains what happened, why the Collective chose this path over alternatives, what heat or risk emerged, and what receipts authorize the outcome.
-
-Witnesses are not logs. They are not marketing copy. They are causally grounded accounts that a human operator can read, interrogate, and trust — because they are anchored to mathematical proof.
-
-**Reconstructive Truth**
-
-Where practical, the Collective's memory is reconstructible from receipts plus minimal symbolic state. If stored narrative interpretation conflicts with receipt-grounded truth, receipt-grounded truth wins. This prevents the Meaning Plane from drifting away from the Reality Plane over time.
-
-**Fossil Record**
-
-Epochal transitions — rebirths, major branch collapses, lineage shifts, realized proposals — are preserved in the Fossil Record. This is civilizational archaeology. It supports long-horizon lineage analysis, identity synthesis across epochs, and cross-generation inheritance of hard-won structural wisdom.
-
-**The Canonical Truth Hierarchy**
-
-```
-Receipts and Spine         → authoritative truth
-Collective Causal Records  → organized view of receipts
-Witness Narratives         → human-legible interpretation
-Cortex Memory              → working memory, useful but derivative
-```
-
-> **If memory and receipts disagree, receipts win.**
-> **If narratives and causal records disagree, causal records win.**
-
----
-
-## SECTION 15
-### Evidence Packs
-
-> **If an action cannot be proven to an auditor, it is a liability.**
-
-Keon Systems introduces the **Evidence Pack**: a cryptographically sealed, portable artifact that serves as the forensic record of an operation.
-
-| Property | Description |
-| :--- | :--- |
-| **Self-Contained** | Contains the full causal chain: input, policy snapshot, decision receipt, and execution trace. |
-| **Offline Verifiable** | An auditor can verify integrity and authenticity without access to the customer's live environment or Keon runtime. |
-| **Tamper-Evident** | Sealed with a digital signature over a cryptographic summary. Changing a single byte of any log or policy definition invalidates the entire pack. |
-
-The Evidence Pack shifts the burden of proof. The organization does not need to trust system administrators to tell the truth — they hand the auditor a mathematically verifiable artifact.
-
----
-
-## SECTION 16
-### Governed Execution in Practice — Autonomous Credit Decision
-
-The following scenario illustrates a complete governed execution cycle for an autonomous credit approval agent operating under regulated financial services policy.
-
-**The Operation:** An AI agent evaluates and approves a loan application autonomously, within defined policy parameters.
-
-```
-DIRECTIVE     Evaluate and action loan application #LC-8821
-              Applicant: verified identity, $42,000 request, 36-month term
-
-INTENT        Risk scoring under Credit Policy CP-114 v2.3
-              Regulatory constraint: Fair Lending Act A15, internal risk band B
-
-REQUEST       Authorization request to DecisionEngine
-              Proposed action: Approve · PolicyHash: 9c4f2a...e81b
-
-GOVERNANCE    Policy CP-114 v2.3 evaluated against applicant profile
-              Risk score: 0.74 (within band B threshold)
-              Fair Lending check: PASS
-              Disposition: Approve
-              Decision Receipt minted · ARO-verified · spine-appended
-
-ACTION        Loan approval executed
-              Execution Receipt bound to Decision Receipt
-              Correlation chain: intact
-
-OUTCOME       Terminal: Approved · $42,000 · 36-month · Rate: 7.4%
-              One terminal IOutcome recorded — no further outcome permitted
-
-EVIDENCE      Evidence Pack sealed:
-              · Applicant scoring vector (hashed)
-              · Policy snapshot CP-114 v2.3 (PolicyHash verified)
-              · Decision Receipt (Ed25519 signed)
-              · Execution timestamp + operator attestation
-              · Spine reference: immutable, append-only
-```
-
-**What an auditor can now prove:**
-
-- Which policy version was active at the moment of decision
-- That the policy has not been altered since evaluation (PolicyHash verification)
-- That the decision was made before execution — not reconstructed after
-- That the outcome matches the authorized action
-- That the evidence pack has not been tampered with
-- The complete causal chain from directive to outcome, offline, without live system access
-
----
-
-## SECTION 17
-### The Responsibility Model
-
-Governed Execution enforces a clear, non-overlapping division of responsibility across three parties.
-
-| Party | Domain | Responsibility |
-| :--- | :--- | :--- |
-| **Customer** | **Intent & Policy** | Define what the AI is permitted to do and the policy boundaries it must respect. |
-| **Keon** | **Enforcement & Evidence** | Provide the runtime that enforces your policy and the cryptography that proves it. |
-| **Auditor** | **Verification** | Use public keys to independently validate that Evidence Packs match the claimed reality. |
-
-> **Keon does not provide the "morality" of the AI.**
-> **We provide the physics that enforce the customer's definitions of safety.**
-
----
-
-## SECTION 18
-### Failure Is Evidence
-
-In a probabilistic system, failure is not an anomaly — it is a signal.
-
-When Keon denies an AI request — because it violated policy, exceeded budget, or lacked confidence — that denial is not a system error. It is a **successful governance event**.
-
-Most systems discard failed requests. Keon treats denials as critical evidence. A Denial Receipt proves that the guardrails held. It demonstrates to regulators and stakeholders that the system is functionally constrained and that policy is active. In probabilistic systems, a high denial rate may indicate policy refinement needs — not system flaws.
-
----
-
-## SECTION 19
-### Structural Guarantees of Governed Execution
-
-For engineers, architects, and auditors who require precision over narrative — these are the mechanical invariants of the system. They are not aspirational. They are enforced.
-
-| Guarantee | Mechanism |
-| :--- | :--- |
-| **Deterministic policy hashing** | SHA-256 over canonical policy inputs. Same inputs always produce the same PolicyHash. Policy state is mathematically verifiable at any point in time. |
-| **Write-then-verify persistence** | Decision Receipts are written, acknowledged, immediately read back, and verified byte-for-byte before execution proceeds. Acknowledgment is not trust. |
-| **Fail-closed execution** | Any missing receipt, mismatched PolicyHash, or failed verification results in execution denial — never silent pass-through. Uncertainty is denial. |
-| **Append-only authoritative spine** | The canonical event log is append-only. No record is overwritten. No soft-delete on canonical records. Revocation is an explicit append event, not a mutation. |
-| **Cryptographic receipt linkage** | Every Decision Receipt is signed with Ed25519. Policy identifiers and rule-set hashes are bound into the receipt. Evidence artifacts are immutable and independently verifiable. |
-| **Idempotent receipt outbox** | The Authoritative Receipt Outbox (ARO) guarantees exactly-once durable persistence. Same receipt submitted N times produces exactly one authoritative record. |
-| **Immutable evidence pack export** | Evidence Packs are cryptographically sealed at generation. Any modification invalidates the seal. Verification requires no live system access. |
-| **Multi-tenant isolation enforcement** | Tenant identifiers are validated at every layer. Missing, malformed, or mismatched tenant identifiers result in immediate failure and a recorded denial. Cross-tenant execution is architecturally impossible. |
-| **Partition-scoped ordering** | Events are ordered per partition, not globally. Sequence numbers are monotonic within partition scope and are assigned at ingestion — never by the actor. |
-| **Canonical JSON canonicalization** | JSON is canonicalized using JCS before hashing. Whitespace, key ordering, and encoding are deterministic. PolicyHash is reproducible by any party with the policy definition. |
-
-> **Engineers scan invariants. Auditors search for proofs. Executives skim vision.**
-> **This section is for the first two.**
-
----
-
-## SECTION 20
-### What Governed AI Is Not
-
-Category clarity requires boundary clarity.
-
-| | |
-| :--- | :--- |
-| **Logging does not constitute governance.** | Keon produces the enforcement artifacts that compliance documentation describes. It is the engine, not the checklist. |
-| **Observability without authoritative receipts is inspection, not accountability.** | Observability records what happened. Keon governs what is permitted to happen — before it happens. |
-| **Not logging infrastructure.** | Logs are mutable, unordered, and non-authoritative. The Keon spine is append-only, causally ordered, and cryptographically attested. |
-| **Not an LLM wrapper.** | Keon does not modify or mediate model inputs or outputs. It governs execution — the moment an AI decision becomes a real-world action. |
-| **Not a consulting framework.** | Keon is infrastructure. It operates at runtime, not at design time. |
-| **Not a replacement for your AI.** | In BYOAI mode, Keon governs any AI you bring. In Full Keon mode, the Collective provides cognition. In both modes, the enforcement boundary is identical. |
-
-> **We are a governed execution substrate.**
-> **We constrain what AI does to the world — whatever AI you choose to run.**
-
----
-
-## SECTION 21
-### The Governed AI Stack
-
-**Four-Layer Architecture**
-
-```
-┌──────────────────────────────────────────────────────┐
-│              COGNITION LAYER                         │
-│   BYOAI: Customer AI  ·  Full Keon: The Collective   │
-│   Councils · Guilds · Workers · Temporal Echo        │
-│   Adversarial Review · Cognitive Heat · Swarms       │
-├──────────────────────────────────────────────────────┤
-│              MCP GATEWAY (Reality Plane)             │
-│   Sole lawful boundary between cognition and         │
-│   consequence. ALPHA · Policy Evaluation ·           │
-│   Decision Receipt · Fail-Closed Enforcement         │
-├──────────────────────────────────────────────────────┤
-│              KEON CORTEX (Memory Substrate)          │
-│   Deterministic ingestion · Tenant isolation         │
-│   Outbox-driven indexing · Replay-safe CQRS          │
-│   Append-only authoritative document store           │
-├──────────────────────────────────────────────────────┤
-│         KEON-SPINE-SPEC v1.0 (Ontological Contract)  │
-│   ITrigger→IIntent→IJustification→IDecision          │
-│   →IAction→IOutcome · IMemory base contract          │
-│   Canonical envelope · Partition ordering            │
-└──────────────────────────────────────────────────────┘
-```
-
-**Three-Plane Governance Model**
+**Three planes keep cognition and consequence separate.** Reasoning may explore freely; only one plane may cross an Effect Boundary; meaning is always anchored to receipt-grounded truth.
 
 ```
 ┌─────────────────────┬──────────────────────┬─────────────────────┐
 │   COGNITION PLANE   │    REALITY PLANE     │   MEANING PLANE     │
-│                     │                      │                     │
 │ Free to explore     │ Sole effect boundary │ Makes system        │
-│ Branch · Simulate   │ MCP Gateway only     │ legible             │
+│ Branch · Simulate   │ Gateway → Runtime    │ legible             │
 │ Challenge · Plan    │ Receipts · Spine     │ Witness Narratives  │
-│ Dream · Adapt       │ ALPHA · ARO          │ Heartbeat · Fossil  │
-│                     │                      │ Anchored to truth   │
 │ May not cause       │ No bypass permitted  │ Never contradicts   │
 │ effects directly    │                      │ receipt truth       │
 └─────────────────────┴──────────────────────┴─────────────────────┘
 ```
 
-| Layer | Component | Role |
-| :--- | :--- | :--- |
-| **Cognition** | Customer AI or Keon Collective | Intelligence, planning, reasoning |
-| **Enforcement** | MCP Gateway + ALPHA | Policy evaluation, receipt minting, fail-closed gating |
-| **Memory** | Keon Cortex | Deterministic ingestion, tenant isolation, replay-safe indexing |
-| **Contract** | KEON-SPINE-SPEC v1.0 | Ontological binding across all components |
+The substrate beneath these surfaces — the ALPHA authority handshake, the Authoritative Receipt Outbox, the KEON-SPINE-SPEC causal contract — is specified mechanically in the Technical Addendum. Architecturally, every external effect from any AI, in either mode, traverses the Gateway and is decided by the Runtime, and nowhere else.
+
+> **Cognition may explore freely, but it may not directly cause effects.** `[P]`
 
 ---
 
-## SECTION 22
-### CAES Alignment
+## 5 · Evidence Model: The Three Proofs
 
-The **Constitutional AI Execution Standard (CAES)** defines the minimum architectural properties required for a system to be considered a governed autonomous execution substrate. Keon is the reference implementation of CAES.
+Audit-ready evidence is not one artifact. It answers three distinct questions, each with its own mechanism and its own provenance. This is the narrative spine of every public claim Keon makes.
 
-**CAES Three Primitives**
+| Proof | Question Answered | Mechanism | Provenance |
+| :--- | :--- | :--- | :--- |
+| **Authority** | Was it allowed? | Decision Receipt · PolicyHash · fail-closed gating | `[S]` standards-backed (CAES L1/L2, CPP) |
+| **Causation** | What happened, why, and what else was considered? | Evidence Pack · causal spine · deliberation evidence | Causal spine + Evidence Pack `[S]`; **deliberation evidence `[P]`** |
+| **Viability** | What did it cost? Did it stay up? | Telemetry · degraded-mode behavior · chaos attestation | Product telemetry `[P]`; chaos/degraded-mode attestation partial `[S]` (CAES L3 ChaosTestAttestation) |
 
-| Primitive | Definition | Keon Implementation |
-| :--- | :--- | :--- |
-| **Decision Receipt** | Cryptographic proof of authorization before execution | Ed25519-signed receipt, ARO-verified, spine-appended |
-| **PolicyHash** | SHA-256 over canonical policy inputs, bound at evaluation | JCS canonicalization, deterministic, execution-time binding |
-| **Governed Spine** | Append-only causal chain linking trigger through outcome | KEON-SPINE-SPEC v1.0, ITrigger→IOutcome, fail-closed |
+**Authority** is the floor: a signed Decision Receipt minted before execution, bound to the deterministic PolicyHash in force, with fail-closed denial on any gap. (Substrate: ADDENDUM 01–08, FP-01..07.)
 
-**CAES Conformance Levels**
+**Causation** is reconstruction: the Evidence Pack and the append-only causal spine let an auditor rebuild the chain from directive to outcome — offline, without live-system access. (Substrate: §Evidence Packs below, FP-04/05, the failure-scenario walkthrough.)
 
-CAES defines three conformance levels. Keon targets and exceeds all three.
+**Deliberation evidence — "what alternatives were considered" — is part of Causation, and it is a product capability, not a standards claim.** `[P]` In Full Keon mode, the Collective Causal Record preserves the branches considered, the adversarial findings, the heat at submission, and the collapse rationale. This evidence lives in **Cortex / the Evidence Pack by default**. It is **not** a CAES primitive; CAES is not extended to absorb alternatives-considered. A rejected branch that would itself have crossed an Effect Boundary still resides in Cortex / the Evidence Pack unless a future CAES amendment explicitly defines such an object. Crossing an Effect Boundary triggers *heightened evidence handling*, not standards ownership.
 
-| Level | Requirement | Keon Status |
-| :--- | :--- | :--- |
-| **L1** | Decision Receipt + PolicyHash binding | Implemented — ARO-verified, Ed25519 signed |
-| **L2** | Governed Spine + append-only ledger + offline-verifiable Evidence Pack | Implemented — SPINE-SPEC v1.0, sealed packs |
-| **L3** | 17 internal invariants with structured KEON_* error codes | Implemented — L3-01 through L3-17 |
+> **We never tag deliberation evidence `[S]`.** It is real, auditable, and falsifiable — and it is product-only.
+> **Falsification (Causation):** request the Evidence Pack for a Full-Keon consequential action and try to reconstruct what alternatives were evaluated and why the chosen path won, offline. If the alternatives are absent or unanchored to receipts, the Causation claim fails.
 
-**L3 Invariants**
+**Evidence Packs.** `[S]` (format/offline-verifiability) The Evidence Pack is a cryptographically sealed, portable artifact: self-contained (input, policy snapshot, decision receipt, execution trace), offline-verifiable (no live environment or Keon runtime required), and tamper-evident (one changed byte invalidates the seal). It shifts the burden of proof from "trust the operator" to "verify the artifact."
 
-CAES L3 requires 17 invariants. These cover: deterministic PolicyHash canonicalization (L3-01), append-only spine with hard error codes (L3-02), signed receipts with bound key role enforcement (L3-03), fail-closed behavior under 8 chaos modes including DB write failure, key rotation conflict, clock skew, network partition, disk failure, duplicate receipt injection, PolicyHash mismatch, and delegation chain expiry (L3-04), deterministic Evidence Pack export (L3-05), offline verification with zero network calls (L3-06), human authority delegation binding (L3-07), audit-ready artifact production (L3-08), mandatory version enforcement (L3-09), cross-pack provenance chain (L3-10), trust bundle integrity (L3-11), PolicyHash presence in Evidence Pack (L3-12), DelegationChain artifact (L3-13), ChaosTestAttestation (L3-14), retention enforcement under chaos (L3-15), structured KEON_* error codes on all public surfaces (L3-16), and delegation binding target enforcement (L3-17).
+> **If an action cannot be proven to an auditor, it is a liability.** `[P]`
 
-Every L3 failure produces a structured `KEON_*` error code. No raw exceptions surface. No silent failures.
-
-> **CAES is the minimum standard. Keon is the proof it is achievable.**
+A worked example of all three proofs on a single regulated action — an autonomous credit decision — is preserved in the Technical Addendum's practice walkthrough and in the Failure Scenario section.
 
 ---
 
-## SECTION 23
-### Why This Changes Everything
+## 6 · Telemetry Model: Buyer-Reproducible Viability Proof
 
-Every major shift in enterprise computing has followed the same pattern. A new class of system emerges. The industry races to adopt it. Liability follows. A new category of infrastructure emerges to manage that liability. That infrastructure becomes foundational.
+Viability is the third proof, and it is where most governance narratives quietly cheat — by publishing marketing numbers. Keon does not. **No benchmark number appears in this paper, and none will appear on any public Keon surface that the buyer cannot reproduce.** `[P]`
 
-Databases required transaction logs. Web applications required WAFs. Cloud infrastructure required IAM. AI agents require governed execution.
+Keon's telemetry posture mirrors the offline-verifiable Evidence Pack: we publish **metric definitions, sources, and a reproduction method** — not dashboards. The metric families:
 
-The difference this time is the pace and the stakes. Previous liability categories developed over years of incident accumulation. AI liability is developing in months, driven by the scale of autonomous systems already in production.
+| Metric family | What it proves |
+| :--- | :--- |
+| Latency added (decision / gateway / persistence) | Governance overhead is bounded and measurable `[P]` |
+| Reliability / availability posture | The substrate stays up under load `[P]` |
+| Success / deny / fail-closed rates | Constraints are active, not theoretical `[P]` |
+| Receipt-persistence overhead | Durable authority costs what we say it costs `[P]` |
+| Gateway overhead | The boundary is not a hidden tax `[P]` |
+| Evidence-pack generation overhead | Audit-readiness has a known price `[P]` |
+| Degraded-mode behavior | Under failure, the system denies or escalates — never executes receiptless `[P]` / partial `[S]` |
 
-**What Governed Execution Changes for Operators**
+**Buyer-reproducible means buyer-reproducible.** `[P]` Keon publishes the measurement methodology and a verification harness so a buyer can measure Keon's overhead in their own environment — *"measure our overhead yourself."* Chaos and degraded-mode attestation may additionally anchor to CAES L3 ChaosTestAttestation `[S]`; the operational numbers themselves remain product telemetry `[P]`.
 
-The operator no longer needs to trust that the AI behaved correctly. They can prove it. The Evidence Pack is not a faith document. It is a mathematical artifact. An auditor in a different jurisdiction, on an air-gapped machine, without any connection to the customer's environment, can verify that the action was authorized, that the policy was active, that the receipt was minted before execution, and that nothing has been altered since.
-
-**What Governed Execution Changes for Regulators**
-
-Regulators no longer need to accept "we had controls in place" as an answer. They can demand verifiable proof. Organizations that have deployed governed execution can produce it. Organizations that have not cannot — and increasingly, that distinction will carry legal weight.
-
-**What Governed Execution Changes for AI Development**
-
-Models that operate under governed execution can be given greater operational scope precisely because their scope is bounded. The enforcement substrate creates the conditions under which more capable AI can be deployed responsibly. Governance is not the enemy of capability. It is the precondition for it.
-
-**What Governed Execution Changes for the Industry**
-
-Governed execution defines a new floor for what it means to deploy AI responsibly. Systems that cannot produce verifiable decision receipts are not just non-compliant. They are architecturally unable to prove they were not negligent. That is a category of exposure the market will not absorb indefinitely.
-
-> **The floor is rising.**
-> **Keon is the floor.**
+> **Falsification:** run the published harness against a Keon deployment and obtain overhead materially worse than the methodology implies, or find a public Keon number you cannot reproduce. Either one falsifies the viability posture.
+> **Degraded-mode law:** when Keon is degraded, an effect-bound action resolves to **Denied** or **RequiresHumanAuthorization** (suspend + escalate; timeout → Denied). Receiptless execution is never permitted. `[P]`
 
 ---
 
-## SECTION 24
-### The Hard Assertion
+## 7 · Standards Posture (Reference)
 
-This paper has argued that Governed Execution is technically superior, operationally necessary, and architecturally inevitable. One prediction deserves to be stated without qualification:
+> This section **references** the canonical standard. It does **not** author it. The Constitutional AI Execution Standard (CAES) and the Constitutional Policy Protocol (CPP) are maintained by the **CAES Working Group**; their canonical text is the authority for every `[S]` tag in this paper.
 
-> **Within five years, deploying autonomous AI systems in regulated industries without verifiable decision receipts will be considered operationally negligent.**
+Three points, all owned by the standard, not by this paper:
 
-Not experimental. Not non-compliant. Negligent.
+- **CAES is an independent, complementary standard.** `[S]` It supplies the mechanical enforcement layer that external frameworks (e.g., EU AI Act Art. 12, SOC 2, ISO/IEC 27001) *require but do not specify*. The posture is **"we enable / we map to,"** never **"we are a profile of."** Keon is *a* reference implementation of CAES; reference designation does not imply commercial endorsement, and other implementations may independently conform.
+- **CAES stays narrow.** `[S]` It does not absorb deliberation / alternatives-considered evidence (that is product-only — see §5). Degraded-mode behavior is bounded by CAES to Denied or RequiresHumanAuthorization; receiptless execution is never permitted.
+- **The property → framework mapping is informative.** `[S]` Keon's Governed-Execution properties map to SOC 2, EU AI Act, and ISO/IEC 27001 controls; the mapping tables are preserved in the Regulatory Alignment appendix and are explicitly *informative* — Keon produces evidence frameworks require; it does not certify compliance.
 
-The legal, insurance, and regulatory frameworks that enforce this are already in motion. The EU AI Act establishes traceability requirements for high-risk AI systems. SOC 2 auditors are beginning to ask questions about AI decision audit trails that current systems cannot answer. Insurance underwriters are developing AI-specific operational risk riders. The discovery phase of the first major AI liability lawsuit will make the absence of decision receipts a front-page event.
+For the normative definitions of receipts, PolicyHash, the governed spine, conformance levels, and conformance-claim rules, consult the canonical CAES/CPP specification directly. This paper does not restate or redefine them.
 
-Keon is not predicting this future. It is building the infrastructure for it.
+---
 
-> **Governed AI is not a feature.**
-> **It is the substrate upon which autonomous systems must be built.**
+## 8 · Why Keon Is Not Gateway-Only Governance
+
+A tool gateway is necessary and Keon has one (§4). But a gateway, alone, cannot govern the reasoning-to-action chain — and "gateway-only governance" is the most common way the market under-solves this problem.
+
+A gateway sits at the **tool boundary**. It can admit or block a call, bind identity, and enforce non-bypassability. What it cannot do, alone:
+
+| A gateway alone cannot… | Keon surface that does | Tag |
+| :--- | :--- | :--- |
+| Govern the reasoning *before* the call — the alternatives weighed and rejected | Collective + Cortex (deliberation evidence) | `[P]` |
+| Own the authority decision and the policy in force at decision time | Runtime (decision, PolicyHash, receipt) | `[S]` |
+| Reconstruct causation from directive to outcome, offline | Cortex (causal spine + Evidence Pack) | `[S]` |
+| Preserve *why this path over others* for audit | Cortex (Collective Causal Record) | `[P]` |
+| Prove operational viability reproducibly | Telemetry posture (§6) | `[P]` |
+
+The Gateway/Runtime separation (§4) is precisely the line a gateway-only system blurs: it admits the call but cannot prove *why it was authorized*, because nothing behind it owns the decision and emits the receipt. Keon's edge is the **combination** — Collective, Cortex, Gateway, Runtime, Control — governing the whole chain and producing all three proofs. The gateway is one surface, the Effect Boundary. It is not the governance.
+
+> **Falsification:** show a gateway-only architecture that produces, for a consequential action, an offline-verifiable account of authority **and** causation **and** the alternatives considered. If a gateway alone can do that, this section is wrong.
+
+---
+
+## 9 · The Regulated-Enterprise Wedge
+
+Governed execution becomes inevitable first where consequential action already carries legal, financial, and audit obligation — the most-exposed regulated industries:
+
+- **Financial services** — autonomous credit, payments, trading; Fair Lending and transaction-evidence obligations.
+- **Healthcare** — clinical and access decisions; provenance and consent obligations.
+- **Legal** — privileged, discoverable decisions that must be reconstructable.
+- **Insurance** — automated underwriting and claims; explainability and audit obligations.
+- **Critical infrastructure** — safety-critical actuation where degraded-mode behavior is itself regulated.
+
+These are the buyers for whom the audit gap (§1) is not a future risk but a present obligation. Three forces converge here first: autonomy is escalating (agents act, not advise); liability is shifting (underwriters price AI operational risk, regulators demand evidence trails, discovery targets decision records); and trust has collapsed (black-box action is now a board-level risk). The first era of AI optimized for capability. The regulated wedge is where the second era — accountability — is already being priced.
+
+> **Keon is not early. Keon is synchronized with where the obligation lands first.** `[P]`
+
+---
+
+## 10 · Operational Proof Obligations
+
+This is the paper's contract with a skeptic. Each headline claim above rests on a mechanical guarantee that is enforced, not aspirational — and each comes with the test that would break it.
+
+| Obligation | Mechanism (substrate) | How a skeptic falsifies it |
+| :--- | :--- | :--- |
+| No execution without authority | Verified Decision Receipt required pre-execution; fail-closed | Find an executed effect with no antecedent verified receipt |
+| Policy state is provable | Deterministic PolicyHash (SHA-256 over canonical inputs, JCS) | Recompute the PolicyHash and get a different value than the receipt |
+| Authority survives storage | Write-then-verify ARO (byte-level readback before authority) | Show an acknowledged-but-unpersisted receipt that still authorized execution |
+| The record cannot be silently altered | Append-only causal spine; revocation is an append, not a mutation | Reorder or edit a spine entry without detection |
+| Evidence verifies offline | Cryptographically sealed Evidence Pack | Alter one byte and have the seal still validate |
+| Denial is evidence | DENY serialized, signed, ARO-verified, spine-appended | Find a constraint activation that left no recorded denial |
+| Causation is reconstructable | Causal spine + Evidence Pack | Fail to rebuild directive→outcome offline for a consequential action |
+| Deliberation is preserved `[P]` | Collective Causal Record (Cortex / Evidence Pack) | Find a Full-Keon action whose considered alternatives were silently discarded |
+| Degraded mode never executes receiptless | Denied / RequiresHumanAuthorization; timeout → Denied | Produce a receiptless execution under degradation |
+| Viability is reproducible `[P]` | Published methodology + verification harness | Publish-vs-measure mismatch you can demonstrate |
+
+The full mechanical specification of these guarantees — the ALPHA authority handshake, the ARO state machine, the KEON-SPINE-SPEC causal contract, the Collective's Reality-Boundary / Temporal-Echo / Cognitive-Heat / Civilizational-Truth / Oversight contracts, the eleven Forensic Properties (FP-01..11), the nine adversarial Failure Scenarios, and the SOC 2 / EU AI Act / ISO 27001 mapping — follows in the Technical Addendum. **Engineers scan invariants. Auditors search for proofs. Executives skim vision. The substrate below is for the first two; the thesis above is for all three.**
+
+> **Governed AI is not a feature. It is the substrate upon which autonomous systems must be built — and audit-ready evidence of the reasoning-to-action chain is what makes that substrate trustworthy.** `[P]`
 
 ---
 
@@ -1248,8 +808,10 @@ When the system fails closed, the failure is recorded. This creates an evidentia
 #### FP-10: Separation of Responsibility
 Customer defines policy intent. Keon enforces policy mechanically and produces verifiable authorization artifacts. Auditor independently verifies cryptographic integrity. Keon does not determine policy morality. It enforces declared constraints and proves enforcement occurred.
 
-#### FP-11: Collective Deliberation as Forensic Record
+#### FP-11: Collective Deliberation as Forensic Record `[P]` (product-only — not CAES-backed)
 In Full Keon mode, the forensic record extends beyond the gateway. The Collective Causal Record — encompassing branch alternatives considered, adversarial review findings, heat profile at submission time, and collapse rationale — is available for operator audit. An investigator can reconstruct not only what the system did, but what alternatives were evaluated, what risks were surfaced internally, and why the selected path was chosen over others. Deliberation is evidence, not overhead.
+
+This deliberation evidence is a **product capability of Cortex / the Evidence Pack**. It is **not** a CAES primitive: CAES is not extended to absorb alternatives-considered evidence, and a rejected branch that would itself have crossed an Effect Boundary remains in Cortex / the Evidence Pack unless a future CAES amendment explicitly defines such an object. This property is therefore tagged product-only `[P]`, never standards-backed.
 
 > **Authority is provable. Causation is reconstructible.**
 > **Policy state is verifiable. Tampering is detectable.**
@@ -1408,10 +970,24 @@ Governed Execution does not certify compliance, does not replace organizational 
 
 # DOCUMENT METADATA
 
-**Document:** KEON WHITEPAPER v2.0 DRAFT
-**Source:** Surgical rewrite of WHITEPAPER v1.3
-**Date:** March 2026
-**Authority:** Keon Collective Doctrine (KEON-COLLECTIVE-DOCTRINE-v0.3), KEON-SPINE-SPEC v1.0, KEON-COLLECTIVE-CONTRACTS-v0.1, KEON-COLLECTIVE-INTERFACES-v0.1, CAES_INTERNAL_L3_SPEC_v1
+**Document:** KEON WHITEPAPER v2.1 DRAFT
+**Source:** Operation CLEAN EDGE — M1 re-headline / re-sequence of WHITEPAPER v2.0 (substrate preserved; narrative re-led on the reasoning-to-action thesis)
+**Date:** June 2026 (M1); prior body March 2026
+**Authority:** Keon Collective Doctrine (KEON-COLLECTIVE-DOCTRINE-v0.3), KEON-SPINE-SPEC v1.0, KEON-COLLECTIVE-CONTRACTS-v0.1, KEON-COLLECTIVE-INTERFACES-v0.1, CAES_INTERNAL_L3_SPEC_v1. Canonical standards posture is owned externally by the CAES Working Group (CAES / CPP); §7 references it as a stub and does not author it.
+
+---
+
+## CLEAN EDGE M1 Changes (v2.0 → v2.1)
+
+| Area | Change |
+| :--- | :--- |
+| Title / headline | Re-led from "Governed Execution for Operational AI" to "Governing the Reasoning-to-Action Chain · Audit-ready evidence for consequential autonomous action" |
+| Narrative | Re-sequenced into the 10-part structure (Problem → Why logs/prompts/post-hoc fail → Thesis → Architecture (5 surfaces) → Three Proofs → Telemetry → Standards stub → Why-not-gateway-only → Wedge → Proof obligations) |
+| Substrate | Receipts, fail-closed, PolicyHash, append-only **demoted from headline to substrate**; all mechanical content preserved verbatim in the Technical Addendum |
+| New sections | Three Proofs (Authority/Causation/Viability); buyer-reproducible Telemetry model; Gateway↔Runtime separation; Why-Keon-is-not-gateway-only; Regulated-enterprise wedge; Operational proof obligations |
+| Standards | Former "Section 22 CAES Alignment" (which authored CAES three-primitives + conformance-level claims) **replaced by a reference stub (§7)** pointing to canonical CAES/CPP. No standards posture authored in the whitepaper. |
+| Deliberation evidence | Tagged product-only `[P]` throughout (Position A); never implied CAES-backed |
+| Gates applied | G-TAG (`[S]`/`[P]` legend + inline tags); G-FALSIFY (falsification method on every headline claim) |
 
 ---
 
@@ -1449,7 +1025,7 @@ Governed Execution does not certify compliance, does not replace organizational 
 
 ## Assumptions Requiring Verification Before External Publication
 
-1. **Section 22 L3 invariant descriptions** — written from CAES_INTERNAL_L3_SPEC_v1.md skeleton entries. Content sections marked `[Clint to fill]` in source. Verify final prose matches completed invariant definitions.
+1. **Standards posture (was "Section 22 CAES Alignment")** — RESOLVED under CLEAN EDGE M1: the whitepaper no longer authors CAES three-primitives / L3-invariant / conformance-level prose. §7 is now a reference stub pointing to the canonical CAES/CPP specification (CAES Working Group). Any `[S]` claim must be verified against canonical CAES/CPP before publication — not re-authored here.
 
 2. **CAES standard version** — referenced as CAES v0.1.1 in source documents. Confirm current version string before publishing.
 
@@ -1459,4 +1035,4 @@ Governed Execution does not certify compliance, does not replace organizational 
 
 ---
 
-*Keon Systems · Governed Execution for Operational AI · v2.0 · 2026 Keon Systems. All rights reserved.*
+*Keon Systems · Governing the Reasoning-to-Action Chain · v2.1 (CLEAN EDGE M1) · 2026 Keon Systems. All rights reserved.*

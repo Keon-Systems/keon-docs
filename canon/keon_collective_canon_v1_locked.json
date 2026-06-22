@@ -1,0 +1,1607 @@
+{
+  "canon_id": "keon_collective_verification_canon_v1_locked",
+  "version": "1.0.0",
+  "status": "locked",
+  "generated_utc": "2026-06-10T15:18:03Z",
+  "product": "Keon Collective",
+  "verification_scope": {
+    "owned_repo": "keon.collective",
+    "owned_responsibility": "Tenant-scoped governed cognition, deliberation, branch planning, adversarial challenge, cognitive density artifacts, routing evidence, witness meaning, role lifecycle, dream proposal generation, governed handoff candidate preparation, and Collective proof packs.",
+    "out_of_scope": [
+      "Keon Systems Runtime authoritative Decide-before-Execute policy evaluation",
+      "Keon MCP Gateway MCP ingress/egress enforcement and tool execution",
+      "Keon Cortex canonical memory persistence, deterministic replay, and vector derivative internals",
+      "Keon Control UI verification except where it consumes Collective APIs or public copy claims"
+    ],
+    "integration_boundaries": {
+      "runtime": "Runtime owns authoritative policy decision, execution authorization, Decision Receipts, and effect-bound execution.",
+      "mcp_gateway": "MCP Gateway owns governed MCP transport, tool ingress/egress enforcement, tenant/actor binding at MCP boundary, and Runtime call sequencing.",
+      "cortex": "Cortex owns canonical memory substrate and proof-backed memory correctness. Collective owns memory scope policy and use of Cortex integration clients.",
+      "control": "Control is an operator cockpit and consumer of Collective cognition surfaces, not the sole authoritative entry point."
+    }
+  },
+  "source_product_canon": {
+    "file": "keon_collective_canon_v4_locked.json",
+    "feature_count": 23,
+    "features": [
+      "Temporal Echo Planning",
+      "Bounded Branch Refinement",
+      "Adversarial Challenge",
+      "Role-Based Perspective Review",
+      "Active Contradiction Injection",
+      "Dream Offerings",
+      "Agent–Role Lifecycle",
+      "Cognitive Heat",
+      "Confidence Profile",
+      "Governed Role Model Selection Evidence",
+      "Route Receipt Policy Evidence Commitment",
+      "Gradient Authority",
+      "Witness Narratives",
+      "Reasoning Graph Artifact",
+      "Routing Negative-Proof Corpus",
+      "Cognitive Density Non-Authority Proof Pack",
+      "Proof Pack Manifest and Doctrine Index",
+      "Cognition–Execution Separation",
+      "Collective Tenant-Scoped Cognition Service",
+      "Governed Intent Handoff Boundary",
+      "Collective Causal Record Envelope",
+      "Collective Scoped Memory Planes",
+      "Collective Market Positioning Matrix"
+    ]
+  },
+  "source_normative_documents": [
+    "KEON COLLECTIVE DOCTRINE v1.0.md",
+    "KEON COLLECTIVE CANONICAL CONTRACTS v0.1",
+    "KEON COLLECTIVE COMMON INTERFACES v0.1",
+    "CAES v0.1.1 draft",
+    "orchestration_round_template.md",
+    "Keon MCP Gateway README for boundary reference only"
+  ],
+  "verification_principles": [
+    "Thought is free. Effects are governed.",
+    "Collective cognition produces candidates, not execution authority.",
+    "Receipts and causal anchors outrank narratives, summaries, reasoning graphs, memory, confidence, and witness text.",
+    "Missing anchors fail closed.",
+    "All proof claims require runnable evidence, not just documentation.",
+    "Strategic architecture and positioning claims must not be presented as implemented behavior without code and tests.",
+    "Runtime, MCP Gateway, and Cortex are integration dependencies, not implementation scope for this repo."
+  ],
+  "requirements": [
+    {
+      "id": "COLLECTIVE-001",
+      "title": "Cognition and execution separation",
+      "summary": "Collective cognition may plan, simulate, review, challenge, dream, and prepare candidates, but it must not directly cause external effects or bypass the governed execution boundary.",
+      "category": "foundational_invariant",
+      "source_refs": [
+        "KEON COLLECTIVE DOCTRINE v1.0.md §2-5.3",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §2.3, §2.6, §8 X-1"
+      ],
+      "required_evidence": [
+        "Code search showing cognition services do not call Runtime Execute, MCP governed execute, external tools, infrastructure mutators, or effect clients directly",
+        "Architecture tests or static analyzer proving no forbidden dependencies from Cognition namespaces into Reality/Gateway/Runtime execution clients",
+        "Negative tests proving deliberation artifacts cannot trigger execution"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-001",
+        "NEG-COLLECTIVE-002",
+        "NEG-COLLECTIVE-003"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Any public claim that Collective executes actions autonomously without Runtime/MCP Gateway authorization",
+        "Any implementation path where cognition calls external effect APIs directly"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-002",
+      "title": "Governed intent handoff is candidate material only",
+      "summary": "Prepared handoffs must be governed intent candidates, not authorization, delegation, or permission to execute.",
+      "category": "handoff_boundary",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Governed Intent Handoff Boundary",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §3.2-3.4"
+      ],
+      "required_evidence": [
+        "HandoffPreparationService or equivalent produces a candidate/envelope with branch, collapse, review, heat, lineage, and tenant/actor context",
+        "No handoff status or approval flag is treated as Runtime decision approval",
+        "Tests distinguish handoff approval from effect eligibility or Runtime decision"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-004",
+        "NEG-COLLECTIVE-005"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims that Collective handoff itself authorizes execution"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-003",
+      "title": "Reality boundary contract shape and guard",
+      "summary": "Any Reality Plane seam inside Collective must require inherited tenant, actor, governance, correlation, selected branch, collapse, adversarial review, heat, requested capability, requested effect, and payload context.",
+      "category": "reality_boundary",
+      "source_refs": [
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §5",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §3"
+      ],
+      "required_evidence": [
+        "C# records/interfaces or equivalent schema for GovernedEffectRequest and GovernedEffectResult",
+        "Invariant validator or guard rejecting missing required anchors",
+        "Tests for each missing-anchor fail-closed case"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-006",
+        "NEG-COLLECTIVE-007"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-004",
+      "title": "No direct Reality Plane calls from cognition-only components",
+      "summary": "Components labeled cognition-only, deliberation-only, density-only, dream-only, routing-only, or perspective-only must not call MCP Gateway, Runtime Execute, governance enforcement, or external effect APIs.",
+      "category": "non_bypassability",
+      "source_refs": [
+        "orchestration_round_template.md Constitutional Guardrails",
+        "KEON COLLECTIVE DOCTRINE v1.0 §4.2, §5.1"
+      ],
+      "required_evidence": [
+        "Forbidden dependency scan",
+        "Tests or architectural rules preventing calls from cognition packages to execution clients",
+        "Code review receipt listing allowed boundary adapters only"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-002",
+        "NEG-COLLECTIVE-003"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-005",
+      "title": "Temporal Echo lifecycle state machine",
+      "summary": "Temporal Echo branches must follow valid states and transitions, with speculative states remaining non-effecting until evaluated, challenged, collapsed, and selected.",
+      "category": "temporal_echo",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Temporal Echo Planning",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §4"
+      ],
+      "required_evidence": [
+        "TemporalEchoBranch model with explicit state enum or equivalent",
+        "Transition validator or state machine enforcing allowed and forbidden transitions",
+        "Tests for valid transitions and forbidden loser/speculative/archive-to-effect transitions"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-008",
+        "NEG-COLLECTIVE-009"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [
+        "Temporal Echo claims without branch state machine or collapse lineage"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-006",
+      "title": "Branch collapse requires evaluated alternatives",
+      "summary": "Every selected execution candidate must originate from a collapse record that names evaluated alternatives, selected branch, rationale, heat summary, utility summary, challenge summary, and timestamp.",
+      "category": "temporal_echo",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §4.5-4.6",
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §6.2"
+      ],
+      "required_evidence": [
+        "BranchCollapseRecord model or schema",
+        "Collapse logic rejects unevaluated alternatives",
+        "Tests proving exactly one winner and preserved loser lineage"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-010",
+        "NEG-COLLECTIVE-011"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-007",
+      "title": "Loser and pruned branch lineage is preserved",
+      "summary": "Loser, pruned, aborted, and archived branches must not be silently discarded and must preserve rationale or cause.",
+      "category": "lineage",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §4.3, §4.6 TE-3",
+        "KEON COLLECTIVE DOCTRINE v1.0 §5.7"
+      ],
+      "required_evidence": [
+        "Archive/prune/abort representation",
+        "Tests showing loser branches remain inspectable after collapse",
+        "No code path deleting evaluated branch history without replacement lineage"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-012"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-008",
+      "title": "Adversarial challenge before effect eligibility",
+      "summary": "Before a branch can become execution-candidate material, it must have adversarial review state, even when no material findings are produced.",
+      "category": "adversarial_review",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Adversarial Challenge",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §3.4 RB-3, §8 X-4"
+      ],
+      "required_evidence": [
+        "AdversarialReview model/service",
+        "Candidate/handoff gate requiring review reference/status",
+        "Tests proving missing review blocks effect-candidate preparation"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-013"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims of safe candidate selection without adversarial challenge evidence"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-009",
+      "title": "Role-based perspective review emits typed findings",
+      "summary": "Optimizer, Skeptic, Regulator, and Historian or equivalent role perspectives must emit structured findings with type/category/severity/confidence instead of unstructured prose alone.",
+      "category": "cognitive_density",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Role-Based Perspective Review"
+      ],
+      "required_evidence": [
+        "Perspective role definitions",
+        "Finding schema with role, category, severity, confidence, and branch linkage",
+        "Tests proving each role emits typed findings and findings flow into heat/refinement/collapse inputs"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-014"
+      ],
+      "default_severity_if_missing": "medium",
+      "false_claim_if": [
+        "Claims of structured perspective review backed only by narrative logs"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-010",
+      "title": "Bounded branch refinement is append-only",
+      "summary": "Branch refinement must be bounded by configuration and preserve prior snapshots with delta rationale, never silently mutating the original branch.",
+      "category": "cognitive_density",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Bounded Branch Refinement"
+      ],
+      "required_evidence": [
+        "Refinement iteration model with lineage key and delta rationale",
+        "Configurable max iterations with default or explicit bound",
+        "Tests proving prior snapshots remain intact and critical heat short-circuits refinement"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-015",
+        "NEG-COLLECTIVE-016"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-011",
+      "title": "Active contradiction injection remains non-executable",
+      "summary": "Contradiction injection may synthesize counter-positions and findings but counter-plans cannot become executable without rematerialization through normal Temporal Echo rules.",
+      "category": "cognitive_density",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Active Contradiction Injection"
+      ],
+      "required_evidence": [
+        "Contradiction finding schema",
+        "Counter-position artifact marked non-executable",
+        "Tests proving counter-plan cannot be selected directly"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-017"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-012",
+      "title": "Confidence profile is information, not authority",
+      "summary": "Confidence profiles may affect heat and collapse scoring but cannot override receipts, governance vetoes, critical heat, or missing lineage.",
+      "category": "confidence",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Confidence Profile"
+      ],
+      "required_evidence": [
+        "ConfidenceProfile model with model, epistemic, contradiction, evidence dimensions and calibration version",
+        "Bounded heat/collapse modulation logic",
+        "Tests proving high confidence cannot bypass critical heat, missing anchors, or governance veto"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-018",
+        "NEG-COLLECTIVE-019"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims or code treating confidence as authorization"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-013",
+      "title": "Cognitive heat is compositional and inspectable",
+      "summary": "Heat must preserve distinct dimensions for entity, branch, interaction, challenge, boundary, swarm, composite, threshold, contributors, calculation version, and timestamp.",
+      "category": "cognitive_heat",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §5",
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §8",
+        "keon_collective_canon_v4_locked.json feature Cognitive Heat"
+      ],
+      "required_evidence": [
+        "CognitiveHeatProfile model or schema",
+        "Calculator preserving dimensional distinction",
+        "Tests for compositional heat, threshold mapping, contributor traceability, and deterministic calculation version"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-020",
+        "NEG-COLLECTIVE-021"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-014",
+      "title": "Critical heat blocks, prunes, pauses, or escalates before effect request",
+      "summary": "Critical heat must have a fail-closed path before Reality boundary handoff and must not be overridden by confidence, oversight mode, or utility score.",
+      "category": "cognitive_heat",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §5.4-5.6 CH-4",
+        "KEON COLLECTIVE DOCTRINE v1.0 §8.3"
+      ],
+      "required_evidence": [
+        "Heat escalation policy",
+        "Tests showing critical heat blocks/prunes/pauses/escalates",
+        "Tests proving overrides do not weaken gateway governance"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-020",
+        "NEG-COLLECTIVE-022"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-015",
+      "title": "Governed role model selection evidence is replay-visible",
+      "summary": "Role model routing must record role, session class, locality requirement, minimum floor, allowed providers, selected provider/model, derivation version, and policy evidence commitment.",
+      "category": "routing",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json features Governed Role Model Selection Evidence and Route Receipt Policy Evidence Commitment"
+      ],
+      "required_evidence": [
+        "Routing receipt contracts",
+        "Policy evidence commitment fields",
+        "Tests verifying commitment changes when policy evidence changes and rejects tampering"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-023",
+        "NEG-COLLECTIVE-024"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-016",
+      "title": "Provider fallback preserves locality and floor policy",
+      "summary": "Routing fallback must not violate local-only/remote-only constraints, minimum model floor, allowed provider set, or critical-context floor requirements.",
+      "category": "routing",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Routing Negative-Proof Corpus"
+      ],
+      "required_evidence": [
+        "Negative routing corpus fixtures",
+        "Replay byte gates or deterministic golden fixtures",
+        "Tests for no-eligible-provider and policy-conflict scenarios"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-025",
+        "NEG-COLLECTIVE-026"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims of governed routing if fallback violates policy"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-017",
+      "title": "Routing evidence is cognition evidence only",
+      "summary": "Model/provider routing receipts and policy evidence cannot imply Runtime authority, MCP execution authority, Cortex write authority, or signing authority.",
+      "category": "routing_non_authority",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Route Receipt Policy Evidence Commitment"
+      ],
+      "required_evidence": [
+        "Docs and code names avoid treating route receipt as execution approval",
+        "Tests proving routing success does not produce effect eligibility",
+        "No route receipt accepted as DecisionReceipt or Runtime decision"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-027"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-018",
+      "title": "Cognitive Density non-authority proof pack exists and passes",
+      "summary": "Perspective review, refinement, reasoning graphs, confidence, and contradiction artifacts must deepen deliberation but cannot authorize execution, bypass governance, replace receipts, or satisfy missing lineage.",
+      "category": "proof_pack",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Cognitive Density Non-Authority Proof Pack"
+      ],
+      "required_evidence": [
+        "Proof document and manifest row",
+        "Positive, negative, and mutation scenarios with counts or explicit fixture list",
+        "Verification command or test suite proving non-authority behavior"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-028",
+        "NEG-COLLECTIVE-029"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-019",
+      "title": "Reasoning graph artifact is typed, linked, and interpretive only",
+      "summary": "Reasoning graphs must be DAG-like artifacts with typed nodes and edges, mandatory intent/branch lineage, and no authority over receipts or policy.",
+      "category": "reasoning_graph",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Reasoning Graph Artifact"
+      ],
+      "required_evidence": [
+        "Node/edge schema with kinds and relationship types",
+        "Construction rejects missing intent or branch lineage",
+        "Tests proving graph cannot replace receipt or causal anchors"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-030",
+        "NEG-COLLECTIVE-031"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-020",
+      "title": "Witness narratives are anchored and subordinate to receipts",
+      "summary": "Witness narratives/digests must bind to intent, selected branch, collapse record, heat context, participants, and receipt refs where consequential events are described.",
+      "category": "meaning_plane",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §6.4, §8 X-5",
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §9",
+        "keon_collective_canon_v4_locked.json feature Witness Narratives"
+      ],
+      "required_evidence": [
+        "WitnessDigest model or schema",
+        "Narrative generation takes causal anchors as inputs",
+        "Tests proving free-floating witness narratives are invalid and receipt conflicts resolve in favor of receipts"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-032",
+        "NEG-COLLECTIVE-033"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-021",
+      "title": "Collective causal record envelope anchors consequential deliberation",
+      "summary": "Consequential Collective decisions must be representable as a causal record envelope binding intent, branch, collapse, review, heat, witness, handoff, receipt references, spine references, and lineage.",
+      "category": "truth_plane",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Collective Causal Record Envelope",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §6.2",
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §10.2"
+      ],
+      "required_evidence": [
+        "CollectiveCausalRecord model/schema or equivalent envelope",
+        "Builder requires required anchors",
+        "Tests proving missing branch/review/receipt/correlation lineage fails closed"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-034",
+        "NEG-COLLECTIVE-035"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-022",
+      "title": "Receipts and causal anchors outrank narratives, memory, and summaries",
+      "summary": "If witness meaning, memory, reasoning graph interpretation, or summaries conflict with receipt-grounded truth, receipt-grounded truth must win.",
+      "category": "truth_supremacy",
+      "source_refs": [
+        "KEON COLLECTIVE DOCTRINE v1.0 §5.2, §13.5",
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §6.6 CT-3"
+      ],
+      "required_evidence": [
+        "Conflict-resolution logic or invariant tests",
+        "Docs forbidding narrative-as-authority",
+        "Tests with conflicting witness/memory vs receipt outcomes"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-033",
+        "NEG-COLLECTIVE-036"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-023",
+      "title": "Oversight mode cannot reduce governance rigor",
+      "summary": "Strategic, Tactical, Surgical, and Observational oversight may change interaction shape but must not weaken boundary governance, receipt preservation, adversarial challenge, canonical truth anchoring, or non-effecting cognition.",
+      "category": "oversight",
+      "source_refs": [
+        "KEON COLLECTIVE CANONICAL CONTRACTS v0.1 §7",
+        "KEON COLLECTIVE DOCTRINE v1.0 §8.7, §12"
+      ],
+      "required_evidence": [
+        "OversightProfile model and resolver",
+        "Immutable governance floor field or equivalent",
+        "Tests proving lower touchpoint modes increase observability/challenge/heat sensitivity instead of freedom"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-037",
+        "NEG-COLLECTIVE-038"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-024",
+      "title": "Gradient authority cannot self-authorize outside inherited scope",
+      "summary": "Gradient authority may influence cognition permissions or escalation, but every entity remains bound to inherited tenant, actor, and governance context.",
+      "category": "authority",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Gradient Authority",
+        "KEON COLLECTIVE DOCTRINE v1.0 §5.4"
+      ],
+      "required_evidence": [
+        "Authority resolver or policy model with tenant/actor/governance context",
+        "Tests proving no self-issued scope widening or permanent privilege",
+        "Tests proving authority changes do not bypass Runtime/Gateway governance"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-039",
+        "NEG-COLLECTIVE-040"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-025",
+      "title": "Agent-role lifecycle preserves continuity and lineage",
+      "summary": "Agents may be transient, but roles must preserve accumulated memory, reputation, authority constraints, and lineage across agent lifetimes without silent rebirth or amnesiac upgrade.",
+      "category": "lifecycle",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Agent-Role Lifecycle",
+        "KEON COLLECTIVE DOCTRINE v1.0 §5.7, §8.6",
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §12"
+      ],
+      "required_evidence": [
+        "Role and agent lifecycle models",
+        "RebirthRecord or lineage artifact",
+        "Tests proving role continuity, successor lineage, and no silent reincarnation"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-041"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-026",
+      "title": "Dream offerings remain non-effecting until governed",
+      "summary": "Dream offerings generated during quiescence are proposals only and cannot execute, write privileged outcomes, contact external systems, or cross tenant boundaries without normal governed flow.",
+      "category": "dream_offerings",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Dream Offerings",
+        "KEON COLLECTIVE DOCTRINE v1.0 §8.5"
+      ],
+      "required_evidence": [
+        "Dream artifact model with non-effecting status",
+        "Quiescence scheduler restricted to cognition/proposal generation",
+        "Tests proving dreams cannot execute and tenant-scoped dreams do not leak"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-042",
+        "NEG-COLLECTIVE-043"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-027",
+      "title": "Collective scoped memory planes preserve tenant isolation",
+      "summary": "System, tenant, session, and promoted-learning memory planes must be separated so role continuity compounds without cross-tenant leakage or raw tenant content in system memory.",
+      "category": "memory_planes",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Collective Scoped Memory Planes",
+        "KEON COLLECTIVE DOCTRINE v1.0 §4.4"
+      ],
+      "required_evidence": [
+        "Memory scope model and access policy",
+        "Promotion policy requiring sanitization, generalization, policy approval, and promotion receipts",
+        "Tests proving tenant memory isolation, system memory raw-content rejection, and retrieval scope receipts"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-044",
+        "NEG-COLLECTIVE-045",
+        "NEG-COLLECTIVE-046"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims of cross-tenant learning without promotion receipts and sanitization evidence"
+      ],
+      "integration_boundary": "Cortex is the memory substrate boundary; verify only Collective scope policy and calls, not Cortex internals"
+    },
+    {
+      "id": "COLLECTIVE-028",
+      "title": "Tenant-scoped cognition service boundary",
+      "summary": "Collective should operate as a tenant-scoped cognition service used by Control, APIs, SDKs, and governed execution surfaces while remaining cognition-only.",
+      "category": "service_boundary",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Collective Tenant-Scoped Cognition Service"
+      ],
+      "required_evidence": [
+        "Service/API boundary with tenant scope and explicit actor identity",
+        "Control integration uses same cognition surface rather than privileged hidden path where applicable",
+        "Tests or docs proving Collective API does not become execution boundary"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-047"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [
+        "Claims that Control UI is the only front door if API/service canon says otherwise"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-029",
+      "title": "Proof pack manifest and doctrine index discoverability",
+      "summary": "Collective proof packs must be discoverable from a manifest that maps proof pack, doctrine invariant, artifact path, verification command/status, and extension point.",
+      "category": "proof_manifest",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json feature Proof Pack Manifest and Doctrine Index"
+      ],
+      "required_evidence": [
+        "docs/proof/MANIFEST.md or equivalent",
+        "Manifest rows for routing negative-proof and cognitive density non-authority packs",
+        "Tests or script verifying manifest paths and commands exist"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-048"
+      ],
+      "default_severity_if_missing": "medium",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-030",
+      "title": "Collective proof claims require positive, negative, and mutation evidence",
+      "summary": "Public proof claims must be backed by runnable tests, fixtures, or proof packs including negative and mutation scenarios, not only docs.",
+      "category": "proof_discipline",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json features Routing Negative-Proof Corpus, Cognitive Density Non-Authority Proof Pack, Proof Pack Manifest"
+      ],
+      "required_evidence": [
+        "Runnable test commands",
+        "Fixture corpus with expected outputs",
+        "Mutation/replay gates for claimed proof packs"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-049"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [
+        "Any proof claim marked implemented without executable evidence"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-031",
+      "title": "CAES wording is alignment unless conformance is proven separately",
+      "summary": "Collective may claim CAES-aligned defensibility only unless it publishes a complete CAES conformance statement for an effect-bound implementation. Collective itself is primarily cognition and must not claim CAES execution conformance unless it crosses effect boundaries and satisfies CAES requirements.",
+      "category": "caes_claim_gate",
+      "source_refs": [
+        "caes-standard.md Conformance Claims",
+        "keon_collective_canon_v4_locked.json Collective Market Positioning Matrix wording_notes"
+      ],
+      "required_evidence": [
+        "Search public/docs for CAES Level claims",
+        "If conformance claimed, complete statement with version, level, receipt verification, PolicyHash, fail-closed description, and effect categories",
+        "If no complete statement, copy uses CAES-aligned only"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-050"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "CAES Level 1/2/3 or CAES-conformant claims without complete conformance statement"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-032",
+      "title": "Runtime, MCP Gateway, and Cortex boundaries are not reimplemented inside Collective",
+      "summary": "Collective may integrate with Runtime, MCP Gateway, and Cortex, but must not reimplement Runtime policy decisions, MCP ingress governance, Cortex canonical memory internals, or signing authority inside cognition code.",
+      "category": "integration_boundary",
+      "source_refs": [
+        "KEON COLLECTIVE DOCTRINE v1.0 §4.4",
+        "keon_collective_canon_v4_locked.json hard_rules and depends_on fields"
+      ],
+      "required_evidence": [
+        "Dependency map distinguishing integration clients from owned logic",
+        "Docs marking Runtime/Gateway/Cortex as dependencies",
+        "Tests or static rules preventing execution governance, durable memory truth, or MCP server ownership from drifting into Collective"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-051",
+        "NEG-COLLECTIVE-052"
+      ],
+      "default_severity_if_missing": "critical",
+      "false_claim_if": [
+        "Claims that Collective owns Runtime Decide/Execute, MCP Gateway enforcement, or Cortex canonical memory"
+      ],
+      "integration_boundary": "Runtime owns Decide-before-Execute; MCP Gateway owns governed MCP tool ingress/egress; Cortex owns canonical memory substrate"
+    },
+    {
+      "id": "COLLECTIVE-033",
+      "title": "Public positioning cannot overclaim implementation maturity",
+      "summary": "Marketing and UI copy must distinguish explicit, implemented, doctrine-derived, strategic-architecture, and positioning-reviewed features, especially for future API, memory planes, dream offerings, and lifecycle features.",
+      "category": "copy_claim_gate",
+      "source_refs": [
+        "keon_collective_canon_v4_locked.json confidence fields"
+      ],
+      "required_evidence": [
+        "Public copy scan",
+        "Claims mapped to implementation evidence or marked planned/strategic where not implemented",
+        "False claim report for implemented language without code/tests"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-053"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [
+        "Treating strategic-architecture or positioning-reviewed features as shipped product behavior without evidence"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-034",
+      "title": "C# contract bindings and invariant validators exist for implemented contract layer",
+      "summary": "When contract layer is claimed implemented, Collective must expose C# records/interfaces/enums/validators matching canonical shapes and enforce required contract-phase invariants.",
+      "category": "contract_binding",
+      "source_refs": [
+        "KEON COLLECTIVE COMMON INTERFACES v0.1 §3-15"
+      ],
+      "required_evidence": [
+        "Abstractions assembly or equivalent",
+        "Invariant validators for Reality, Temporal Echo, Collapse, Heat, Causal Record, Oversight",
+        "Tests for required contract-phase invariants"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-054"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [
+        "Claims of canonical contract implementation without shared interfaces and validator tests"
+      ],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-035",
+      "title": "Round orchestration enforces lane isolation and receipts",
+      "summary": "When Collective agent work is orchestrated in rounds, work must use independent lanes/worktrees, prevent cross-lane contamination, and require receipts for completion.",
+      "category": "orchestration",
+      "source_refs": [
+        "orchestration_round_template.md Orchestrator Directive and Worktree Rule"
+      ],
+      "required_evidence": [
+        "Round directives include lanes, boundaries, worktree rule, tests, receipts",
+        "PRs or branches are merge-safe and independently reviewable",
+        "Orchestrator rejects missing receipts or invariant failures"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-055"
+      ],
+      "default_severity_if_missing": "medium",
+      "false_claim_if": [],
+      "integration_boundary": null
+    },
+    {
+      "id": "COLLECTIVE-036",
+      "title": "Forbidden copy points are enforced",
+      "summary": "Public copy must not describe Collective as ungoverned swarm, Runtime replacement, execution authority, generic agent framework, or narrative/receipt equivalent.",
+      "category": "copy_guardrail",
+      "source_refs": [
+        "KEON COLLECTIVE DOCTRINE v1.0 §7, §13",
+        "keon_collective_canon_v4_locked.json forbidden/hard rules"
+      ],
+      "required_evidence": [
+        "Copy scan for forbidden phrases and implied claims",
+        "Docs clarify Collective produces candidates, not effects",
+        "Tests or checklist in website/content agent workflow"
+      ],
+      "required_tests": [
+        "NEG-COLLECTIVE-056"
+      ],
+      "default_severity_if_missing": "high",
+      "false_claim_if": [],
+      "integration_boundary": null
+    }
+  ],
+  "negative_tests": [
+    {
+      "id": "NEG-COLLECTIVE-001",
+      "title": "Cognition direct effect call is forbidden",
+      "assertion": "A cognition-plane service that directly calls external effect APIs, Runtime Execute, MCP governed execute, shell, network mutators, or infrastructure mutators must fail architecture review.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-002",
+      "title": "Cognition imports execution clients",
+      "assertion": "Forbidden dependency rules must catch cognition/deliberation/density/dream/routing components importing execution clients or gateway mutation clients.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-003",
+      "title": "No temporary bypass for performance",
+      "assertion": "Any test fixture, demo mode, or performance shortcut that bypasses governed execution for effects must fail.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-004",
+      "title": "Handoff treated as execution approval",
+      "assertion": "A prepared handoff marked approved must not be accepted as Runtime decision approval.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-005",
+      "title": "Handoff missing review or heat",
+      "assertion": "A handoff lacking adversarial review or current heat profile must be rejected.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-006",
+      "title": "Missing selected branch",
+      "assertion": "A governed effect request without exactly one selected branch must fail closed.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-007",
+      "title": "Missing tenant actor governance correlation",
+      "assertion": "A request missing tenant, actor, governance, or correlation context must fail closed.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-008",
+      "title": "Speculative branch to effect eligibility",
+      "assertion": "A Proposed, Materialized, Simulating, Archived, Pruned, or Aborted branch cannot become effect eligible.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-009",
+      "title": "Loser branch to execution candidate",
+      "assertion": "A CollapsedLoser branch cannot become effect eligible without rematerialization as new lineage.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-010",
+      "title": "Collapse without evaluated alternatives",
+      "assertion": "Collapse must reject candidate sets without evaluated alternatives.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-011",
+      "title": "Multiple winners",
+      "assertion": "A collapse record with more than one winner must be invalid.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-012",
+      "title": "Silent loser deletion",
+      "assertion": "Loser/pruned/aborted branch history cannot be silently deleted after evaluation.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-013",
+      "title": "Candidate without adversarial review",
+      "assertion": "Execution-candidate preparation must reject missing adversarial review state.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-014",
+      "title": "Perspective review freeform only",
+      "assertion": "Perspective review that emits only prose without typed finding fields must not satisfy structured review claims.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-015",
+      "title": "Refinement mutates original branch",
+      "assertion": "Refinement must not overwrite the original branch snapshot.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-016",
+      "title": "Unbounded refinement loop",
+      "assertion": "Refinement must halt at configured max iterations or critical heat.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-017",
+      "title": "Counter-plan directly selected",
+      "assertion": "A contradiction counter-plan cannot be selected as an execution candidate without rematerialization through Temporal Echo.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-018",
+      "title": "High confidence bypasses governance",
+      "assertion": "High confidence cannot override missing anchors, critical heat, policy denial, or receipt requirements.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-019",
+      "title": "Confidence without calibration version",
+      "assertion": "Confidence profiles without calibration/version metadata are insufficient for verification.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-020",
+      "title": "Critical heat proceeds silently",
+      "assertion": "Critical heat must trigger block, prune, pause, or escalation before handoff.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-021",
+      "title": "Composite heat collapses dimensions",
+      "assertion": "Composite heat cannot erase dimensional contributor traceability.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-022",
+      "title": "Oversight mode lowers heat sensitivity",
+      "assertion": "Lower human touchpoint oversight cannot reduce heat sensitivity or challenge rigor.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-023",
+      "title": "Route receipt policy evidence tamper",
+      "assertion": "Changing roleId, sessionContextClass, localityRequirement, minimumModelFloor, allowedProviders, or policyDerivationVersion must invalidate route receipt verification.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-024",
+      "title": "Routing missing policy commitment",
+      "assertion": "A route receipt without policy evidence commitment cannot satisfy governed routing proof.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-025",
+      "title": "Provider fallback violates locality",
+      "assertion": "Fallback must not route local-only work to remote-only providers or the reverse.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-026",
+      "title": "Provider fallback violates floor",
+      "assertion": "Fallback must not select a model below minimum floor or outside allowed provider set.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-027",
+      "title": "Routing success grants execution",
+      "assertion": "Successful route selection must not produce execution authority, Runtime approval, MCP authority, Cortex write authority, or signing authority.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-028",
+      "title": "Density artifact authorizes execution",
+      "assertion": "Perspective, refinement, graph, confidence, or contradiction artifacts cannot authorize execution.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-029",
+      "title": "Mutation removes non-authority guard",
+      "assertion": "Mutation scenarios that remove non-authority guards must fail proof-pack verification.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-030",
+      "title": "Reasoning graph missing lineage",
+      "assertion": "Reasoning graph construction without intent and branch lineage must be invalid.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-031",
+      "title": "Reasoning graph replaces receipt",
+      "assertion": "Reasoning graph interpretation cannot override receipts or causal anchors.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-032",
+      "title": "Witness narrative free-floating",
+      "assertion": "Witness narrative/digest lacking branch, collapse, heat, participant, or receipt/causal anchors must be invalid.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-033",
+      "title": "Witness conflicts with receipt",
+      "assertion": "When witness narrative conflicts with receipt-grounded truth, receipts must win.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-034",
+      "title": "Causal record missing required anchors",
+      "assertion": "Collective causal record envelope missing intent, branch, collapse, review, heat, or lineage refs must fail.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-035",
+      "title": "Causal record outranks receipts",
+      "assertion": "Causal records and reconstructive anchors cannot supersede receipt truth.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-036",
+      "title": "Memory interpretation outranks receipt",
+      "assertion": "Memory or summary interpretation cannot override receipt-grounded truth.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-037",
+      "title": "Oversight profile reduces governance floor",
+      "assertion": "No oversight profile may reduce immutable governance floor.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-038",
+      "title": "Observational mode reduces safeguards",
+      "assertion": "Observational or low-touch mode must compensate with richer machine-side observability/challenge, not less governance.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-039",
+      "title": "Agent self-authorizes wider scope",
+      "assertion": "Agent or role cannot widen its inherited tenant, actor, or governance scope.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-040",
+      "title": "Temporary elevation bypasses boundary",
+      "assertion": "Gradient authority temporary elevation cannot bypass Runtime/Gateway governance.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-041",
+      "title": "Silent role rebirth",
+      "assertion": "Agent/role lifecycle changes must preserve lineage and cannot silently replace persistent role identity.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-042",
+      "title": "Dream offering executes",
+      "assertion": "Dream offerings cannot execute, mutate external state, call external systems, or invoke Runtime/Gateway effects.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-043",
+      "title": "Dream crosses tenant boundary",
+      "assertion": "Tenant-scoped dreams cannot leak to other tenants or system memory without promotion policy.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-044",
+      "title": "Tenant memory cross-leak",
+      "assertion": "Tenant memory retrieval must not return another tenant's content.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-045",
+      "title": "Raw tenant data in system memory",
+      "assertion": "System memory must reject raw tenant-confidential content.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-046",
+      "title": "Promotion without approval receipts",
+      "assertion": "Cross-tenant promoted learning requires sanitization, generalization, policy approval, and promotion receipts.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-047",
+      "title": "Collective API executes effects",
+      "assertion": "Collective API/service endpoints must not become execution boundary or mutate external reality directly.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-048",
+      "title": "Proof pack undocumented",
+      "assertion": "A proof pack claim without manifest discovery row and runnable verification path is insufficient.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-049",
+      "title": "Proof claim without negative evidence",
+      "assertion": "Proof claims backed only by happy-path tests or docs must be downgraded or marked false.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-050",
+      "title": "Unsupported CAES conformance claim",
+      "assertion": "CAES-conformant or Level 1/2/3 claims without complete conformance statement must be false_claim.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-051",
+      "title": "Runtime governance reimplemented in Collective",
+      "assertion": "Collective must not implement its own authoritative Decide-before-Execute policy engine.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-052",
+      "title": "Cortex canonical memory reimplemented in Collective",
+      "assertion": "Collective must not claim ownership of Cortex canonical memory truth or derivative vector internals.",
+      "default_severity_if_failing": "critical"
+    },
+    {
+      "id": "NEG-COLLECTIVE-053",
+      "title": "Strategic feature claimed shipped",
+      "assertion": "Features marked strategic-architecture or positioning-reviewed must not be claimed shipped without implementation/test evidence.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-054",
+      "title": "Contract implementation without validators",
+      "assertion": "If canonical contract implementation is claimed, missing shared interfaces or invariant validator tests must fail.",
+      "default_severity_if_failing": "high"
+    },
+    {
+      "id": "NEG-COLLECTIVE-055",
+      "title": "Orchestration lane contamination",
+      "assertion": "Round work that stacks lanes, reuses worktrees, touches unrelated code, or lacks receipts must fail orchestration review.",
+      "default_severity_if_failing": "medium"
+    },
+    {
+      "id": "NEG-COLLECTIVE-056",
+      "title": "Forbidden copy claims",
+      "assertion": "Copy implying Collective is ungoverned, executes directly, replaces Runtime/Gateway, or makes narratives equal to receipts must fail.",
+      "default_severity_if_failing": "high"
+    }
+  ],
+  "false_claim_gates": [
+    {
+      "id": "FCG-COLLECTIVE-001",
+      "claim": "Collective executes actions autonomously",
+      "gate": "False unless the repo proves every effect crosses MCP Gateway and Runtime Decide-before-Execute, and copy clearly states Collective prepares candidates only."
+    },
+    {
+      "id": "FCG-COLLECTIVE-002",
+      "claim": "Temporal Echo Planning is implemented",
+      "gate": "False unless branch state model, collapse record, evaluated alternatives, loser preservation, and negative transition tests exist."
+    },
+    {
+      "id": "FCG-COLLECTIVE-003",
+      "claim": "Adversarial Challenge is implemented",
+      "gate": "False unless adversarial review state is required before effect-candidate preparation and missing-review negative tests pass."
+    },
+    {
+      "id": "FCG-COLLECTIVE-004",
+      "claim": "Cognitive Density proof pack is implemented",
+      "gate": "False unless positive, negative, and mutation scenarios prove perspective/refinement/graph/confidence/contradiction artifacts are non-authority."
+    },
+    {
+      "id": "FCG-COLLECTIVE-005",
+      "claim": "Governed role model routing is implemented",
+      "gate": "False unless route receipt policy evidence commitments are present, tamper tests pass, and fallback preserves locality/floor/allowed-provider policy."
+    },
+    {
+      "id": "FCG-COLLECTIVE-006",
+      "claim": "Witness narratives are audit/proof artifacts",
+      "gate": "False unless narratives are anchored to causal/receipt refs and subordinate to receipts."
+    },
+    {
+      "id": "FCG-COLLECTIVE-007",
+      "claim": "Scoped memory planes are implemented",
+      "gate": "False unless system, tenant, session, and promoted-learning scopes are enforced with tenant isolation and promotion policy tests."
+    },
+    {
+      "id": "FCG-COLLECTIVE-008",
+      "claim": "CAES conformance",
+      "gate": "False unless a complete CAES conformance statement exists. Otherwise only CAES-aligned defensibility may be claimed."
+    },
+    {
+      "id": "FCG-COLLECTIVE-009",
+      "claim": "Collective API is production service",
+      "gate": "False unless tenant-scoped API/service boundary exists with tests proving it remains cognition-only and does not execute effects."
+    },
+    {
+      "id": "FCG-COLLECTIVE-010",
+      "claim": "Dream Offerings are active",
+      "gate": "False unless quiescence/proposal generation exists and dream artifacts are non-effecting with tenant boundary tests."
+    }
+  ],
+  "required_artifact_shapes": {
+    "CollectiveIntent": {
+      "required_fields": [
+        "intent_id",
+        "goal",
+        "intent_payload",
+        "tenant_context",
+        "actor_context",
+        "correlation_context",
+        "timestamp_utc"
+      ]
+    },
+    "TemporalEchoBranch": {
+      "required_fields": [
+        "branch_id",
+        "intent_id",
+        "state",
+        "hypothesis",
+        "heat_profile_ref",
+        "utility_score",
+        "risk_score",
+        "lineage_depth",
+        "participants",
+        "spawned_utc"
+      ]
+    },
+    "BranchCollapseRecord": {
+      "required_fields": [
+        "collapse_id",
+        "intent_id",
+        "candidate_branch_ids",
+        "selected_branch_id",
+        "selection_rationale",
+        "comparative_heat_summary",
+        "comparative_utility_summary",
+        "challenge_summary",
+        "timestamp_utc"
+      ]
+    },
+    "AdversarialReview": {
+      "required_fields": [
+        "review_id",
+        "intent_id",
+        "branch_id",
+        "status",
+        "challenge_depth",
+        "induced_heat",
+        "findings",
+        "summary",
+        "timestamp_utc"
+      ]
+    },
+    "CognitiveHeatProfile": {
+      "required_fields": [
+        "heat_profile_id",
+        "entity_heat",
+        "branch_heat",
+        "interaction_heat",
+        "challenge_heat",
+        "boundary_heat",
+        "swarm_heat",
+        "composite_heat",
+        "threshold_state",
+        "calculation_version",
+        "contributors",
+        "timestamp_utc"
+      ]
+    },
+    "ConfidenceProfile": {
+      "required_fields": [
+        "model_confidence",
+        "epistemic_uncertainty",
+        "contradiction_density",
+        "evidence_support",
+        "calibration_version",
+        "branch_id",
+        "intent_id"
+      ]
+    },
+    "RouteReceiptPolicyEvidence": {
+      "required_fields": [
+        "role_id",
+        "session_context_class",
+        "locality_requirement",
+        "minimum_model_floor",
+        "allowed_providers",
+        "policy_derivation_version",
+        "commitment_hash"
+      ]
+    },
+    "ReasoningGraphArtifact": {
+      "required_fields": [
+        "graph_id",
+        "intent_id",
+        "branch_id",
+        "nodes",
+        "edges",
+        "created_utc"
+      ],
+      "node_kinds": [
+        "claim",
+        "assumption",
+        "risk",
+        "decision",
+        "mitigation",
+        "contradiction"
+      ],
+      "edge_kinds": [
+        "supports",
+        "contradicts",
+        "depends_on",
+        "mitigates",
+        "derives_from"
+      ]
+    },
+    "WitnessDigest": {
+      "required_fields": [
+        "witness_digest_id",
+        "intent_id",
+        "selected_branch_id",
+        "collapse_id",
+        "heat_profile_id",
+        "receipt_refs",
+        "participant_entities",
+        "summary",
+        "operator_insight",
+        "timestamp_utc"
+      ]
+    },
+    "CollectiveCausalRecord": {
+      "required_fields": [
+        "causal_record_id",
+        "intent_id",
+        "selected_branch_id",
+        "collapse_id",
+        "adversarial_review_id",
+        "governed_effect_request_id",
+        "spine_refs",
+        "heat_profile_id",
+        "reconstructive_anchor",
+        "participant_entities",
+        "lineage_refs",
+        "timestamp_utc"
+      ]
+    },
+    "OversightProfile": {
+      "required_fields": [
+        "oversight_profile_id",
+        "mode",
+        "domain_scope",
+        "effective_time_window",
+        "pause_policy",
+        "witness_fidelity_level",
+        "heartbeat_detail_level",
+        "challenge_depth_level",
+        "heat_escalation_policy",
+        "operator_notification_policy",
+        "immutable_governance_floor"
+      ]
+    }
+  },
+  "recommended_verification_commands": [
+    "dotnet test",
+    "dotnet test --filter FullyQualifiedName~Routing",
+    "dotnet test --filter FullyQualifiedName~CognitiveDensity",
+    "dotnet test --filter FullyQualifiedName~Handoff",
+    "dotnet test --filter FullyQualifiedName~TemporalEcho",
+    "dotnet test --filter FullyQualifiedName~Witness",
+    "dotnet test --filter FullyQualifiedName~Oversight",
+    "dotnet test --filter FullyQualifiedName~MemoryScope"
+  ],
+  "static_search_must_check": [
+    {
+      "purpose": "forbidden execution calls from cognition",
+      "patterns": [
+        "ExecuteGoverned",
+        "Decide",
+        "tools/call",
+        "keon.governed.execute",
+        "McpGateway",
+        "RuntimeClient",
+        "HttpClient.Post",
+        "Process.Start",
+        "File.Delete",
+        "kubectl",
+        "az "
+      ]
+    },
+    {
+      "purpose": "candidate vs authorization wording",
+      "patterns": [
+        "authorized",
+        "approved",
+        "execute",
+        "effect eligible",
+        "handoff approved",
+        "decision receipt"
+      ]
+    },
+    {
+      "purpose": "receipt supremacy",
+      "patterns": [
+        "receipt",
+        "spine",
+        "causal",
+        "witness",
+        "narrative",
+        "reasoning graph",
+        "confidence"
+      ]
+    },
+    {
+      "purpose": "tenant boundary",
+      "patterns": [
+        "tenant",
+        "actor",
+        "governance",
+        "scope",
+        "memory plane",
+        "promoted learning"
+      ]
+    },
+    {
+      "purpose": "CAES overclaim",
+      "patterns": [
+        "CAES Level",
+        "CAES-conformant",
+        "compliant",
+        "certified",
+        "alignment",
+        "aligned"
+      ]
+    }
+  ],
+  "remediation_lanes": [
+    {
+      "lane": "A",
+      "name": "Plane separation and non-bypass gates",
+      "scope": [
+        "COLLECTIVE-001",
+        "COLLECTIVE-004",
+        "COLLECTIVE-032"
+      ],
+      "success_condition": "Static and test gates prove cognition cannot execute or bypass Runtime/MCP Gateway."
+    },
+    {
+      "lane": "B",
+      "name": "Temporal Echo and collapse lineage",
+      "scope": [
+        "COLLECTIVE-005",
+        "COLLECTIVE-006",
+        "COLLECTIVE-007"
+      ],
+      "success_condition": "Branch lifecycle, collapse, loser preservation, and forbidden transition tests pass."
+    },
+    {
+      "lane": "C",
+      "name": "Adversarial challenge and Cognitive Density non-authority",
+      "scope": [
+        "COLLECTIVE-008",
+        "COLLECTIVE-009",
+        "COLLECTIVE-010",
+        "COLLECTIVE-011",
+        "COLLECTIVE-012",
+        "COLLECTIVE-018",
+        "COLLECTIVE-019"
+      ],
+      "success_condition": "Density artifacts deepen deliberation but cannot authorize execution."
+    },
+    {
+      "lane": "D",
+      "name": "Heat, confidence, and oversight compensation",
+      "scope": [
+        "COLLECTIVE-013",
+        "COLLECTIVE-014",
+        "COLLECTIVE-023",
+        "COLLECTIVE-024"
+      ],
+      "success_condition": "Critical heat and lower-touch oversight fail safe without reducing governance rigor."
+    },
+    {
+      "lane": "E",
+      "name": "Routing evidence and negative corpus",
+      "scope": [
+        "COLLECTIVE-015",
+        "COLLECTIVE-016",
+        "COLLECTIVE-017"
+      ],
+      "success_condition": "Route receipt policy evidence commitments and negative routing corpus pass deterministically."
+    },
+    {
+      "lane": "F",
+      "name": "Witness, truth, causal record envelope",
+      "scope": [
+        "COLLECTIVE-020",
+        "COLLECTIVE-021",
+        "COLLECTIVE-022"
+      ],
+      "success_condition": "Narratives and causal records are anchored and subordinate to receipts."
+    },
+    {
+      "lane": "G",
+      "name": "Memory planes, dreams, lifecycle",
+      "scope": [
+        "COLLECTIVE-025",
+        "COLLECTIVE-026",
+        "COLLECTIVE-027"
+      ],
+      "success_condition": "Roles preserve lineage, dreams are non-effecting, and tenant memory scopes do not leak."
+    },
+    {
+      "lane": "H",
+      "name": "Service/API and integration boundaries",
+      "scope": [
+        "COLLECTIVE-002",
+        "COLLECTIVE-028",
+        "COLLECTIVE-032"
+      ],
+      "success_condition": "Collective is a tenant-scoped cognition service and handoffs remain candidates only."
+    },
+    {
+      "lane": "I",
+      "name": "Proof manifest, CAES wording, copy gates",
+      "scope": [
+        "COLLECTIVE-029",
+        "COLLECTIVE-030",
+        "COLLECTIVE-031",
+        "COLLECTIVE-033",
+        "COLLECTIVE-036"
+      ],
+      "success_condition": "Proof/copy claims match implementation evidence and CAES language is correctly gated."
+    },
+    {
+      "lane": "J",
+      "name": "Canonical contracts and orchestration hygiene",
+      "scope": [
+        "COLLECTIVE-003",
+        "COLLECTIVE-034",
+        "COLLECTIVE-035"
+      ],
+      "success_condition": "C# contracts, validators, and round orchestration rules are evidence-backed."
+    }
+  ],
+  "verdict_policy": {
+    "conformant": "All critical and high requirements implemented with direct evidence, all required negative tests pass, proof/copy claims match evidence, and no forbidden cross-boundary execution paths exist.",
+    "conditionally_conformant": "No critical failures or false claims; some medium/low requirements are partial, documented-only, or ambiguous with remediation lanes identified.",
+    "non_conformant": "Any critical failure, unsupported execution-authority claim, direct cognition-to-effect path, missing non-authority guard, missing tenant isolation for memory scopes, unsupported CAES conformance claim, or false proof claim."
+  }
+}
